@@ -37,6 +37,11 @@ class BucketListHomePage extends StatelessWidget {
                 margin: const EdgeInsets.all(10.0),
                 padding: const EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Color(0xFF4376DE),Color(0xFF0C508F)]
+                  ),
                   borderRadius: BorderRadius.circular(35.0),
                   color: Colors.grey[200],
                 ),
@@ -46,6 +51,7 @@ class BucketListHomePage extends StatelessWidget {
                   ],
                 ),
           ),
+
           InkWell(
             onTap: (){
               // Действие при нажатии на список заданий
@@ -57,7 +63,6 @@ class BucketListHomePage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(35.0),
                 color: Colors.grey[200],
               ),
-
               child: Column(
                 children: <Widget>[
                   ListTile(
@@ -104,6 +109,7 @@ class BucketListHomePage extends StatelessWidget {
           ],
         ),
       ),
+      backgroundColor: Color(0x202857FF),
     );
   }
 }
