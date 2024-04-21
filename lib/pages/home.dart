@@ -11,12 +11,14 @@ class BucketListHomePage extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0x202857FF),
+      backgroundColor: Color(0xFF0A1128), // Цвет фона страницы
       appBar: AppBar(
-        backgroundColor: const Color(0x2857FF),
+        backgroundColor: Color(0xFF0A1128), // Цвет фона шапки
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.notifications),
+            iconSize: MediaQuery.of(context).size.width * 0.1,
+            color: Color(0xFFC6E9F3),// Устанавляем размер иконки пропорционально ширине экрана
             onPressed: () {
               Navigator.pushNamed(context, '/notifications'); // Действие при нажатии на значок уведомлений
             },
@@ -27,45 +29,93 @@ class BucketListHomePage extends State<Home> {
       body: Column(
         children: [
           Container(
-            width: 400,
-            height: 100,
+            width: MediaQuery.of(context).size.width * 0.95,
+            height: MediaQuery.of(context).size.height * 0.25,
             margin: const EdgeInsets.all(10.0),
             padding: const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Color(0xFF4376DE),Color(0xFF0C508F)]
+                  colors: [Color(0xFF1282A2), Color(0xFF034078)]
               ),
               borderRadius: BorderRadius.circular(35.0),
               color: Colors.grey[200],
             ),
             child: const Column(
               children: <Widget>[
-                Text('Lorem ipsum')
+                Text(
+                  'Lorem ipsum',
+                  style: TextStyle(
+                    color: Color(0xFFC6E9F3),
+                    fontSize: 21,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                Text(
+                  'Lorem ipsum',
+                  style: TextStyle(
+                      color: Color(0xFFC6E9F3),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600
+                  ),
+                ),
+
+                Text(
+                  'Lorem ipsum',
+                  style: TextStyle(
+                      color: Color(0xFFC6E9F3),
+                      fontSize: 11,
+                  ),
+                ),
               ],
             ),
           ),
 
           InkWell(
             onTap: (){
-              Navigator.pushNamed(context, '/allTasks'); // Действие при нажатии на список заданий
+              Navigator.pushNamed(context, '/allTasks');
             },
             child: Container(
+              width: MediaQuery.of(context).size.width * 0.95,
+              height: MediaQuery.of(context).size.height * 0.46,
               margin: const EdgeInsets.all(10.0),
               padding: const EdgeInsets.all(10.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(35.0),
-                color: Colors.grey[200],
+                gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Color(0xFF1282A2), Color(0xFF034078)]
+                ),
               ),
-              child: const Column(
+              child: Column(
                 children: <Widget>[
                   ListTile(
-                    leading: CircleAvatar( // Маркер в виде оранжевого круга
-                      radius: 12.0,
-                      backgroundColor: Colors.orange,
+                    leading: Container( // Иконка в виде круга с градиентом
+                      width: MediaQuery.of(context).size.width * 0.06, // Иконка с размером зависимым от ширины экрана
+                      height: MediaQuery.of(context).size.width * 0.06,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [Color(0xFFFFC700), Color(0xFFFF4F00)]
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.circle,
+                        color: Color(0xFFFF8C00),
+                        size: MediaQuery.of(context).size.width * 0.04, // Вычисляем размер иконки как 10% ширины экрана,
+                      ),
                     ),
-                    title: Text('Lorem ipsum'),
+                    title: Text('Lorem ipsum',
+                      style: TextStyle(
+                        color: Color(0xFFC6E9F3),
+                        fontSize: 18
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -76,34 +126,43 @@ class BucketListHomePage extends State<Home> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/addTask');// Действие при нажатии на кружок с плюсом
+          Navigator.pushNamed(context, '/addTask');
         },
-        backgroundColor: const Color(0x7DAFF5FF),
-        child: const Icon(Icons.add),
+        backgroundColor: Color(0xFF1282A2),
+        child: Icon(
+          Icons.add,
+          size: MediaQuery.of(context).size.width * 0.1, // Вычисляем размер иконки как 10% ширины экрана
+          color: Color(0xFFC6E9F3),
+        ),
+        shape: CircleBorder(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        color: const Color(0x80AFF5FF),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.settings),
-              onPressed: () {
-                Navigator.pushNamed(context, '/settings'); // Действия при нажатии на иконку настроек
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.history),
-              onPressed: () {
-                Navigator.pushNamed(context, '/history'); // Действия при нажатии на иконку истории
-              },
-            ),
-          ],
+        bottomNavigationBar: BottomAppBar(
+          shape: const CircularNotchedRectangle(),
+          color: Color(0xFF1282A2),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.history),
+                iconSize: MediaQuery.of(context).size.width * 0.1, // Устанавляем размер иконки пропорционально ширине экрана
+                color: Color(0xFFC6E9F3),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/history'); // Действия при нажатии на иконку истории
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.settings),
+                iconSize: MediaQuery.of(context).size.width * 0.1, // Устанавляем размер иконки пропорционально ширине экрана
+                color: Color(0xFFC6E9F3),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/settings'); // Действия при нажатии на иконку настроек
+                },
+              ),
+            ],
+          ),
         ),
-      ),
     );
   }
 }
