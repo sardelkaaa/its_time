@@ -35,46 +35,77 @@ class BucketListHomePage extends State<Home> {
             padding: const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [Color(0xFF1282A2), Color(0xFF034078)]
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xFF1282A2), Color(0xFF034078)],
               ),
               borderRadius: BorderRadius.circular(35.0),
               color: Colors.grey[200],
             ),
-            child: const Column(
-              children: <Widget>[
-                Text(
-                  'Lorem ipsum',
-                  style: TextStyle(
-                    color: Color(0xFFC6E9F3),
-                    fontSize: 21,
-                    fontWeight: FontWeight.bold,
+            child: Column(
+              children: [
+                // Название
+                Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Text(
+                    'Заголовок',
+                    style: TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.bold, //w700
+                      color: Color(0xFFC6E9F3),
+                    ),
                   ),
                 ),
-
-                Text(
-                  'Lorem ipsum',
-                  style: TextStyle(
+                // Подзаголовок
+                Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Text(
+                    'Подзаголовок',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
                       color: Color(0xFFC6E9F3),
+                    ),
+                  ),
+                ),
+                // Основной текст
+                Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Text(
+                    'Основной текст',
+                    style: TextStyle(
                       fontSize: 14,
-                      fontWeight: FontWeight.w600
+                      color: Color(0xFFC6E9F3),
+                    ),
                   ),
                 ),
-
-                Text(
-                  'Lorem ipsum',
-                  style: TextStyle(
-                      color: Color(0xFFC6E9F3),
-                      fontSize: 11,
+                // Кнопка изменения события
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 0), // Добавляем отступ снизу
+                    width: MediaQuery.of(context).size.width * 0.1, // Устанавливаем ширину как 10% от ширины экрана
+                    height: MediaQuery.of(context).size.width * 0.1, // Устанавливаем высоту как 10% от ширины экрана
+                    decoration: BoxDecoration(
+                      color: Color(0xFF1282A2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: IconButton(
+                        icon: Icon(Icons.edit),
+                        color: Color(0xFFC6E9F3),
+                        onPressed: () {},
+                      ),
+                    ),
                   ),
                 ),
               ],
             ),
           ),
 
+
           InkWell(
-            onTap: (){
+            onTap: () {
               Navigator.pushNamed(context, '/allTasks');
             },
             child: Container(
@@ -87,35 +118,39 @@ class BucketListHomePage extends State<Home> {
                 gradient: const LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [Color(0xFF1282A2), Color(0xFF034078)]
-                ),
+                    colors: [Color(0xFF1282A2), Color(0xFF034078)]),
               ),
               child: Column(
                 children: <Widget>[
                   ListTile(
-                    leading: Container( // Иконка в виде круга с градиентом
-                      width: MediaQuery.of(context).size.width * 0.06, // Иконка с размером зависимым от ширины экрана
+                    leading: Container(
+                      // Иконка в виде круга с градиентом
+                      width: MediaQuery.of(context).size.width * 0.06,
                       height: MediaQuery.of(context).size.width * 0.06,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         gradient: const LinearGradient(
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
-                            colors: [Color(0xFFFFC700), Color(0xFFFF4F00)]
-                        ),
+                            colors: [Color(0xFFFFC700), Color(0xFFFF4F00)]),
                       ),
                       child: Icon(
                         Icons.circle,
                         color: Color(0xFFFF8C00),
-                        size: MediaQuery.of(context).size.width * 0.04, // Вычисляем размер иконки как 10% ширины экрана,
+                        size: MediaQuery.of(context).size.width * 0.04,
                       ),
                     ),
-                    title: Text('Lorem ipsum',
+                    title: Text(
+                      'Lorem ipsum',
                       style: TextStyle(
                         color: Color(0xFFC6E9F3),
-                        fontSize: 18
+                        fontSize: 18,
                       ),
                     ),
+                  ),
+                  const Divider(
+                    color: Color(0xFFCBC9C5),
+                    thickness: 1,
                   ),
                 ],
               ),
