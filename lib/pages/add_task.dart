@@ -4,6 +4,6 @@ class AddTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('lorem ipsum');
+    return const Text('Add task');
   }
 }
