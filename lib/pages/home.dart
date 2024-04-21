@@ -81,7 +81,7 @@ class BucketListHomePage extends StatelessWidget {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Действие при нажатии на кружок с плюсом
+          Navigator.pushNamed(context, '/todo');// Действие при нажатии на кружок с плюсом
         },
         backgroundColor: const Color(0x7DAFF5FF),
         child: const Icon(Icons.add),
