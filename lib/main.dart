@@ -78,14 +78,14 @@ class BucketListHomePage extends StatelessWidget {
         onPressed: () {
           // Действие при нажатии на кружок с плюсом
         },
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color(0x7DAFF5FF),
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        color: Colors.blue,
+        color: const Color(0x80AFF5FF),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
