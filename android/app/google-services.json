@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "663402310587",
+    "project_id": "it-s-time-2da27",
+    "storage_bucket": "it-s-time-2da27.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663402310587:android:467426934e8318d850329e",
+        "android_client_info": {
+          "package_name": "com.artfocus.its_time"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzzbCP7oS84SPwNMvrrye8aWaP2xsALh8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

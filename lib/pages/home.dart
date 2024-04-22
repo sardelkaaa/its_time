@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -7,6 +9,11 @@ class Home extends StatefulWidget {
 }
 
 class BucketListHomePage extends State<Home> {
+
+  void initFireBase() async{
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(); //Инициализация Firebase как метода
+  }
 
   @override
   Widget build(BuildContext context) {
