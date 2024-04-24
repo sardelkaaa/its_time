@@ -10,11 +10,6 @@ class Home extends StatefulWidget {
 
 class BucketListHomePage extends State<Home> {
 
-  void initFireBase() async{
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(); //Инициализация Firebase как метода
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

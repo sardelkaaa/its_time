@@ -1,6 +1,42 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-class AddTask extends StatelessWidget {
+import 'package:its_time/pages/DateTimePickerScreen.dart';
+
+class AddTask extends StatefulWidget {
   const AddTask({super.key});
+
+  @override
+  State<AddTask> createState() => _AddTaskState();
+}
+
+class _AddTaskState extends State<AddTask> {
+
+  DateTimePickerScreen dateTimePicker = DateTimePickerScreen();
+  String titleInput = '';
+  String descriptionInput = ''; // Переменные для ввода задания
+
+  void initFireBase() async{
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          apiKey: "AIzaSyBzzbCP7oS84SPwNMvrrye8aWaP2xsALh8",
+          appId: "1:663402310587:android:467426934e8318d850329e",
+          messagingSenderId: '663402310587',
+          projectId: 'it-s-time-2da27',
+          storageBucket: "it-s-time-2da27.appspot.com")
+    ); //Инициализация Firebase как метода
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initFireBase();
+  } // Инициализирование статичности и Firebase
+
+  String formatTime(TimeOfDay time) {
+    return '${time.hour}:${time.minute}';
+  } // Преобразование формата времени в строку
 
   @override
   Widget build(BuildContext context) {
@@ -63,20 +99,40 @@ class AddTask extends StatelessWidget {
                       labelText: 'Название',
                       border: OutlineInputBorder(),
                     ),
+                    onChanged: (String title) {
+                      titleInput = title; // Изменение значения названия на вводимое пользователем
+                    },
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
-                    decoration: const InputDecoration(
+                    controller: dateTimePicker.dateController,
+                    decoration: InputDecoration(
                       labelText: 'Дата',
                       border: OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.calendar_today), //Иконка и выбор времени
+                        onPressed: () {
+                          dateTimePicker.selectDate(context); // Вызов метода для выбора даты во всплывающем окне
+                        },
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
-                    decoration: const InputDecoration(
+                    controller: dateTimePicker.timeController,
+                    decoration: InputDecoration(
                       labelText: 'Время',
                       border: OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.access_time), //Иконка и выбор времени
+                        onPressed: () {
+                          dateTimePicker.selectTime(context); // Вызов метода для выбора времени во всплывающем окне
+                        },
+                      ),
                     ),
+                    onTap: () {
+                      dateTimePicker.selectTime(context); // Вызов метода для выбора времени во всплывающем окне при нажатии на форму
+                    },
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
@@ -84,11 +140,23 @@ class AddTask extends StatelessWidget {
                       labelText: 'Описание',
                       border: OutlineInputBorder(),
                     ),
+                    onChanged: (String description) {
+                      descriptionInput = description; // Изменение значения описания на вводимое пользователем
+                    },
                   ),
                   const SizedBox(height: 230), // Добавляем отступ
 
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      FirebaseFirestore.instance.collection('tasks').add({
+                        'title': titleInput,
+                        'description': descriptionInput,
+                        'date': dateTimePicker.selectedDate,
+                        'time': formatTime(dateTimePicker.selectedTime)
+                      }); // Добавление задания в Firebase
+
+                      Navigator.popAndPushNamed(context, '/'); // Выход после отправления задания в Firebase
+                    },
                     child: const Text('Отправить'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF1282A2),
