@@ -110,54 +110,97 @@ class BucketListHomePage extends State<Home> {
             onTap: () {
               Navigator.pushNamed(context, '/allTasks');
             },
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.95,
-              height: MediaQuery.of(context).size.height * 0.46,
-              margin: const EdgeInsets.all(10.0),
-              padding: const EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(35.0),
-                gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Color(0xFF1282A2), Color(0xFF034078)]),
-              ),
-              child: Column(
-                children: <Widget>[
-                  ListTile(
-                    leading: Container(
-                      // Иконка в виде круга с градиентом
-                      width: MediaQuery.of(context).size.width * 0.06,
-                      height: MediaQuery.of(context).size.width * 0.06,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [Color(0xFFFFC700), Color(0xFFFF4F00)]),
-                      ),
-                      child: Icon(
-                        Icons.circle,
-                        color: Color(0xFFFF8C00),
-                        size: MediaQuery.of(context).size.width * 0.04,
+            child: StreamBuilder<QuerySnapshot>( // Вывод информации из БД с быстрым обновлением
+              stream: FirebaseFirestore.instance.collection('tasks').snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                }
+                if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}'); // Ошибка в выводе БД
+                }
+                if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width * 0.95,
+                    height: MediaQuery.of(context).size.height * 0.46,
+                    margin: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(35.0),
+                      gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [Color(0xFF1282A2), Color(0xFF034078)]
                       ),
                     ),
-                    title: Text(
-                      'Lorem ipsum',
-                      style: TextStyle(
-                        color: Color(0xFFC6E9F3),
-                        fontSize: 18,
+                    child: Column(
+                      children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                        Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+                        return Column(
+                          children: [
+                            ListTile(
+                              leading: Container(
+                                width: MediaQuery.of(context).size.width * 0.06,
+                                height: MediaQuery.of(context).size.width * 0.06,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: const LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [Color(0xFFFFC700), Color(0xFFFF4F00)]
+                                  ),
+                                ),
+                                child: Icon(
+                                  Icons.circle,
+                                  color: Color(0xFFFF8C00),
+                                  size: MediaQuery.of(context).size.width * 0.04,
+                                ),
+                              ),
+                              title: Text(
+                                data['title'], // Возвращение названия задания из БД
+                                style: TextStyle(
+                                  color: Color(0xFFC6E9F3),
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                            const Divider(
+                              color: Color(0xFFCBC9C5),
+                              thickness: 1,
+                            ),
+                          ],
+                        );
+                      }).toList(),
+                    ),
+                  );
+                } else {
+                  return Container( // Возвращение пустого контейнера, если нет заданий
+                    width: MediaQuery.of(context).size.width * 0.95,
+                    height: MediaQuery.of(context).size.height * 0.46,
+                    margin: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(35.0),
+                      gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [Color(0xFF1282A2), Color(0xFF034078)]
                       ),
                     ),
-                  ),
-                  const Divider(
-                    color: Color(0xFFCBC9C5),
-                    thickness: 1,
-                  ),
-                ],
-              ),
+                    child: Center(
+                      child: Text(
+                        'Нет текущих заданий', // Отображение текста в пустом контейнере
+                        style: TextStyle(
+                          color: Color(0xFFC6E9F3),
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  );
+                }
+              },
             ),
-          ),
+          )
         ],
       ),
 

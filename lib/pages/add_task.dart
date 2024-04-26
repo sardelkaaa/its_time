@@ -16,23 +16,11 @@ class _AddTaskState extends State<AddTask> {
   String titleInput = '';
   String descriptionInput = ''; // Переменные для ввода задания
 
-  void initFireBase() async{
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
-      options: const FirebaseOptions(
-          apiKey: "AIzaSyBzzbCP7oS84SPwNMvrrye8aWaP2xsALh8",
-          appId: "1:663402310587:android:467426934e8318d850329e",
-          messagingSenderId: '663402310587',
-          projectId: 'it-s-time-2da27',
-          storageBucket: "it-s-time-2da27.appspot.com")
-    ); //Инициализация Firebase как метода
-  }
 
   @override
   void initState() {
     super.initState();
-    initFireBase();
-  } // Инициализирование статичности и Firebase
+  } // Инициализирование статичности
 
   String formatTime(TimeOfDay time) {
     return '${time.hour}:${time.minute}';
