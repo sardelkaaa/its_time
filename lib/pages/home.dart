@@ -110,14 +110,14 @@ class BucketListHomePage extends State<Home> {
             onTap: () {
               Navigator.pushNamed(context, '/allTasks');
             },
-            child: StreamBuilder<QuerySnapshot>( // Вывод информации из БД с быстрым обновлением
+            child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance.collection('tasks').snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return CircularProgressIndicator();
                 }
                 if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}'); // Ошибка в выводе БД
+                  return Text('Error: ${snapshot.error}');
                 }
                 if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
                   return Container(
@@ -133,7 +133,7 @@ class BucketListHomePage extends State<Home> {
                           colors: [Color(0xFF1282A2), Color(0xFF034078)]
                       ),
                     ),
-                    child: Column(
+                    child: ListView(
                       children: snapshot.data!.docs.map((DocumentSnapshot document) {
                         Map<String, dynamic> data = document.data() as Map<String, dynamic>;
                         return Column(
@@ -157,7 +157,7 @@ class BucketListHomePage extends State<Home> {
                                 ),
                               ),
                               title: Text(
-                                data['title'], // Возвращение названия задания из БД
+                                data['title'],
                                 style: TextStyle(
                                   color: Color(0xFFC6E9F3),
                                   fontSize: 18,
@@ -174,7 +174,7 @@ class BucketListHomePage extends State<Home> {
                     ),
                   );
                 } else {
-                  return Container( // Возвращение пустого контейнера, если нет заданий
+                  return Container(
                     width: MediaQuery.of(context).size.width * 0.95,
                     height: MediaQuery.of(context).size.height * 0.46,
                     margin: const EdgeInsets.all(10.0),
@@ -189,7 +189,7 @@ class BucketListHomePage extends State<Home> {
                     ),
                     child: Center(
                       child: Text(
-                        'Нет текущих заданий', // Отображение текста в пустом контейнере
+                        'Нет текущих заданий',
                         style: TextStyle(
                           color: Color(0xFFC6E9F3),
                           fontSize: 18,
