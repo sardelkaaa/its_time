@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:its_time/pages/DateTimePickerScreen.dart';
 
@@ -30,6 +31,7 @@ class _AddTaskState extends State<AddTask> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF0A1128), // Цвет фона страницы
+
       appBar: AppBar(
         backgroundColor: Color(0xFF0A1128), // Цвет фона шапки
         leading: IconButton(
@@ -78,41 +80,101 @@ class _AddTaskState extends State<AddTask> {
                   colors: [Color(0xFF1282A2), Color(0xFF034078)],
                 ),
                 borderRadius: BorderRadius.circular(35.0),
-                color: Colors.grey[200],
               ),
+
               child: Column(
                 children: [
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+
                   TextFormField(
-                    decoration: const InputDecoration(
+                    style: TextStyle(),
+                    decoration: InputDecoration(
                       labelText: 'Название',
-                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Color(0xFF1282A2), // Цвет фона
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                      ),
+                      labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
+                      hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
+                      errorStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
                     ),
                     onChanged: (String title) {
                       titleInput = title; // Изменение значения названия на вводимое пользователем
                     },
                   ),
-                  const SizedBox(height: 10),
+
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+
                   TextFormField(
                     controller: dateTimePicker.dateController,
                     decoration: InputDecoration(
                       labelText: 'Дата',
-                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Color(0xFF1282A2), // Цвет фона
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                      ),
+                      labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
+                      hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
+                      errorStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
                       suffixIcon: IconButton(
                         icon: Icon(Icons.calendar_today), //Иконка и выбор времени
+                        color: Color(0xFFC6E9F3),
                         onPressed: () {
                           dateTimePicker.selectDate(context); // Вызов метода для выбора даты во всплывающем окне
                         },
                       ),
                     ),
+                    onTap: () {
+                      dateTimePicker.selectDate(context); // Вызов метода для выбора времени во всплывающем окне при нажатии на форму
+                    },
                   ),
-                  const SizedBox(height: 10),
+
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+
                   TextFormField(
                     controller: dateTimePicker.timeController,
                     decoration: InputDecoration(
                       labelText: 'Время',
-                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Color(0xFF1282A2), // Цвет фона
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                      ),
+                      labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
+                      hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
+                      errorStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
                       suffixIcon: IconButton(
                         icon: Icon(Icons.access_time), //Иконка и выбор времени
+                        color: Color(0xFFC6E9F3),
                         onPressed: () {
                           dateTimePicker.selectTime(context); // Вызов метода для выбора времени во всплывающем окне
                         },
@@ -122,17 +184,102 @@ class _AddTaskState extends State<AddTask> {
                       dateTimePicker.selectTime(context); // Вызов метода для выбора времени во всплывающем окне при нажатии на форму
                     },
                   ),
-                  const SizedBox(height: 10),
+
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+
                   TextFormField(
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Описание',
-                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Color(0xFF1282A2), // Цвет фона
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                      ),
+                      labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
+                      hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
+                      errorStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
                     ),
                     onChanged: (String description) {
                       descriptionInput = description; // Изменение значения описания на вводимое пользователем
                     },
+                    minLines: 3,
+                    maxLines: 3,
                   ),
-                  const SizedBox(height: 230), // Добавляем отступ
+
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02), // Добавляем отступ
+
+                  Text(
+                    'Приоритетность',
+                    style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02), // Добавляем отступ
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround, // Выравнивание кнопок по центру
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('1', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF1282A2),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
+                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
+                        ),
+                      ),
+
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('2', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF1282A2),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
+                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
+                        ),
+                      ),
+
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('3', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF1282A2),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
+                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
+                        ),
+                      ),
+
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('4', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF1282A2),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
+                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
+                        ),
+                      ),
+
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('5', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF1282A2),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
+                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02), // Добавляем отступ
 
                   ElevatedButton(
                     onPressed: () {
@@ -145,12 +292,11 @@ class _AddTaskState extends State<AddTask> {
 
                       Navigator.popAndPushNamed(context, '/'); // Выход после отправления задания в Firebase
                     },
-                    child: const Text('Отправить'),
+                    child: Text('Отправить', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF1282A2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0),),
+                      minimumSize: Size(MediaQuery.of(context).size.width * 0.8, MediaQuery.of(context).size.height * 0.08)
                     ),
                   ),
                 ],

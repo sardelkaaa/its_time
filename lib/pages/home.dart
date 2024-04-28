@@ -14,6 +14,7 @@ class BucketListHomePage extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF0A1128), // Цвет фона страницы
+
       appBar: AppBar(
         backgroundColor: Color(0xFF0A1128), // Цвет фона шапки
         actions: <Widget>[
@@ -28,7 +29,8 @@ class BucketListHomePage extends State<Home> {
         ],
       ),
 
-      body: Column(
+      body:
+      Column(
         children: [
           Container(
             width: MediaQuery.of(context).size.width * 0.95,
