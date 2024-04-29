@@ -15,8 +15,8 @@ class _AddTaskState extends State<AddTask> {
 
   DateTimePickerScreen dateTimePicker = DateTimePickerScreen();
   String titleInput = '';
-  String descriptionInput = '';
-  final ValueNotifier<int?> selectedPriority = ValueNotifier<int?>(null); // Переменные для ввода задания
+  String descriptionInput = ''; // Переменные для ввода задания
+
 
   @override
   void initState() {
@@ -70,7 +70,7 @@ class _AddTaskState extends State<AddTask> {
           children: [
             Container(
               width: MediaQuery.of(context).size.width * 0.95,
-              height: MediaQuery.of(context).size.height * 0.73, // Уменьшаем высоту контейнера
+              height: MediaQuery.of(context).size.height * 0.82, // Уменьшаем высоту контейнера
               margin: const EdgeInsets.all(10.0),
               padding: const EdgeInsets.all(10.0),
               decoration: BoxDecoration(
@@ -79,12 +79,12 @@ class _AddTaskState extends State<AddTask> {
                   end: Alignment.bottomRight,
                   colors: [Color(0xFF1282A2), Color(0xFF034078)],
                 ),
-                borderRadius: BorderRadius.circular(35.0),
+                borderRadius: BorderRadius.circular(25.0),
               ),
 
               child: Column(
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
                   TextFormField(
                     style: TextStyle(),
@@ -93,15 +93,15 @@ class _AddTaskState extends State<AddTask> {
                       filled: true,
                       fillColor: Color(0xFF1282A2), // Цвет фона
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderRadius: BorderRadius.circular(25.0), // Закругление углов
                         borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderRadius: BorderRadius.circular(25.0), // Закругление углов
                         borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderRadius: BorderRadius.circular(25.0), // Закругление углов
                         borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                       ),
                       labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
@@ -122,15 +122,15 @@ class _AddTaskState extends State<AddTask> {
                       filled: true,
                       fillColor: Color(0xFF1282A2), // Цвет фона
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderRadius: BorderRadius.circular(25.0), // Закругление углов
                         borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderRadius: BorderRadius.circular(25.0), // Закругление углов
                         borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderRadius: BorderRadius.circular(25.0), // Закругление углов
                         borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                       ),
                       labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
@@ -158,15 +158,15 @@ class _AddTaskState extends State<AddTask> {
                       filled: true,
                       fillColor: Color(0xFF1282A2), // Цвет фона
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderRadius: BorderRadius.circular(25.0), // Закругление углов
                         borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderRadius: BorderRadius.circular(25.0), // Закругление углов
                         borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderRadius: BorderRadius.circular(25.0), // Закругление углов
                         borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                       ),
                       labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
@@ -193,15 +193,15 @@ class _AddTaskState extends State<AddTask> {
                       filled: true,
                       fillColor: Color(0xFF1282A2), // Цвет фона
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderRadius: BorderRadius.circular(25.0), // Закругление углов
                         borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderRadius: BorderRadius.circular(25.0), // Закругление углов
                         borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0), // Закругление углов
+                        borderRadius: BorderRadius.circular(25.0), // Закругление углов
                         borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                       ),
                       labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
@@ -211,13 +211,13 @@ class _AddTaskState extends State<AddTask> {
                     onChanged: (String description) {
                       descriptionInput = description; // Изменение значения описания на вводимое пользователем
                     },
-                    minLines: 3,
-                    maxLines: 3,
+                    minLines: 5,
+                    maxLines: 5,
                   ),
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02), // Добавляем отступ
 
-                  const Text(
+                  Text(
                     'Приоритетность',
                     style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
                   ),
@@ -225,24 +225,61 @@ class _AddTaskState extends State<AddTask> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02), // Добавляем отступ
 
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround, // Выравнивание кнопок по центру
                     children: [
-                      for (int i = 1; i <= 5; i++)
-                        ElevatedButton(
-                          onPressed: () {
-                            selectedPriority.value = i;
-                          },
-                          child: Text('$i', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: selectedPriority == i ? Color(0xFF1282A2) : Colors.grey,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
-                            minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
-                          ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('1', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF1282A2),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
+                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
                         ),
+                      ),
+
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('2', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF1282A2),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
+                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
+                        ),
+                      ),
+
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('3', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF1282A2),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
+                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
+                        ),
+                      ),
+
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('4', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF1282A2),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
+                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
+                        ),
+                      ),
+
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('5', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF1282A2),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
+                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
+                        ),
+                      ),
                     ],
                   ),
 
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.02), // Добавляем отступ
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.035), // Добавляем отступ
 
                   ElevatedButton(
                     onPressed: () {
@@ -250,16 +287,15 @@ class _AddTaskState extends State<AddTask> {
                         'title': titleInput,
                         'description': descriptionInput,
                         'date': dateTimePicker.selectedDate,
-                        'time': formatTime(dateTimePicker.selectedTime),
-                        'priority': selectedPriority.value
+                        'time': formatTime(dateTimePicker.selectedTime)
                       }); // Добавление задания в Firebase
 
                       Navigator.popAndPushNamed(context, '/'); // Выход после отправления задания в Firebase
                     },
-                    child: Text('Отправить', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
+                    child: Text('Добавить новое задание', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF1282A2),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0),),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
                       minimumSize: Size(MediaQuery.of(context).size.width * 0.8, MediaQuery.of(context).size.height * 0.08)
                     ),
                   ),
@@ -270,33 +306,33 @@ class _AddTaskState extends State<AddTask> {
         ),
       ),
 
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        color: Color(0xFF1282A2),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.history),
-              iconSize: MediaQuery.of(context).size.width * 0.1, // Устанавляем размер иконки пропорционально ширине экрана
-              color: Color(0xFFC6E9F3),
-              onPressed: () {
-                Navigator.pushNamed(context,
-                    '/history'); // Действия при нажатии на иконку истории
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.settings),
-              iconSize: MediaQuery.of(context).size.width * 0.1, // Устанавляем размер иконки пропорционально ширине экрана
-              color: Color(0xFFC6E9F3),
-              onPressed: () {
-                Navigator.pushNamed(context,
-                    '/settings'); // Действия при нажатии на иконку настроек
-              },
-            ),
-          ],
-        ),
-      ),
+      // bottomNavigationBar: BottomAppBar(
+      //   shape: const CircularNotchedRectangle(),
+      //   color: Color(0xFF1282A2),
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     children: <Widget>[
+      //       IconButton(
+      //         icon: const Icon(Icons.history),
+      //         iconSize: MediaQuery.of(context).size.width * 0.1, // Устанавляем размер иконки пропорционально ширине экрана
+      //         color: Color(0xFFC6E9F3),
+      //         onPressed: () {
+      //           Navigator.pushNamed(context,
+      //               '/history'); // Действия при нажатии на иконку истории
+      //         },
+      //       ),
+      //       IconButton(
+      //         icon: const Icon(Icons.settings),
+      //         iconSize: MediaQuery.of(context).size.width * 0.1, // Устанавляем размер иконки пропорционально ширине экрана
+      //         color: Color(0xFFC6E9F3),
+      //         onPressed: () {
+      //           Navigator.pushNamed(context,
+      //               '/settings'); // Действия при нажатии на иконку настроек
+      //         },
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }

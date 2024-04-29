@@ -26,7 +26,6 @@ if (flutterVersionName == null) {
 android {
     namespace "com.artfocus.its_time"
     compileSdk flutter.compileSdkVersion
-    ndkVersion '27.0.11718014'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
