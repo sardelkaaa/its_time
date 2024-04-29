@@ -251,7 +251,8 @@ class _AddTaskState extends State<AddTask> {
                         'title': titleInput,
                         'description': descriptionInput,
                         'date': dateTimePicker.selectedDate,
-                        'time': formatTime(dateTimePicker.selectedTime)
+                        'time': formatTime(dateTimePicker.selectedTime),
+                        'priority': selectedPriority.value
                       }); // Добавление задания в Firebase
 
                       Navigator.popAndPushNamed(context, '/'); // Выход после отправления задания в Firebase
