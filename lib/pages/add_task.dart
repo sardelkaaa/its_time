@@ -15,8 +15,8 @@ class _AddTaskState extends State<AddTask> {
 
   DateTimePickerScreen dateTimePicker = DateTimePickerScreen();
   String titleInput = '';
-  String descriptionInput = ''; // Переменные для ввода задания
-
+  String descriptionInput = '';
+  final ValueNotifier<int?> selectedPriority = ValueNotifier<int?>(null); // Переменные для ввода задания
 
   @override
   void initState() {
@@ -217,7 +217,7 @@ class _AddTaskState extends State<AddTask> {
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02), // Добавляем отступ
 
-                  Text(
+                  const Text(
                     'Приоритетность',
                     style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
                   ),
@@ -225,57 +225,20 @@ class _AddTaskState extends State<AddTask> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02), // Добавляем отступ
 
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround, // Выравнивание кнопок по центру
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text('1', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF1282A2),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
-                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
+                      for (int i = 1; i <= 5; i++)
+                        ElevatedButton(
+                          onPressed: () {
+                            selectedPriority.value = i;
+                          },
+                          child: Text('$i', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: selectedPriority == i ? Color(0xFF1282A2) : Colors.grey,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
+                            minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
+                          ),
                         ),
-                      ),
-
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text('2', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF1282A2),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
-                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
-                        ),
-                      ),
-
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text('3', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF1282A2),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
-                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
-                        ),
-                      ),
-
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text('4', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF1282A2),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
-                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
-                        ),
-                      ),
-
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text('5', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF1282A2),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
-                          minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
-                        ),
-                      ),
                     ],
                   ),
 
@@ -287,7 +250,8 @@ class _AddTaskState extends State<AddTask> {
                         'title': titleInput,
                         'description': descriptionInput,
                         'date': dateTimePicker.selectedDate,
-                        'time': formatTime(dateTimePicker.selectedTime)
+                        'time': formatTime(dateTimePicker.selectedTime),
+                        'priority': selectedPriority.value
                       }); // Добавление задания в Firebase
 
                       Navigator.popAndPushNamed(context, '/'); // Выход после отправления задания в Firebase

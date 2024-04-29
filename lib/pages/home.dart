@@ -113,7 +113,10 @@ class BucketListHomePage extends State<Home> {
               Navigator.pushNamed(context, '/allTasks');
             },
             child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance.collection('tasks').snapshots(),
+              stream: FirebaseFirestore.instance.collection('tasks')
+                  .orderBy('date')
+                  .orderBy('priority', descending: true)
+                  .snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return CircularProgressIndicator();
@@ -137,7 +140,7 @@ class BucketListHomePage extends State<Home> {
                     ),
                     child: ListView(
                       children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                        Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+                        Map data = document.data() as Map;
                         return Column(
                           children: [
                             ListTile(
