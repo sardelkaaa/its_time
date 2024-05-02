@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:its_time/services/TaskServices.dart';
+import 'package:intl/intl.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -32,79 +34,122 @@ class BucketListHomePage extends State<Home> {
       body:
       Column(
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width * 0.95,
-            height: MediaQuery.of(context).size.height * 0.25,
-            margin: const EdgeInsets.all(10.0),
-            padding: const EdgeInsets.all(10.0),
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Color(0xFF1282A2), Color(0xFF034078)],
-              ),
-              borderRadius: BorderRadius.circular(35.0),
-              color: Colors.grey[200],
-            ),
-            child: Column(
-              children: [
-                // Название
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Text(
-                    'Заголовок',
-                    style: TextStyle(
-                      fontSize: 21,
-                      fontWeight: FontWeight.bold, //w700
-                      color: Color(0xFFC6E9F3),
-                    ),
-                  ),
-                ),
-                // Подзаголовок
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Text(
-                    'Подзаголовок',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFFC6E9F3),
-                    ),
-                  ),
-                ),
-                // Основной текст
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Text(
-                    'Основной текст',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Color(0xFFC6E9F3),
-                    ),
-                  ),
-                ),
-                // Кнопка изменения события
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 0), // Добавляем отступ снизу
-                    width: MediaQuery.of(context).size.width * 0.1, // Устанавливаем ширину как 10% от ширины экрана
-                    height: MediaQuery.of(context).size.width * 0.1, // Устанавливаем высоту как 10% от ширины экрана
+          StreamBuilder(
+              stream: TaskServices().getTasks(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return CircularProgressIndicator();
+                }
+                if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
+                  var task = snapshot.data!.docs.first; // получаем первое задание из списка
+                  var taskDate = (task['date'] as Timestamp).toDate();
+                  var taskTime = task['time'];
+                  var isToday = TaskServices().isToday(taskDate);
+                  return Container(
+                    width: MediaQuery.of(context).size.width * 0.95,
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    margin: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
                     decoration: BoxDecoration(
-                      color: Color(0xFF1282A2),
-                      borderRadius: BorderRadius.circular(10),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Color(0xFF1282A2), Color(0xFF034078)],
+                      ),
+                      borderRadius: BorderRadius.circular(35.0),
+                      color: Colors.grey[200],
                     ),
+                    child: Column(
+                      children: [
+                        // Название
+                        Padding(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Text(
+                            task['title'],
+                            style: TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold, //w700
+                              color: Color(0xFFC6E9F3),
+                            ),
+                          ),
+                        ),
+                        // Дата
+                        Padding(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Text(
+                            isToday ? 'Сегодня в $taskTime'
+                                : '${DateFormat('EEEE, MMMM d, yyyy').format(taskDate)} в $taskTime',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFFC6E9F3),
+                            ),
+                          ),
+                        ),
+                        // Описание
+                        Padding(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Text(
+                            task['description'],
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFFC6E9F3),
+                            ),
+                          ),
+                        ),
+                        // Кнопка изменения события
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: Container(
+                            margin: EdgeInsets.only(bottom: 0),
+                            // Добавляем отступ снизу
+                            width: MediaQuery.of(context).size.width * 0.1,
+                            // Устанавливаем ширину как 10% от ширины экрана
+                            height: MediaQuery.of(context).size.width * 0.1,
+                            // Устанавливаем высоту как 10% от ширины экрана
+                            decoration: BoxDecoration(
+                              color: Color(0xFF1282A2),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: IconButton(
+                                icon: Icon(Icons.edit),
+                                color: Color(0xFFC6E9F3),
+                                onPressed: () {},
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                } else {
+                  return Container(
+                      width: MediaQuery.of(context).size.width * 0.95,
+                      height: MediaQuery.of(context).size.height * 0.25,
+                      margin: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [Color(0xFF1282A2), Color(0xFF034078)],
+                        ),
+                        borderRadius: BorderRadius.circular(35.0),
+                        color: Colors.grey[200],
+                      ),
                     child: Center(
-                      child: IconButton(
-                        icon: Icon(Icons.edit),
-                        color: Color(0xFFC6E9F3),
-                        onPressed: () {},
+                      child: Text(
+                        'Нет текущего основного задания',
+                        style: TextStyle(
+                          color: Color(0xFFC6E9F3),
+                          fontSize: 18,
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ],
-            ),
+                  );
+                }
+              }
           ),
 
 
@@ -113,10 +158,7 @@ class BucketListHomePage extends State<Home> {
               Navigator.pushNamed(context, '/allTasks');
             },
             child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance.collection('tasks')
-                  .orderBy('date')
-                  .orderBy('priority', descending: true)
-                  .snapshots(),
+              stream: TaskServices().getTasks(), // Обращение к вспомогательному методу для вывода заданий из БД
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return CircularProgressIndicator();
@@ -139,7 +181,7 @@ class BucketListHomePage extends State<Home> {
                       ),
                     ),
                     child: ListView(
-                      children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                      children: snapshot.data!.docs.skip(1).map((DocumentSnapshot document) {
                         Map data = document.data() as Map;
                         return Column(
                           children: [

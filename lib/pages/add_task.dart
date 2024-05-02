@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:its_time/pages/DateTimePickerScreen.dart';
+import 'package:its_time/services/DateTimePickerScreen.dart';
 
 class AddTask extends StatefulWidget {
   const AddTask({super.key});
@@ -247,15 +247,27 @@ class _AddTaskState extends State<AddTask> {
 
                   ElevatedButton(
                     onPressed: () {
-                      FirebaseFirestore.instance.collection('tasks').add({
-                        'title': titleInput,
-                        'description': descriptionInput,
-                        'date': dateTimePicker.selectedDate,
-                        'time': formatTime(dateTimePicker.selectedTime),
-                        'priority': selectedPriority.value
-                      }); // Добавление задания в Firebase
+                      if (titleInput.isNotEmpty) {
+                        // Add the task to Firebase
+                        FirebaseFirestore.instance.collection('tasks').add({
+                          'title': titleInput,
+                          'description': descriptionInput,
+                          'date': dateTimePicker.selectedDate,
+                          'time': formatTime(dateTimePicker.selectedTime),
+                          'priority': selectedPriority.value
+                        });
 
-                      Navigator.popAndPushNamed(context, '/'); // Выход после отправления задания в Firebase
+                        Navigator.popAndPushNamed(context, '/'); // Возвращение на главную страницу после отправки задания
+
+                      } else {
+                        // Дисплей ошибки
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Пожалуйста, введите название задачи'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      }
                     },
                     child: Text('Добавить новое задание', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
                     style: ElevatedButton.styleFrom(
