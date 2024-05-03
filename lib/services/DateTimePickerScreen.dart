@@ -27,7 +27,7 @@ class DateTimePickerScreen {
       context: context,
       initialTime: selectedTime,
     );
-    if (picked != null && picked != selectedTime) {
+    if (picked != null) {
       selectedTime = picked;
       timeController.text = selectedTime.format(context);
     }

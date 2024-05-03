@@ -210,7 +210,7 @@ class BucketListHomePage extends State<Home> {
                             Align(
                               alignment: Alignment(-0.6, 1.0),
                               child: Text(
-                                  '${DateFormat('MM.dd.yyyy').format(taskDate)}',
+                                  '${DateFormat('dd.MM.yyyy').format(taskDate)}',
                                   style: TextStyle(
                                       color: Color(0xFFC6E9F3),
                                       fontSize: 12,

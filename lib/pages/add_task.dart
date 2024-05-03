@@ -300,34 +300,6 @@ class _AddTaskState extends State<AddTask> {
           ],
         ),
       ),
-
-      // bottomNavigationBar: BottomAppBar(
-      //   shape: const CircularNotchedRectangle(),
-      //   color: Color(0xFF1282A2),
-      //   child: Row(
-      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //     children: <Widget>[
-      //       IconButton(
-      //         icon: const Icon(Icons.history),
-      //         iconSize: MediaQuery.of(context).size.width * 0.1, // Устанавляем размер иконки пропорционально ширине экрана
-      //         color: Color(0xFFC6E9F3),
-      //         onPressed: () {
-      //           Navigator.pushNamed(context,
-      //               '/history'); // Действия при нажатии на иконку истории
-      //         },
-      //       ),
-      //       IconButton(
-      //         icon: const Icon(Icons.settings),
-      //         iconSize: MediaQuery.of(context).size.width * 0.1, // Устанавляем размер иконки пропорционально ширине экрана
-      //         color: Color(0xFFC6E9F3),
-      //         onPressed: () {
-      //           Navigator.pushNamed(context,
-      //               '/settings'); // Действия при нажатии на иконку настроек
-      //         },
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
