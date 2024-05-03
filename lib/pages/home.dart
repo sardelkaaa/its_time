@@ -183,6 +183,7 @@ class BucketListHomePage extends State<Home> {
                     child: ListView(
                       children: snapshot.data!.docs.skip(1).map((DocumentSnapshot document) {
                         Map data = document.data() as Map;
+                        var taskDate = (data['date'] as Timestamp).toDate();
                         return Column(
                           children: [
                             ListTile(
@@ -209,7 +210,11 @@ class BucketListHomePage extends State<Home> {
                             Align(
                               alignment: Alignment(-0.6, 1.0),
                               child: Text(
-                                '01.01.1979', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 12, fontWeight: FontWeight.w500)),
+                                  '${DateFormat('MM.dd.yyyy').format(taskDate)}',
+                                  style: TextStyle(
+                                      color: Color(0xFFC6E9F3),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500)),
                             ),
 
                             const Divider(
