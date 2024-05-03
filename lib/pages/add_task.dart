@@ -212,8 +212,8 @@ class _AddTaskState extends State<AddTask> {
                     onChanged: (String description) {
                       descriptionInput = description; // Изменение значения описания на вводимое пользователем
                     },
-                    minLines: 3,
-                    maxLines: 3,
+                    minLines: 4,
+                    maxLines: 4,
                   ),
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02), // Добавляем отступ
@@ -226,21 +226,35 @@ class _AddTaskState extends State<AddTask> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02), // Добавляем отступ
 
                   Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        for (int i = 1; i <= 5; i++)
-                          ElevatedButton(
-                            onPressed: () {
-                              selectedPriority.value = i;
-                            },
-                            child: Text('$i', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: selectedPriority == i ? Color(0xFF1282A2) : Colors.grey,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
-                              minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      for (int i = 1; i <= 5; i++)
+                        Column(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  selectedPriority.value = i;
+                                });
+                              },
+                              child: Text('$i', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: selectedPriority == i ? Colors.red : Color(0xFF1282A2),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
+                                minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
+                                side: BorderSide(
+                                  color: Color(0x80FFFFFF),
+                                  width: 1.0,
+                                )
+                              ),
                             ),
-                          ),
-                      ]
+                            Text(
+                                i == 1 ? 'Min' : (i == 5 ? 'Max' : ''),
+                                style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 12,)
+                            ),
+                          ],
+                        ),
+                    ],
                   ),
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.035), // Добавляем отступ
@@ -273,7 +287,11 @@ class _AddTaskState extends State<AddTask> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF1282A2),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
-                      minimumSize: Size(MediaQuery.of(context).size.width * 0.8, MediaQuery.of(context).size.height * 0.08)
+                      minimumSize: Size(MediaQuery.of(context).size.width * 0.8, MediaQuery.of(context).size.height * 0.08),
+                      side: BorderSide(
+                        color: Color(0x80FFFFFF),
+                        width: 1.0,
+                      ),
                     ),
                   ),
                 ],

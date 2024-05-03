@@ -203,14 +203,15 @@ class BucketListHomePage extends State<Home> {
                                   size: MediaQuery.of(context).size.width * 0.04,
                                 ),
                               ),
-                              title: Text(
-                                data['title'],
-                                style: TextStyle(
-                                  color: Color(0xFFC6E9F3),
-                                  fontSize: 18,
-                                ),
-                              ),
+                              title: Text(data['title'], style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 18, fontWeight: FontWeight.w500),),
                             ),
+
+                            Align(
+                              alignment: Alignment(-0.6, 1.0),
+                              child: Text(
+                                '01.01.1979', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 12, fontWeight: FontWeight.w500)),
+                            ),
+
                             const Divider(
                               color: Color(0xFFCBC9C5),
                               thickness: 1,
@@ -291,5 +292,5 @@ class BucketListHomePage extends State<Home> {
           ),
         ),
     );
-  }
+  } 
 }
