@@ -88,7 +88,11 @@ class _AddTaskState extends State<AddTask> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
                   TextFormField(
-                    style: TextStyle(),
+                    style: TextStyle(
+                        color: Color(0xFFC6E9F3),
+                        decoration: TextDecoration.none,
+                        decorationColor: Color(0x01C6E9F3),
+                    ),
                     decoration: InputDecoration(
                       labelText: 'Название',
                       filled: true,
@@ -109,6 +113,8 @@ class _AddTaskState extends State<AddTask> {
                       hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
                       errorStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
                     ),
+                    cursorColor: Color(0xFFC6E9F3),
+                    cursorWidth: 1,
                     onChanged: (String title) {
                       titleInput = title; // Изменение значения названия на вводимое пользователем
                     },
@@ -118,6 +124,11 @@ class _AddTaskState extends State<AddTask> {
 
                   TextFormField(
                     controller: dateTimePicker.dateController,
+                    style: TextStyle(
+                      color: Color(0xFFC6E9F3),
+                      decoration: TextDecoration.none,
+                      decorationColor: Color(0x01C6E9F3),
+                    ),
                     decoration: InputDecoration(
                       labelText: 'Дата',
                       filled: true,
@@ -145,6 +156,8 @@ class _AddTaskState extends State<AddTask> {
                         },
                       ),
                     ),
+                    cursorColor: Color(0xFFC6E9F3),
+                    cursorWidth: 1,
                     onTap: () {
                       dateTimePicker.selectDate(context); // Вызов метода для выбора времени во всплывающем окне при нажатии на форму
                     },
@@ -154,6 +167,11 @@ class _AddTaskState extends State<AddTask> {
 
                   TextFormField(
                     controller: dateTimePicker.timeController,
+                    style: TextStyle(
+                      color: Color(0xFFC6E9F3),
+                      decoration: TextDecoration.none,
+                      decorationColor: Color(0x01C6E9F3),
+                    ),
                     decoration: InputDecoration(
                       labelText: 'Время',
                       filled: true,
@@ -181,6 +199,8 @@ class _AddTaskState extends State<AddTask> {
                         },
                       ),
                     ),
+                    cursorColor: Color(0xFFC6E9F3),
+                    cursorWidth: 1,
                     onTap: () {
                       dateTimePicker.selectTime(context); // Вызов метода для выбора времени во всплывающем окне при нажатии на форму
                     },
@@ -189,6 +209,11 @@ class _AddTaskState extends State<AddTask> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
                   TextFormField(
+                    style: TextStyle(
+                      color: Color(0xFFC6E9F3),
+                      decoration: TextDecoration.none,
+                      decorationColor: Color(0x01C6E9F3),
+                    ),
                     decoration: InputDecoration(
                       labelText: 'Описание',
                       filled: true,
@@ -209,6 +234,8 @@ class _AddTaskState extends State<AddTask> {
                       hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
                       errorStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
                     ),
+                    cursorColor: Color(0xFFC6E9F3),
+                    cursorWidth: 1,
                     onChanged: (String description) {
                       descriptionInput = description; // Изменение значения описания на вводимое пользователем
                     },
@@ -239,7 +266,7 @@ class _AddTaskState extends State<AddTask> {
                               },
                               child: Text('$i', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor: selectedPriority.value == i ? Colors.red : Color(0xFF1282A2), // Условие и выбор цвета фона кнопок
+                                  backgroundColor: selectedPriority.value == i ? Color(0xFF0F6B83) : Color(0xFF1282A2), // Условие и выбор цвета фона кнопок
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
                                   minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
                                   side: BorderSide(
