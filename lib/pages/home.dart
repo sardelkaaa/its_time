@@ -41,9 +41,9 @@ class BucketListHomePage extends State<Home> {
                   return CircularProgressIndicator();
                 }
                 if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
-                  var task = snapshot.data!.docs.first; // получаем первое задание из списка
+                  var task = snapshot.data!.docs.first; // Получаем первое задание из списка
                   var taskDate = (task['date'] as Timestamp).toDate();
-                  var taskTime = task['time'];
+                  var taskTime = task['time']; // Значения даты и времени первого задания
                   var isToday = TaskServices().isToday(taskDate);
                   return Container(
                     width: MediaQuery.of(context).size.width * 0.95,
@@ -78,7 +78,8 @@ class BucketListHomePage extends State<Home> {
                           padding: EdgeInsets.only(top: 10),
                           child: Text(
                             isToday ? 'Сегодня в $taskTime'
-                                : '${DateFormat('EEEE, MMMM d, yyyy').format(taskDate)} в $taskTime',
+                                : '${DateFormat('EEEE, MMMM d, yyyy').format(taskDate)}'
+                                ' в $taskTime', // Форматированный вывод даты
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
@@ -121,7 +122,7 @@ class BucketListHomePage extends State<Home> {
                           ),
                         ),
                       ],
-                    ),
+                    )
                   );
                 } else {
                   return Container(
@@ -166,7 +167,7 @@ class BucketListHomePage extends State<Home> {
                 if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 }
-                if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
+                if (snapshot.hasData && snapshot.data!.docs.skip(1).isNotEmpty) {
                   return Container(
                     width: MediaQuery.of(context).size.width * 0.95,
                     height: MediaQuery.of(context).size.height * 0.46,
@@ -183,7 +184,7 @@ class BucketListHomePage extends State<Home> {
                     child: ListView(
                       children: snapshot.data!.docs.skip(1).map((DocumentSnapshot document) {
                         Map data = document.data() as Map;
-                        var taskDate = (data['date'] as Timestamp).toDate();
+                        var taskDate = (data['date'] as Timestamp).toDate(); // Значения даты заданий
                         return Column(
                           children: [
                             ListTile(
@@ -210,7 +211,7 @@ class BucketListHomePage extends State<Home> {
                             Align(
                               alignment: Alignment(-0.6, 1.0),
                               child: Text(
-                                  '${DateFormat('dd.MM.yyyy').format(taskDate)}',
+                                  '${DateFormat('dd.MM.yyyy').format(taskDate)}', // Форматированный вывод даты
                                   style: TextStyle(
                                       color: Color(0xFFC6E9F3),
                                       fontSize: 12,

@@ -8,6 +8,7 @@ import 'package:its_time/pages/profile.dart';
 import 'package:its_time/pages/settings.dart';
 import 'package:its_time/pages/all_tasks.dart';
 import 'package:its_time/pages/home.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +26,14 @@ Future<void> main() async {
       '/profile': (context) => Profile(),
       '/settings': (context) => AppSettings(),
     },
+
+    localizationsDelegates: [
+      GlobalMaterialLocalizations.delegate
+    ],
+    supportedLocales: [
+      const Locale('en'),
+      const Locale('ru') // Подключение локальных языков
+    ],
   ));
 }
 

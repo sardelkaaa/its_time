@@ -234,18 +234,18 @@ class _AddTaskState extends State<AddTask> {
                             ElevatedButton(
                               onPressed: () {
                                 setState(() {
-                                  selectedPriority.value = i;
+                                  selectedPriority.value = i; // Изменяем значение выбранного приоритета напрямую
                                 });
                               },
                               child: Text('$i', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: selectedPriority == i ? Colors.red : Color(0xFF1282A2),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
-                                minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
-                                side: BorderSide(
-                                  color: Color(0x80FFFFFF),
-                                  width: 1.0,
-                                )
+                                  backgroundColor: selectedPriority.value == i ? Colors.red : Color(0xFF1282A2), // Условие и выбор цвета фона кнопок
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
+                                  minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
+                                  side: BorderSide(
+                                    color: Color(0x80FFFFFF),
+                                    width: 1.0,
+                                  )
                               ),
                             ),
                             Text(

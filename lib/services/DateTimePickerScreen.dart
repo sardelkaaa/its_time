@@ -11,6 +11,7 @@ class DateTimePickerScreen {
   void selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
+      // locale: const Locale("ru", "RU"), //Русификация календаря выбора даты
       initialDate: selectedDate,
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
