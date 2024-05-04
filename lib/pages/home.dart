@@ -116,7 +116,9 @@ class BucketListHomePage extends State<Home> {
                               child: IconButton(
                                 icon: Icon(Icons.edit),
                                 color: Color(0xFFC6E9F3),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/editTask');
+                                },
                               ),
                             ),
                           ),

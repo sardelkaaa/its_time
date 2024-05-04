@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:its_time/pages/editTask.dart';
 import 'package:its_time/services/DateTimePickerScreen.dart';
 import 'package:its_time/services/FIrebaseService.dart';
 import 'package:its_time/pages/add_task.dart';
@@ -25,6 +26,7 @@ Future<void> main() async {
       '/notifications': (context) => Notifications(),
       '/profile': (context) => Profile(),
       '/settings': (context) => AppSettings(),
+      '/editTask': (context) => EditTask(),
     },
 
     localizationsDelegates: [
