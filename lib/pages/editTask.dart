@@ -2,7 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:intl/date_time_patterns.dart';
 import 'package:its_time/services/DateTimePickerScreen.dart';
+import 'package:its_time/services/TaskServices.dart';
+import 'package:intl/intl.dart';
 
 class EditTask extends StatefulWidget {
   const EditTask({super.key});
@@ -12,6 +16,34 @@ class EditTask extends StatefulWidget {
 }
 
 class _EditTaskState extends State<EditTask> {
+
+  DateTimePickerScreen dateTimePicker = DateTimePickerScreen();
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  ValueNotifier<int?> selectedPriority = ValueNotifier(null);
+  String? taskId;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // Получить идентификатор задания из аргументов маршрута
+    taskId = (ModalRoute.of(context)?.settings.arguments as String?)!;
+
+    // Загрузить данные задания из firestore
+    TaskServices().getTaskById(taskId!).then((task) {
+      // Заполнить текстовые поля данными задания
+      if (task.exists) {
+        titleController.text = task['title'];
+        dateTimePicker.dateController.text = DateFormat('dd.MM.yyyy').format(task['date'].toDate());
+        dateTimePicker.timeController.text = task['time'];
+        descriptionController.text = task['description'];
+        selectedPriority.value = task['priority'];
+        setState(() {});
+      }
+
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +105,7 @@ class _EditTaskState extends State<EditTask> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
                   TextFormField(
+                    controller: titleController, // Привязка контроллера к текстовому полю
                     style: TextStyle(
                       color: Color(0xFFC6E9F3),
                       decoration: TextDecoration.none,
@@ -100,12 +133,16 @@ class _EditTaskState extends State<EditTask> {
                     ),
                     cursorColor: Color(0xFFC6E9F3),
                     cursorWidth: 1,
+                    onChanged: (newTitle) {
+                      TaskServices().updateTaskTitle(newTitle, taskId);
+                    },
                   ),
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
                   TextFormField(
-                    style: TextStyle(
+                      controller: dateTimePicker.dateController, // Привязка контроллера к текстовому полю
+                      style: TextStyle(
                       color: Color(0xFFC6E9F3),
                       decoration: TextDecoration.none,
                       decorationColor: Color(0x01C6E9F3),
@@ -132,21 +169,22 @@ class _EditTaskState extends State<EditTask> {
                       suffixIcon: IconButton(
                         icon: Icon(Icons.calendar_today), //Иконка и выбор времени
                         color: Color(0xFFC6E9F3),
-                        onPressed: () {
-
+                        onPressed: ()  async {
+                          dateTimePicker.selectDateEdit(context, taskId);
                         },
                       ),
                     ),
                     cursorColor: Color(0xFFC6E9F3),
                     cursorWidth: 1,
-                    onTap: () {
-
-                    },
+                    onTap: () async {
+                        dateTimePicker.selectDateEdit(context, taskId);
+                      },
                   ),
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
                   TextFormField(
+                    controller: dateTimePicker.timeController, // Привязка контроллера к текстовому полю
                     style: TextStyle(
                       color: Color(0xFFC6E9F3),
                       decoration: TextDecoration.none,
@@ -174,21 +212,22 @@ class _EditTaskState extends State<EditTask> {
                       suffixIcon: IconButton(
                         icon: Icon(Icons.access_time), //Иконка и выбор времени
                         color: Color(0xFFC6E9F3),
-                        onPressed: () {
-
+                        onPressed: () async {
+                          dateTimePicker.selectTimeEdit(context, taskId);
                         },
                       ),
                     ),
                     cursorColor: Color(0xFFC6E9F3),
                     cursorWidth: 1,
-                    onTap: () {
-
+                    onTap: () async {
+                      dateTimePicker.selectTimeEdit(context, taskId);
                     },
                   ),
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
                   TextFormField(
+                    controller: descriptionController, // Привязка контроллера к текстовому полю
                     style: TextStyle(
                       color: Color(0xFFC6E9F3),
                       decoration: TextDecoration.none,
@@ -218,6 +257,9 @@ class _EditTaskState extends State<EditTask> {
                     cursorWidth: 1,
                     minLines: 4,
                     maxLines: 4,
+                    onChanged: (newDescription) {
+                      TaskServices().updateTaskDescription(newDescription, taskId);
+                    },
                   ),
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02), // Добавляем отступ
@@ -237,11 +279,13 @@ class _EditTaskState extends State<EditTask> {
                           children: [
                             ElevatedButton(
                               onPressed: () {
-
+                                setState(() {
+                                  selectedPriority.value = i; // Установить значение выбранного приоритета
+                                });
                               },
                               child: Text('$i', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600)),
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFF1282A2),//selectedPriority.value == i ? Color(0xFF0F6B83) : Color(0xFF1282A2), // Условие и выбор цвета фона кнопок
+                                  backgroundColor: selectedPriority.value == i ? Color(0xFF0F6B83) : Color(0xFF1282A2), // Установить цвет фона в зависимости от значения selectedPriority
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
                                   minimumSize: Size(MediaQuery.of(context).size.width * 0.15, MediaQuery.of(context).size.height * 0.05),
                                   side: BorderSide(
@@ -251,8 +295,8 @@ class _EditTaskState extends State<EditTask> {
                               ),
                             ),
                             Text(
-                                i == 1 ? 'Мин' : (i == 5 ? 'Макс' : ''),
-                                style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 12, fontWeight: FontWeight.w500)
+                                i == 1 ? 'Min' : (i == 5 ? 'Max' : ''),
+                                style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 12,)
                             ),
                           ],
                         ),
@@ -270,7 +314,9 @@ class _EditTaskState extends State<EditTask> {
                         color: Color(0xFFC04768),
                         //Color(0xFFC6E9F3),
                         onPressed: () {
-
+                          TaskServices().deleteTask(taskId!).then((_) {
+                            Navigator.popAndPushNamed(context, '/');
+                          });
                         },
                       ),
 

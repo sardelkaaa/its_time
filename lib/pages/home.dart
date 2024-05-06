@@ -117,7 +117,7 @@ class BucketListHomePage extends State<Home> {
                                 icon: Icon(Icons.edit),
                                 color: Color(0xFFC6E9F3),
                                 onPressed: () {
-                                  Navigator.pushNamed(context, '/editTask');
+                                  Navigator.pushNamed(context, '/editTask', arguments: task.id);
                                 },
                               ),
                             ),
@@ -158,7 +158,6 @@ class BucketListHomePage extends State<Home> {
 
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, '/allTasks');
             },
             child: StreamBuilder<QuerySnapshot>(
               stream: TaskServices().getTasks(), // Обращение к вспомогательному методу для вывода заданий из БД

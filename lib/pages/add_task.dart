@@ -24,10 +24,6 @@ class _AddTaskState extends State<AddTask> {
     super.initState();
   } // Инициализирование статичности
 
-  String formatTime(TimeOfDay time) {
-    return '${time.hour}:${time.minute}';
-  } // Преобразование формата времени в строку
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -294,7 +290,7 @@ class _AddTaskState extends State<AddTask> {
                           'title': titleInput,
                           'description': descriptionInput,
                           'date': dateTimePicker.selectedDate,
-                          'time': formatTime(dateTimePicker.selectedTime),
+                          'time': dateTimePicker.formatTime(dateTimePicker.selectedTime),
                           'priority': selectedPriority.value
                         });
 
