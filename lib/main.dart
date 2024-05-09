@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:its_time/pages/editTask.dart';
+import 'package:its_time/pages/registration.dart';
 import 'package:its_time/services/FIrebaseService.dart';
 import 'package:its_time/pages/add_task.dart';
 import 'package:its_time/pages/notifications.dart';
@@ -23,6 +24,7 @@ Future<void> main() async {
       '/profile': (context) => Profile(),
       '/settings': (context) => Settings(),
       '/editTask': (context) => EditTask(),
+      '/registration': (content) => Registration(),
     },
   ));
 }

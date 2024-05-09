@@ -26,7 +26,7 @@ class BucketListSettings extends State<Settings> {
         ), // Кнопка вернуться на главный экран
 
         title: Center(
-          child: Text('Настройки', // Добавляем текст "Новое задание" в качестве заголовка
+          child: Text('Настройки',
             style: TextStyle(
                 color: Color(0xFFC6E9F3),
                 fontSize: 21,
@@ -71,7 +71,7 @@ class BucketListSettings extends State<Settings> {
                     alignment: Alignment.topLeft,
                     child: InkWell(
                       onTap: () {
-
+                        Navigator.pushNamed(context, '/registration');
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.6,
