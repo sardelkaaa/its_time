@@ -83,6 +83,7 @@ class _AddTaskState extends State<AddTask> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
                   TextFormField(
+                    maxLength: 30,
                     style: TextStyle(
                         color: Color(0xFFC6E9F3),
                         decoration: TextDecoration.none,
@@ -107,6 +108,7 @@ class _AddTaskState extends State<AddTask> {
                       labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
                       hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
                       errorStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 16, fontWeight: FontWeight.w600),
+                      counterStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: 12, fontWeight: FontWeight.w400),
                     ),
                     cursorColor: Color(0xFFC6E9F3),
                     cursorWidth: 1,

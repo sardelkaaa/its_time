@@ -21,7 +21,7 @@ Future<void> main() async {
       '/history': (context) => History(),
       '/notifications': (context) => Notifications(),
       '/profile': (context) => Profile(),
-      '/settings': (context) => AppSettings(),
+      '/settings': (context) => Settings(),
       '/editTask': (context) => EditTask(),
     },
   ));

@@ -110,7 +110,7 @@ class BucketListHomePage extends State<Home> {
                             // Устанавливаем высоту как 10% от ширины экрана
                             decoration: BoxDecoration(
                               color: Color(0xFF1282A2),
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(12),
                             ),
                             child: Center(
                               child: IconButton(
@@ -188,29 +188,58 @@ class BucketListHomePage extends State<Home> {
                         var taskDate = (data['date'] as Timestamp).toDate(); // Значения даты заданий
                         return Column(
                           children: [
-                            ListTile(
-                              leading: Container(
-                                width: MediaQuery.of(context).size.width * 0.06,
-                                height: MediaQuery.of(context).size.width * 0.06,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  gradient: const LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [Color(0xFFFFC700), Color(0xFFFF4F00)]
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+                                Container(
+                                  width: MediaQuery.of(context).size.width * 0.035,
+                                  height: MediaQuery.of(context).size.width * 0.035,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    gradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [Color(0xFFFFC700), Color(0xFFFF4F00)]
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.circle,
+                                    color: Color(0xFFFF8C00),
+                                    size: MediaQuery.of(context).size.width * 0.02,
                                   ),
                                 ),
-                                child: Icon(
-                                  Icons.circle,
-                                  color: Color(0xFFFF8C00),
-                                  size: MediaQuery.of(context).size.width * 0.04,
+                                SizedBox(width: MediaQuery.of(context).size.width * 0.015),
+                                Text(
+                                  data['title'],
+                                  style: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.width * 0.038, fontWeight: FontWeight.w500),
                                 ),
-                              ),
-                              title: Text(data['title'], style: TextStyle(color: Color(0xFFC6E9F3), fontSize: 18, fontWeight: FontWeight.w500),),
+                                const Spacer(),
+                                Container(
+                                  margin: EdgeInsets.only(bottom: 0),
+                                  width: MediaQuery.of(context).size.width * 0.08,
+                                  height: MediaQuery.of(context).size.width * 0.08,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF1282A2),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Center(
+                                    child: IconButton(
+                                      icon: Icon(Icons.edit, size: MediaQuery.of(context).size.width * 0.04,),
+                                      color: Color(0xFFC6E9F3),
+                                      onPressed: () {
+
+                                          },
+                                    ),
+                                  ),
+                                ),
+
+                                SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+                              ],
                             ),
 
                             Align(
-                              alignment: Alignment(-0.6, 1.0),
+                              alignment: Alignment(-0.8, 1.0),
                               child: Text(
                                   '${DateFormat('dd.MM.yyyy').format(taskDate)}', // Форматированный вывод даты
                                   style: TextStyle(
