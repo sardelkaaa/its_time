@@ -35,8 +35,6 @@ dependencies:
   firebase_messaging:
   intl:
 
-  flutter_localizations:
-    sdk: flutter
   flutter:
     sdk: flutter
   flutter_typeahead:

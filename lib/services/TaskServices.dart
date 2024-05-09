@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:its_time/services/DateTimePickerScreen.dart';
+import 'package:its_time/pages/editTask.dart';
 
 
 
-class TaskServices {
+class TaskServices extends ChangeNotifier{
 
   final CollectionReference<Map<String, dynamic>> tasks = FirebaseFirestore.instance
       .collection('tasks');
@@ -17,7 +17,7 @@ class TaskServices {
     return tasks.orderBy('date')
         .orderBy('priority',
         descending: true)
-        .snapshots();;
+        .snapshots();
   }
 
   bool isToday(DateTime taskDate) {
@@ -68,5 +68,15 @@ class TaskServices {
 
   Future<void> deleteTask(String? taskId) async {
     await tasks.doc(taskId).delete();
+  }
+
+  Future<void> updateTask(int? newPriority, String? taskId) async {
+    tasks.doc(taskId).update({
+      'priority': newPriority,
+    }).then((_) {
+      print('Успешно обновлено в Firestore');
+    }).catchError((error) {
+      print('Ошибка при обновлении в Firestore: $error');
+    });
   }
 }

@@ -1,9 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:intl/date_time_patterns.dart';
 import 'package:its_time/services/DateTimePickerScreen.dart';
 import 'package:its_time/services/TaskServices.dart';
 import 'package:intl/intl.dart';
@@ -12,10 +9,10 @@ class EditTask extends StatefulWidget {
   const EditTask({super.key});
 
   @override
-  State<EditTask> createState() => _EditTaskState();
+  State<EditTask> createState() => EditTaskState();
 }
 
-class _EditTaskState extends State<EditTask> {
+class EditTaskState extends State<EditTask> {
 
   DateTimePickerScreen dateTimePicker = DateTimePickerScreen();
   TextEditingController titleController = TextEditingController();
@@ -41,7 +38,6 @@ class _EditTaskState extends State<EditTask> {
         selectedPriority.value = task['priority'];
         setState(() {});
       }
-
     });
   }
 
@@ -325,7 +321,9 @@ class _EditTaskState extends State<EditTask> {
                         iconSize: MediaQuery.of(context).size.width * 0.125,
                         color: Color(0xFFC6E9F3),
                         onPressed: () {
-
+                          TaskServices().updateTask(selectedPriority.value, taskId).then((_) {
+                            Navigator.popAndPushNamed(context, '/');
+                          });
                         },
                       ),
                     ],

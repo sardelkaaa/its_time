@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:its_time/pages/editTask.dart';
-import 'package:its_time/services/DateTimePickerScreen.dart';
 import 'package:its_time/services/FIrebaseService.dart';
 import 'package:its_time/pages/add_task.dart';
 import 'package:its_time/pages/notifications.dart';
@@ -8,7 +7,6 @@ import 'package:its_time/pages/history.dart';
 import 'package:its_time/pages/profile.dart';
 import 'package:its_time/pages/settings.dart';
 import 'package:its_time/pages/home.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,14 +24,6 @@ Future<void> main() async {
       '/settings': (context) => AppSettings(),
       '/editTask': (context) => EditTask(),
     },
-
-    localizationsDelegates: [
-      GlobalMaterialLocalizations.delegate
-    ],
-    supportedLocales: [
-      const Locale('en'),
-      const Locale('ru') // Подключение локальных языков
-    ],
   ));
 }
 
