@@ -12,17 +12,6 @@ class Registration extends StatefulWidget {
 
 class BucketListRegistration extends State<Registration> {
 
-  DateTimePickerScreen dateTimePicker = DateTimePickerScreen();
-  String titleInput = '';
-  String descriptionInput = '';
-  final ValueNotifier<int?> selectedPriority = ValueNotifier<int?>(null); // Переменные для ввода задания
-
-
-  @override
-  void initState() {
-    super.initState();
-  } // Инициализирование статичности
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -172,10 +161,6 @@ class BucketListRegistration extends State<Registration> {
                       ),
                     ),
                   ),
-
-
-                  
-
                 ],
               ),
             ),

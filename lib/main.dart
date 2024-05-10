@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:its_time/pages/authorization.dart';
 import 'package:its_time/pages/editTask.dart';
 import 'package:its_time/pages/registration.dart';
 import 'package:its_time/services/FIrebaseService.dart';
@@ -19,7 +20,7 @@ Future<void> main() async {
     routes: {
       '/': (context) => Home(),
       '/addTask': (context) => AddTask(),
-      '/history': (context) => History(),
+      '/history': (context) => Authorization(),// History(),
       '/notifications': (context) => Notifications(),
       '/profile': (context) => Profile(),
       '/settings': (context) => Settings(),
