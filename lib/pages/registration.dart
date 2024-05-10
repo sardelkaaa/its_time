@@ -141,7 +141,7 @@ class BucketListRegistration extends State<Registration> {
 
                   Icon(
                     Icons.supervised_user_circle,
-                    size: MediaQuery.of(context).size.height * 0.3, color: Color(0xFF1282A2),
+                    size: MediaQuery.of(context).size.height * 0.3, color: Color(0xFF17A3CC),
                   ),
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.04),

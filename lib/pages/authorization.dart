@@ -134,7 +134,7 @@ class BucketListAuthorization extends State<Authorization> {
 
                   Icon(
                     Icons.verified_user,
-                    size: MediaQuery.of(context).size.height * 0.3, color: Color(0xFF1282A2),
+                    size: MediaQuery.of(context).size.height * 0.3, color: Color(0xFF17A3CC),
                   ),
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.045),
