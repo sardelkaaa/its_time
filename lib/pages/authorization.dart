@@ -130,14 +130,14 @@ class BucketListAuthorization extends State<Authorization> {
                     ),
                   ),
 
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
                   Icon(
                     Icons.verified_user,
                     size: MediaQuery.of(context).size.height * 0.3, color: Color(0xFF17A3CC),
                   ),
 
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.045),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.035),
 
                   ElevatedButton(
                     onPressed: () {
@@ -155,9 +155,29 @@ class BucketListAuthorization extends State<Authorization> {
                     ),
                   ),
 
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01),
 
+                  InkWell(
+                    onTap: () {
 
-
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.415,
+                      height: MediaQuery.of(context).size.height * 0.05,
+                      child: Row(
+                        children: [
+                          Text(
+                            'Зарегистрироваться',
+                            style: TextStyle(
+                              color: Color(0xFFC6E9F3),
+                              fontSize: MediaQuery.of(context).size.height * 0.02,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
