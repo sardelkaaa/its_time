@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:its_time/services/DateTimePickerScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AddTask extends StatefulWidget {
   const AddTask({super.key});
@@ -16,7 +17,7 @@ class _AddTaskState extends State<AddTask> {
   String titleInput = '';
   String descriptionInput = '';
   final ValueNotifier<int?> selectedPriority = ValueNotifier<int?>(null); // Переменные для ввода задания
-
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   void initState() {
@@ -35,7 +36,7 @@ class _AddTaskState extends State<AddTask> {
           iconSize: MediaQuery.of(context).size.width * 0.1,
           color: Color(0xFFC6E9F3),
           onPressed: () {
-            Navigator.pushNamed(context, '/'); // Вернуться на главную страницу
+            Navigator.pushNamed(context, '/home'); // Вернуться на главную страницу
           },
         ), // Кнопка вернуться на главный экран
 
@@ -286,16 +287,17 @@ class _AddTaskState extends State<AddTask> {
                   ElevatedButton(
                     onPressed: () {
                       if (titleInput.isNotEmpty) {
-                        // Add the task to Firebase
+                        // Добавление задания в Firebase
                         FirebaseFirestore.instance.collection('tasks').add({
                           'title': titleInput,
                           'description': descriptionInput,
                           'date': dateTimePicker.selectedDate,
                           'time': dateTimePicker.formatTime(dateTimePicker.selectedTime),
-                          'priority': selectedPriority.value
+                          'priority': selectedPriority.value,
+                          'userId': user!.uid,
                         });
 
-                        Navigator.popAndPushNamed(context, '/'); // Возвращение на главную страницу после отправки задания
+                        Navigator.popAndPushNamed(context, '/home'); // Возвращение на главную страницу после отправки задания
 
                       } else {
                         // Дисплей ошибки

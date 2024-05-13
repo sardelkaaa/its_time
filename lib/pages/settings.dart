@@ -21,7 +21,7 @@ class BucketListSettings extends State<Settings> {
           iconSize: MediaQuery.of(context).size.width * 0.1,
           color: Color(0xFFC6E9F3),
           onPressed: () {
-            Navigator.pushNamed(context, '/'); // Вернуться на главную страницу
+            Navigator.pushNamed(context, '/home'); // Вернуться на главную страницу
           },
         ), // Кнопка вернуться на главный экран
 
@@ -81,7 +81,7 @@ class BucketListSettings extends State<Settings> {
                             Icon(Icons.person, size: MediaQuery.of(context).size.height * 0.06, color: Color(0xFFC6E9F3)),
                             SizedBox(width: MediaQuery.of(context).size.width * 0.04),
                             Text(
-                              'Создать профиль',
+                              'Аккаунт',
                               style: TextStyle(
                                 color: Color(0xFFC6E9F3),
                                 fontSize: MediaQuery.of(context).size.height * 0.025,

@@ -18,9 +18,10 @@ Future<void> main() async {
   runApp(MaterialApp(
     initialRoute: '/',
     routes: {
-      '/': (context) => Home(),
+      '/': (context) => Authorization(),
       '/addTask': (context) => AddTask(),
-      '/history': (context) => Authorization(),// History(),
+      '/home': (context) => Home(),
+      '/history': (context) => History(),
       '/notifications': (context) => Notifications(),
       '/profile': (context) => Profile(),
       '/settings': (context) => Settings(),

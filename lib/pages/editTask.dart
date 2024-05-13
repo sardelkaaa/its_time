@@ -53,7 +53,7 @@ class EditTaskState extends State<EditTask> {
           iconSize: MediaQuery.of(context).size.width * 0.1,
           color: Color(0xFFC6E9F3),
           onPressed: () {
-            Navigator.pushNamed(context, '/'); // Вернуться на главную страницу
+            Navigator.pushNamed(context, '/home'); // Вернуться на главную страницу
           },
         ), // Кнопка вернуться на главный экран
 
@@ -311,7 +311,7 @@ class EditTaskState extends State<EditTask> {
                         //Color(0xFFC6E9F3),
                         onPressed: () {
                           TaskServices().deleteTask(taskId!).then((_) {
-                            Navigator.popAndPushNamed(context, '/');
+                            Navigator.popAndPushNamed(context, '/home');
                           });
                         },
                       ),
@@ -322,7 +322,7 @@ class EditTaskState extends State<EditTask> {
                         color: Color(0xFFC6E9F3),
                         onPressed: () {
                           TaskServices().updateTask(selectedPriority.value, taskId).then((_) {
-                            Navigator.popAndPushNamed(context, '/');
+                            Navigator.popAndPushNamed(context, '/home');
                           });
                         },
                       ),

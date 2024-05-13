@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:its_time/pages/editTask.dart';
 
 
@@ -14,7 +15,8 @@ class TaskServices extends ChangeNotifier{
   }
 
   Stream<QuerySnapshot> getTasks() {
-    return tasks.orderBy('date')
+    return tasks.where('userId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .orderBy('date')
         .orderBy('priority',
         descending: true)
         .snapshots();

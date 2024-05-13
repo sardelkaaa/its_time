@@ -185,6 +185,7 @@ class BucketListHomePage extends State<Home> {
                     child: ListView(
                       children: snapshot.data!.docs.skip(1).map((DocumentSnapshot document) {
                         Map data = document.data() as Map;
+                        var documentId = document.id;
                         var taskDate = (data['date'] as Timestamp).toDate(); // Значения даты заданий
                         return Column(
                           children: [
@@ -228,8 +229,8 @@ class BucketListHomePage extends State<Home> {
                                       icon: Icon(Icons.edit, size: MediaQuery.of(context).size.width * 0.04,),
                                       color: Color(0xFFC6E9F3),
                                       onPressed: () {
-
-                                          },
+                                        Navigator.pushNamed(context, '/editTask', arguments: documentId);
+                                        },
                                     ),
                                   ),
                                 ),

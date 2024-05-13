@@ -34,6 +34,7 @@ dependencies:
   email_validator:
   firebase_messaging:
   intl:
+  shared_preferences:
 
   flutter:
     sdk: flutter

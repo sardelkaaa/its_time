@@ -81,6 +81,6 @@ class DateTimePickerScreen {
   }
 
   String formatTime(TimeOfDay time) {
-    return '${time.hour}:${time.minute}';
+    return '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
   } // Преобразование формата времени в строку
 }
