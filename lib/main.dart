@@ -9,14 +9,18 @@ import 'package:its_time/pages/history.dart';
 import 'package:its_time/pages/profile.dart';
 import 'package:its_time/pages/settings.dart';
 import 'package:its_time/pages/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await FirebaseService().initializeFirebase();
 
+  User? user = FirebaseAuth.instance.currentUser;
+
   runApp(MaterialApp(
-    initialRoute: '/',
+    initialRoute: (user != null) ? '/home' : '/',
+    // Если пользователь уже авторизован - переходим на страницу home,
     routes: {
       '/': (context) => Authorization(),
       '/addTask': (context) => AddTask(),
