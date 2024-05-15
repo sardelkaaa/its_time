@@ -150,9 +150,6 @@ class BucketListAuthorization extends State<Authorization> {
                       autocorrect: false,
                       controller: passwordTextInputController,
                       obscureText: isHiddenPassword,
-                      validator: (value) => value != null && value.length < 6
-                          ? 'Минимум 6 символов'
-                          : null,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       style: TextStyle(
                         color: Color(0xFFC6E9F3),

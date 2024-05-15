@@ -94,198 +94,198 @@ class BucketListRegistration extends State<Registration> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF0A1128), // Цвет фона страницы
-      body: SingleChildScrollView(
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.06,),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.95,
-                height: MediaQuery.of(context).size.height * 0.9, // Уменьшаем высоту контейнера
-                margin: const EdgeInsets.all(10.0),
-                padding: const EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Color(0xFF1282A2), Color(0xFF034078)],
+      body:
+          SingleChildScrollView(
+            child: Form(
+            key: formKey,
+            child: Column(
+              children: [
+                SizedBox(height: MediaQuery.of(context).size.height * 0.06,),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.95,
+                  height: MediaQuery.of(context).size.height * 0.9, // Уменьшаем высоту контейнера
+                  margin: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Color(0xFF1282A2), Color(0xFF034078)],
+                    ),
+                    borderRadius: BorderRadius.circular(25.0),
                   ),
-                  borderRadius: BorderRadius.circular(25.0),
-                ),
-
-                child: Column(
-                  children: [
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                    Center(child: Text('Регистрация', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.03, fontWeight: FontWeight.w500),)),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.025),
-                    TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      autocorrect: false,
-                      controller: emailTextInputController,
-                      validator: (email) =>
-                      email != null && !EmailValidator.validate(email)
-                          ? 'Введите правильный Email'
-                          : null,
-                      style: TextStyle(
-                        color: Color(0xFFC6E9F3),
-                        decoration: TextDecoration.none,
-                        decorationColor: Color(0x01C6E9F3),
-                      ),
-                      decoration: InputDecoration(
-                        labelText: 'Электронная почта',
-                        filled: true,
-                        fillColor: Color(0xFF1282A2), // Цвет фона
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+            
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                        Center(child: Text('Регистрация', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.03, fontWeight: FontWeight.w500),)),
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.025),
+                        TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          autocorrect: false,
+                          controller: emailTextInputController,
+                          validator: (email) =>
+                          email != null && !EmailValidator.validate(email)
+                              ? 'Введите правильный Email'
+                              : null,
+                          style: TextStyle(
+                            color: Color(0xFFC6E9F3),
+                            decoration: TextDecoration.none,
+                            decorationColor: Color(0x01C6E9F3),
+                          ),
+                          decoration: InputDecoration(
+                            labelText: 'Электронная почта',
+                            filled: true,
+                            fillColor: Color(0xFF1282A2), // Цвет фона
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0), // Закругление углов
+                              borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0), // Закругление углов
+                              borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0), // Закругление углов
+                              borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                            ),
+                            labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w500),
+                            hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
+                            errorStyle: TextStyle(color: Colors.red, fontSize: MediaQuery.of(context).size.height * 0.017, fontWeight: FontWeight.w500),
+                            counterStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w400),
+                          ),
+                          cursorColor: Color(0xFFC6E9F3),
+                          cursorWidth: 1,
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                    
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.025),
+                    
+                        TextFormField(
+                          autocorrect: false,
+                          controller: passwordTextInputController,
+                          obscureText: isHiddenPassword,
+                          validator: (value) => value != null && value.length < 6
+                              ? 'Минимум 6 символов'
+                              : null,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          style: TextStyle(
+                            color: Color(0xFFC6E9F3),
+                            decoration: TextDecoration.none,
+                            decorationColor: Color(0x01C6E9F3),
+                          ),
+                          decoration: InputDecoration(
+                            labelText: 'Пароль',
+                            suffix: InkWell(
+                              onTap: togglePasswordView,
+                              child: Icon(
+                                isHiddenPassword
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: Colors.white, // ПОМЕНЯТЬ ЦВЕТ ИКОНКИ ГЛАЗА
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Color(0xFF1282A2), // Цвет фона
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0), // Закругление углов
+                              borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0), // Закругление углов
+                              borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0), // Закругление углов
+                              borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                            ),
+                            labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w500),
+                            hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
+                            errorStyle: TextStyle(color: Colors.red, fontSize: MediaQuery.of(context).size.height * 0.017, fontWeight: FontWeight.w500),
+                            counterStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w400),
+                          ),
+                          cursorColor: Color(0xFFC6E9F3),
+                          cursorWidth: 1,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                    
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.025),
+                    
+                        TextFormField(
+                          autocorrect: false,
+                          controller: passwordTextConfirmInputController,
+                          obscureText: isHiddenConfirmPassword,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          style: TextStyle(
+                            color: Color(0xFFC6E9F3),
+                            decoration: TextDecoration.none,
+                            decorationColor: Color(0x01C6E9F3),
+                          ),
+                          decoration: InputDecoration(
+                            labelText: 'Подтверждение пароля',
+                            suffix: InkWell(
+                              onTap: toggleConfirmPasswordView,
+                              child: Icon(
+                                isHiddenConfirmPassword
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: Colors.white, // ПОМЕНЯТЬ ЦВЕТ ИКОНКИ ГЛАЗА
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Color(0xFF1282A2), // Цвет фона
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0), // Закругление углов
+                              borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0), // Закругление углов
+                              borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0), // Закругление углов
+                              borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                            ),
+                            labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w500),
+                            hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
+                            errorStyle: TextStyle(color: Colors.red, fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
+                            counterStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w400),
+                          ),
+                          cursorColor: Color(0xFFC6E9F3),
+                          cursorWidth: 1,
                         ),
-                        labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w500),
-                        hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
-                        errorStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
-                        counterStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w400),
-                      ),
-                      cursorColor: Color(0xFFC6E9F3),
-                      cursorWidth: 1,
-                    ),
-
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.025),
-
-                    TextFormField(
-                      autocorrect: false,
-                      controller: passwordTextInputController,
-                      obscureText: isHiddenPassword,
-                      validator: (value) => value != null && value.length < 6
-                          ? 'Минимум 6 символов'
-                          : null,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      style: TextStyle(
-                        color: Color(0xFFC6E9F3),
-                        decoration: TextDecoration.none,
-                        decorationColor: Color(0x01C6E9F3),
-                      ),
-                      decoration: InputDecoration(
-                        labelText: 'Пароль',
-                        suffix: InkWell(
-                          onTap: togglePasswordView,
-                          child: Icon(
-                            isHiddenPassword
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            color: Colors.white, // ПОМЕНЯТЬ ЦВЕТ ИКОНКИ ГЛАЗА
+                    
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                    
+                        Icon(
+                          Icons.supervised_user_circle,
+                          size: MediaQuery.of(context).size.height * 0.3, color: Color(0xFF17A3CC),
+                        ),
+                    
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                    
+                        ElevatedButton(
+                          onPressed: () {
+                            registerUser();
+                          },
+                          child: Text('Создать аккаунт', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.025, fontWeight: FontWeight.w500)),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xFF1282A2),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0),),
+                            minimumSize: Size(MediaQuery.of(context).size.width * 0.6, MediaQuery.of(context).size.height * 0.07),
+                            side: BorderSide(
+                              color: Color(0x80FFFFFF),
+                              width: 1.0,
+                            ),
                           ),
                         ),
-                        filled: true,
-                        fillColor: Color(0xFF1282A2), // Цвет фона
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
-                        ),
-                        labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w500),
-                        hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
-                        errorStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
-                        counterStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w400),
-                      ),
-                      cursorColor: Color(0xFFC6E9F3),
-                      cursorWidth: 1,
+                      ],
                     ),
-
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.025),
-
-                    TextFormField(
-                      autocorrect: false,
-                      controller: passwordTextConfirmInputController,
-                      obscureText: isHiddenConfirmPassword,
-                      validator: (value) => value != null && value.length < 6
-                          ? 'Минимум 6 символов'
-                          : null,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      style: TextStyle(
-                        color: Color(0xFFC6E9F3),
-                        decoration: TextDecoration.none,
-                        decorationColor: Color(0x01C6E9F3),
-                      ),
-                      decoration: InputDecoration(
-                        labelText: 'Подтверждение пароля',
-                        suffix: InkWell(
-                          onTap: toggleConfirmPasswordView,
-                          child: Icon(
-                            isHiddenConfirmPassword
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            color: Colors.white, // ПОМЕНЯТЬ ЦВЕТ ИКОНКИ ГЛАЗА
-                          ),
-                        ),
-                        filled: true,
-                        fillColor: Color(0xFF1282A2), // Цвет фона
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
-                        ),
-                        labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w500),
-                        hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
-                        errorStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
-                        counterStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w400),
-                      ),
-                      cursorColor: Color(0xFFC6E9F3),
-                      cursorWidth: 1,
-                    ),
-
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-
-                    Icon(
-                      Icons.supervised_user_circle,
-                      size: MediaQuery.of(context).size.height * 0.3, color: Color(0xFF17A3CC),
-                    ),
-
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-
-                    ElevatedButton(
-                      onPressed: () {
-                        registerUser();
-                      },
-                      child: Text('Создать аккаунт', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.025, fontWeight: FontWeight.w500)),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF1282A2),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0),),
-                        minimumSize: Size(MediaQuery.of(context).size.width * 0.6, MediaQuery.of(context).size.height * 0.07),
-                        side: BorderSide(
-                          color: Color(0x80FFFFFF),
-                          width: 1.0,
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+                    ),
+                  ),
           ),
-        ),
-      ),
     );
   }
 }
