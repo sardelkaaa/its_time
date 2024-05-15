@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -186,8 +187,9 @@ class BucketListSettings extends State<Settings> {
                   Align(
                     alignment: Alignment.topLeft,
                     child: InkWell(
-                      onTap: () {
-
+                      onTap: () async {
+                        await FirebaseAuth.instance.signOut();
+                        Navigator.pushReplacementNamed(context, '/');
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.7,
