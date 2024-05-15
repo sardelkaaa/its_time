@@ -71,49 +71,20 @@ class BucketListSettings extends State<Settings> {
                     alignment: Alignment.topLeft,
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, '/registration');
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        child: Row(
-                          children: [
-                            Icon(Icons.person, size: MediaQuery.of(context).size.height * 0.06, color: Color(0xFFC6E9F3)),
-                            SizedBox(width: MediaQuery.of(context).size.width * 0.04),
-                            Text(
-                              'Аккаунт',
-                              style: TextStyle(
-                                color: Color(0xFFC6E9F3),
-                                fontSize: MediaQuery.of(context).size.height * 0.025,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: InkWell(
-                      onTap: () {
 
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.55,
-                        height: MediaQuery.of(context).size.height * 0.05,
+                        width: MediaQuery.of(context).size.width * 0.56,
+                        height: MediaQuery.of(context).size.height * 0.055,
                         child: Row(
                           children: [
                             Icon(Icons.translate, size: MediaQuery.of(context).size.height * 0.06, color: Color(0xFFC6E9F3)),
-                            SizedBox(width: MediaQuery.of(context).size.width * 0.04),
+                            SizedBox(width: MediaQuery.of(context).size.width * 0.01),
                             Text(
                               'Сменить язык',
                               style: TextStyle(
                                 color: Color(0xFFC6E9F3),
-                                fontSize: MediaQuery.of(context).size.height * 0.025,
+                                fontSize: MediaQuery.of(context).size.height * 0.03,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -133,16 +104,16 @@ class BucketListSettings extends State<Settings> {
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.55,
-                        height: MediaQuery.of(context).size.height * 0.05,
+                        height: MediaQuery.of(context).size.height * 0.055,
                         child: Row(
                           children: [
                             Icon(Icons.color_lens, size: MediaQuery.of(context).size.height * 0.06, color: Color(0xFFC6E9F3)),
-                            SizedBox(width: MediaQuery.of(context).size.width * 0.04),
+                            SizedBox(width: MediaQuery.of(context).size.width * 0.01),
                             Text(
                               'Сменить тему',
                               style: TextStyle(
                                 color: Color(0xFFC6E9F3),
-                                fontSize: MediaQuery.of(context).size.height * 0.025,
+                                fontSize: MediaQuery.of(context).size.height * 0.03,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -162,16 +133,16 @@ class BucketListSettings extends State<Settings> {
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.3,
-                        height: MediaQuery.of(context).size.height * 0.05,
+                        height: MediaQuery.of(context).size.height * 0.055,
                         child: Row(
                           children: [
                             Icon(Icons.question_answer, size: MediaQuery.of(context).size.height * 0.06, color: Color(0xFFC6E9F3)),
-                            SizedBox(width: MediaQuery.of(context).size.width * 0.04),
+                            SizedBox(width: MediaQuery.of(context).size.width * 0.01),
                             Text(
                               'FAQ',
                               style: TextStyle(
                                 color: Color(0xFFC6E9F3),
-                                fontSize: MediaQuery.of(context).size.height * 0.025,
+                                fontSize: MediaQuery.of(context).size.height * 0.03,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -190,17 +161,17 @@ class BucketListSettings extends State<Settings> {
 
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.65,
-                        height: MediaQuery.of(context).size.height * 0.05,
+                        width: MediaQuery.of(context).size.width * 0.72,
+                        height: MediaQuery.of(context).size.height * 0.055,
                         child: Row(
                           children: [
                             Icon(Icons.support_agent, size: MediaQuery.of(context).size.height * 0.06, color: Color(0xFFC6E9F3)),
-                            SizedBox(width: MediaQuery.of(context).size.width * 0.04),
+                            SizedBox(width: MediaQuery.of(context).size.width * 0.01),
                             Text(
                               'Служба поддержки',
                               style: TextStyle(
                                 color: Color(0xFFC6E9F3),
-                                fontSize: MediaQuery.of(context).size.height * 0.025,
+                                fontSize: MediaQuery.of(context).size.height * 0.03,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -208,7 +179,36 @@ class BucketListSettings extends State<Settings> {
                         ),
                       ),
                     ),
-                  )
+                  ),
+
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: InkWell(
+                      onTap: () {
+
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        height: MediaQuery.of(context).size.height * 0.055,
+                        child: Row(
+                          children: [
+                            Icon(Icons.exit_to_app, size: MediaQuery.of(context).size.height * 0.06, color: Color(0xFFFF8C00)),
+                            SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+                            Text(
+                              'Выйти из аккаунта',
+                              style: TextStyle(
+                                color: Color(0xFFFF8C00),
+                                fontSize: MediaQuery.of(context).size.height * 0.03,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
