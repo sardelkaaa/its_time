@@ -33,7 +33,7 @@ class BucketListAuthorization extends State<Authorization> {
     });
   }
 
-  Future authorizeUser() async {
+  Future authorizeUser(BuildContext context) async {
 
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
@@ -43,6 +43,16 @@ class BucketListAuthorization extends State<Authorization> {
         email: emailTextInputController.text.trim(),
         password: passwordTextInputController.text.trim(),
       );
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null && user.emailVerified) {
+        Navigator.pushReplacementNamed(context, '/home');
+      } else {
+        SnackBarService.showErrorSnackBar(
+          context,
+          'Подтвердите электронную почту',
+          true,
+        );
+      }
     } on FirebaseAuthException catch (e) {
       print(e.code);
 
@@ -62,19 +72,6 @@ class BucketListAuthorization extends State<Authorization> {
         return;
       }
     }
-    FirebaseAuth.instance.authStateChanges().listen((user) {
-      if (user == null) {
-        Navigator.pushNamed(context, '/');
-      } else if (user.emailVerified) {
-        Navigator.pushReplacementNamed(context, '/home');
-      } else {
-        SnackBarService.showErrorSnackBar(
-          context,
-          'Подтвердите электронную почту',
-          true,
-        );
-      }
-    });
   }
 
   @override
@@ -227,7 +224,7 @@ class BucketListAuthorization extends State<Authorization> {
 
                     ElevatedButton(
                       onPressed: () {
-                        authorizeUser();
+                        authorizeUser(context);
                       },
                       child: Text('Войти в аккаунт', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.025, fontWeight: FontWeight.w500)),
                       style: ElevatedButton.styleFrom(

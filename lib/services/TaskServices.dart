@@ -15,12 +15,17 @@ class TaskServices extends ChangeNotifier{
   }
 
   Stream<QuerySnapshot> getTasks() {
-    return tasks.where('userId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      return const Stream<QuerySnapshot>.empty();
+    }
+
+    return tasks.where('userId', isEqualTo: user.uid)
         .orderBy('date')
-        .orderBy('priority',
-        descending: true)
+        .orderBy('priority', descending: true)
         .snapshots();
   }
+
 
   bool isToday(DateTime taskDate) {
     var currentDate = DateTime.now();

@@ -19,7 +19,7 @@ Future<void> main() async {
   User? user = FirebaseAuth.instance.currentUser;
 
   runApp(MaterialApp(
-    initialRoute: (user != null) ? '/home' : '/',
+    initialRoute: (user != null && user.emailVerified) ? '/home' : '/',
     // Если пользователь уже авторизован - переходим на страницу home,
     routes: {
       '/': (context) => Authorization(),
