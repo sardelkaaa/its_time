@@ -309,9 +309,7 @@ class EditTaskState extends State<EditTask> {
                         iconSize: MediaQuery.of(context).size.width * 0.125,
                         color: Color(0xFFFF8C00),
                         onPressed: () {
-                          TaskServices().deleteTask(taskId!).then((_) {
-                            Navigator.popAndPushNamed(context, '/home');
-                          });
+                          TaskServices().deleteTask(taskId!, context);
                         },
                       ),
 

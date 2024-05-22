@@ -70,8 +70,29 @@ class TaskServices extends ChangeNotifier{
     });
   }
 
-  Future<void> deleteTask(String? taskId) async {
-    await tasks.doc(taskId).delete();
+  Future<void> deleteTask(String? taskId, BuildContext context) async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Удалить задачу?'),
+          content: const Text('Вы уверены, что хотите удалить эту задачу?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Отмена'),
+            ),
+            TextButton(
+              onPressed: () {
+                tasks.doc(taskId).delete();
+                Navigator.popAndPushNamed(context, '/home');
+              },
+              child: const Text('Удалить'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Future<void> updateTask(int? newPriority, String? taskId) async {
