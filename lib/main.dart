@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:its_time/pages/authorization.dart';
 import 'package:its_time/pages/editTask.dart';
 import 'package:its_time/pages/registration.dart';
@@ -20,6 +21,13 @@ Future<void> main() async {
   User? user = FirebaseAuth.instance.currentUser;
 
   runApp(MaterialApp(
+    localizationsDelegates: const [
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+    ],
+    supportedLocales: const [
+      Locale('ru'),
+    ],
     initialRoute: (user != null && user.emailVerified) ? '/home' : '/',
     // Если пользователь уже авторизован - переходим на страницу home,
     routes: {
