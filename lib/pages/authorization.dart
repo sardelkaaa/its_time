@@ -1,7 +1,5 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:its_time/services/SnackBarServices.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -45,7 +43,7 @@ class BucketListAuthorization extends State<Authorization> {
       );
       User? user = FirebaseAuth.instance.currentUser;
       if (user != null && user.emailVerified) {
-        Navigator.pushReplacementNamed(context, '/home');
+        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
       } else {
         SnackBarService.showErrorSnackBar(
           context,
@@ -63,7 +61,7 @@ class BucketListAuthorization extends State<Authorization> {
           true,
         );
         return;
-      } else if (e.code == 'invalid-credential'){
+      } else {
         SnackBarService.showErrorSnackBar(
           context,
           'Пользователь не найден. Проверьте введённые данные или повторите попытку',
@@ -72,6 +70,7 @@ class BucketListAuthorization extends State<Authorization> {
         return;
       }
     }
+    Navigator.of(context).pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
   }
 
   @override

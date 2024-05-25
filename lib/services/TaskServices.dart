@@ -85,7 +85,7 @@ class TaskServices extends ChangeNotifier{
             TextButton(
               onPressed: () {
                 tasks.doc(taskId).delete();
-                Navigator.popAndPushNamed(context, '/home');
+                Navigator.pop(context);
               },
               child: const Text('Удалить'),
             ),

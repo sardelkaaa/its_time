@@ -22,7 +22,7 @@ class BucketListSettings extends State<Settings> {
           iconSize: MediaQuery.of(context).size.width * 0.1,
           color: Color(0xFFC6E9F3),
           onPressed: () {
-            Navigator.pushNamed(context, '/home'); // Вернуться на главную страницу
+            Navigator.pop(context); // Вернуться на главную страницу
           },
         ), // Кнопка вернуться на главный экран
 
@@ -189,7 +189,7 @@ class BucketListSettings extends State<Settings> {
                     child: InkWell(
                       onTap: () async {
                         await FirebaseAuth.instance.signOut();
-                        Navigator.pushReplacementNamed(context, '/');
+                        Navigator.pop(context);
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.7,

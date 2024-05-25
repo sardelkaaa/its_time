@@ -36,7 +36,7 @@ class _AddTaskState extends State<AddTask> {
           iconSize: MediaQuery.of(context).size.width * 0.1,
           color: Color(0xFFC6E9F3),
           onPressed: () {
-            Navigator.pushNamed(context, '/home'); // Вернуться на главную страницу
+            Navigator.pop(context); // Вернуться на главную страницу
           },
         ), // Кнопка вернуться на главный экран
 
@@ -297,7 +297,7 @@ class _AddTaskState extends State<AddTask> {
                           'userId': user!.uid,
                         });
 
-                        Navigator.popAndPushNamed(context, '/home'); // Возвращение на главную страницу после отправки задания
+                        Navigator.pop(context); // Возвращение на главную страницу после отправки задания
 
                       } else {
                         // Дисплей ошибки
