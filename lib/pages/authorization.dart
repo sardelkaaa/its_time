@@ -190,7 +190,7 @@ class BucketListAuthorization extends State<Authorization> {
 
                     InkWell(
                       onTap: () {
-
+                        Navigator.pushNamed(context, '/resetPassword');
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.4,

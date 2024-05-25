@@ -189,7 +189,7 @@ class BucketListSettings extends State<Settings> {
                     child: InkWell(
                       onTap: () async {
                         await FirebaseAuth.instance.signOut();
-                        Navigator.pop(context);
+                        Navigator.of(context).pushNamedAndRemoveUntil('/authorization', (Route<dynamic> route) => false);
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.7,

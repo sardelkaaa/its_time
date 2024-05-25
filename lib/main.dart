@@ -12,6 +12,7 @@ import 'package:its_time/pages/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:its_time/services/NotificationServices.dart';
 import 'package:its_time/services/AuthorizationWrapper.dart';
+import 'package:its_time/pages/reset_password.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,11 +34,13 @@ Future<void> main() async {
     routes: {
       '/addTask': (context) => const AddTask(),
       '/home': (context) => const Home(),
+      '/authorization': (context) => const Authorization(),
       '/history': (context) => const History(),
       '/notifications': (context) => const Notifications(),
       '/settings': (context) => const Settings(),
       '/editTask': (context) => const EditTask(),
       '/registration': (content) => const Registration(),
+      '/resetPassword': (content) => const ResetPassword(),
     },
   ));
 }
