@@ -10,7 +10,6 @@ import 'package:its_time/pages/history.dart';
 import 'package:its_time/pages/settings.dart';
 import 'package:its_time/pages/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:its_time/services/NotificationServices.dart';
 import 'package:its_time/services/AuthorizationWrapper.dart';
 import 'package:its_time/pages/reset_password.dart';
 
@@ -18,13 +17,13 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await FirebaseService().initializeFirebase();
-  await NotificationServices().initializeNotifications();
   final user = FirebaseAuth.instance.currentUser;
 
   runApp(MaterialApp(
     localizationsDelegates: const [
       GlobalMaterialLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
     ],
     supportedLocales: const [
       Locale('ru'),
