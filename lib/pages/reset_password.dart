@@ -1,11 +1,9 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:its_time/services/DateTimePickerScreen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:its_time/services/SnackBarServices.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:its_time/services/SnackBarServices.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
@@ -125,6 +123,13 @@ class BucketListResetPassword extends State<ResetPassword> {
                         ),
                         cursorColor: Color(0xFFC6E9F3),
                         cursorWidth: 1,
+                      ),
+
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+
+                      Icon(
+                        Icons.lock_reset,
+                        size: MediaQuery.of(context).size.height * 0.35, color: Color(0xFF17A3CC),
                       ),
 
                       SizedBox(height: MediaQuery.of(context).size.height * 0.04),
