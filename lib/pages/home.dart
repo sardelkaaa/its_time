@@ -296,7 +296,7 @@ class BucketListHomePage extends State<Home> {
         backgroundColor: Color(0xFF1282A2),
         child: Icon(
           Icons.add,
-          size: MediaQuery.of(context).size.width * 0.1, // Вычисляем размер иконки как 10% ширины экрана
+          size: MediaQuery.of(context).size.width * 0.12, // Вычисляем размер иконки как 10% ширины экрана
           color: Color(0xFFC6E9F3),
         ),
         shape: CircleBorder(),

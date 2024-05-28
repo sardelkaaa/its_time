@@ -307,7 +307,8 @@ class EditTaskState extends State<EditTask> {
                       IconButton(
                         icon: const Icon(Icons.delete),
                         iconSize: MediaQuery.of(context).size.width * 0.125,
-                        color: Color(0xFFFF8C00),
+                        color: Color(0xFFC04768),
+                        //Color(0xFFC6E9F3),
                         onPressed: () {
                           TaskServices().deleteTask(taskId!, context);
                         },
