@@ -1,86 +1,71 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:its_time/services/TaskServices.dart';
-import 'dart:math';
-import 'package:its_time/services/DateTimePickerScreen.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
-class NotificationServices {
-  final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
+class NotificationServices extends ChangeNotifier {
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
   FlutterLocalNotificationsPlugin();
-  final TaskServices _taskServices = TaskServices();
 
-  Future initializeNotifications() async {
-    // Инициализация локальных уведомлений
+  Future<void> initializeNotifications() async {
+    tz.initializeTimeZones();
     const AndroidInitializationSettings initializationSettingsAndroid =
     AndroidInitializationSettings('@mipmap/ic_launcher');
     const InitializationSettings initializationSettings =
     InitializationSettings(android: initializationSettingsAndroid);
-    await _flutterLocalNotificationsPlugin.initialize(initializationSettings);
-
-    // Подписываемся на изменения в списке задач
-    _taskServices.getTasks().listen((snapshot) {
-      // Проверяем, есть ли новые задачи
-      for (var task in snapshot.docs) {
-        // Получаем данные о задаче
-        var taskDate = (task['date'] as Timestamp).toDate();
-        var taskTime = DateTimePickerScreen().stringToTimeOfDay(task['time']);
-        String taskId = task.id;
-
-        // Отправляем уведомления в зависимости от даты и времени
-        scheduleNotification(taskId, taskDate, taskTime, task['title']);
-      }
-    });
-
-    // Подписываемся на удаление задач
-    _taskServices.getTasks().listen((snapshot) {
-      for (var change in snapshot.docChanges) {
-        if (change.type == DocumentChangeType.removed) {
-          // Отправляем уведомление об удалении задачи
-          showNotification(change.doc.id, 'Задача удалена', '');
-        }
-      }
-    });
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
-  void scheduleNotification(
-      String taskId, DateTime taskDate, TimeOfDay taskTime, String title) {
-    // Создаем объект DateTime с учетом времени задачи
-    DateTime taskDateTime = DateTime(taskDate.year, taskDate.month, taskDate.day,
-        taskTime.hour, taskTime.minute);
+  Future<void> scheduleNotificationOneHourBeforeTask(DateTime taskDate, TimeOfDay taskTime, String title) async {
+    tz.initializeTimeZones();
+    var taskDateTime = DateTime(taskDate.year, taskDate.month, taskDate.day, taskTime.hour, taskTime.minute);
+    var scheduledDate = tz.TZDateTime.from(
+        taskDateTime.subtract(const Duration(hours: 1)), tz.local);
 
-    // Вычисляем время до задачи
-    Duration timeToTask = taskDateTime.difference(DateTime.now());
+    const AndroidNotificationDetails androidNotificationDetails =
+    AndroidNotificationDetails('your channel id', 'your channel name',
+        channelDescription: 'your channel description',
+        importance: Importance.max,
+        priority: Priority.high,
+        ticker: 'ticker');
+    const NotificationDetails notificationDetails =
+    NotificationDetails(android: androidNotificationDetails);
 
-    // Определяем, нужно ли отправлять уведомление
-    if (timeToTask.inHours < 1 && timeToTask.inMinutes > 0) {
-      // Уведомление за час до задачи
-      showNotification(taskId, 'Задача наступит через $timeToTask', title);
-    } else if (taskDateTime.isBefore(DateTime.now())) {
-      // Уведомление о просроченной задаче
-      showNotification(taskId, 'Срок задания подошёл к концу', title);
-    }
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      0,
+      'Уведомление за час до задания',
+      'Ваша задача "$title" начнется через час',
+      scheduledDate,
+      notificationDetails,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      uiLocalNotificationDateInterpretation:
+      UILocalNotificationDateInterpretation.absoluteTime,
+    );
   }
 
-  Future showNotification(String taskId, String title, String body) async {
-    // Формируем текст уведомления
-    String notificationBody = '$title\n$body';
+  Future<void> scheduleNotificationAfterDeadline(DateTime taskDate, TimeOfDay taskTime, String title) async {
+    tz.initializeTimeZones();
+    var taskDateTime = DateTime(taskDate.year, taskDate.month, taskDate.day, taskTime.hour, taskTime.minute);
+    var scheduledDate = tz.TZDateTime.from(taskDateTime, tz.local);
 
-    // Создаем уникальный ID для уведомления
-    int notificationId = Random().nextInt(1000000);
+    const AndroidNotificationDetails androidNotificationDetails =
+    AndroidNotificationDetails('your channel id', 'your channel name',
+        channelDescription: 'your channel description',
+        importance: Importance.max,
+        priority: Priority.high,
+        ticker: 'ticker');
+    const NotificationDetails notificationDetails =
+    NotificationDetails(android: androidNotificationDetails);
 
-    // Отображаем локальное уведомление
-    await _flutterLocalNotificationsPlugin.show(
-      notificationId,
-      title,
-      notificationBody,
-      const NotificationDetails(
-        android: AndroidNotificationDetails(
-          'channel_id',
-          'channel_name',
-          channelDescription: 'channel_description',
-        ),
-      ),
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      1,
+      'Уведомление в установленное время',
+      'Срок выполнения Вашего задания "$title" подошёл к концу',
+      scheduledDate,
+      notificationDetails,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      uiLocalNotificationDateInterpretation:
+      UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 }

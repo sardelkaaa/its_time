@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:its_time/services/DateTimePickerScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:its_time/services/NotificationServices.dart';
 
 class AddTask extends StatefulWidget {
   const AddTask({super.key});
@@ -297,6 +298,8 @@ class _AddTaskState extends State<AddTask> {
                           'userId': user!.uid,
                         });
 
+                        NotificationServices().scheduleNotificationOneHourBeforeTask(dateTimePicker.selectedDate, dateTimePicker.selectedTime, titleInput);
+                        NotificationServices().scheduleNotificationAfterDeadline(dateTimePicker.selectedDate, dateTimePicker.selectedTime, titleInput);
                         Navigator.pop(context); // Возвращение на главную страницу после отправки задания
 
                       } else {
