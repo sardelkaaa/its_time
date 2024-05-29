@@ -296,12 +296,14 @@ class _AddTaskState extends State<AddTask> {
                           'time': dateTimePicker.formatTime(dateTimePicker.selectedTime),
                           'priority': selectedPriority.value,
                           'userId': user!.uid,
-                        });
+                        }).then((doc) {
+                          // Получение ID задания
+                          String taskId = doc.id;
 
                         NotificationServices().scheduleNotificationOneHourBeforeTask(dateTimePicker.selectedDate, dateTimePicker.selectedTime, titleInput);
                         NotificationServices().scheduleNotificationAfterDeadline(dateTimePicker.selectedDate, dateTimePicker.selectedTime, titleInput);
                         Navigator.pop(context); // Возвращение на главную страницу после отправки задания
-
+                      });
                       } else {
                         // Дисплей ошибки
                         ScaffoldMessenger.of(context).showSnackBar(

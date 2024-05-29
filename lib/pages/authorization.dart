@@ -70,7 +70,6 @@ class BucketListAuthorization extends State<Authorization> {
         return;
       }
     }
-    Navigator.of(context).pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
   }
 
   @override
