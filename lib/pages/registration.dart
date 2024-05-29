@@ -1,7 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:its_time/services/DateTimePickerScreen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:its_time/services/SnackBarServices.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -47,16 +46,6 @@ class BucketListRegistration extends State<Registration> {
   Future<void> registerUser() async {
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
-
-    if (passwordTextInputController.text !=
-        passwordTextConfirmInputController.text) {
-      SnackBarService.showErrorSnackBar(
-        context,
-        'Пароли не совпадают',
-        true,
-      );
-      return;
-    }
 
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -127,7 +116,7 @@ class BucketListRegistration extends State<Registration> {
                           controller: emailTextInputController,
                           validator: (email) =>
                           email != null && !EmailValidator.validate(email)
-                              ? 'Введите правильный Email'
+                              ? 'Введён неверный формат Email'
                               : null,
                           style: TextStyle(
                             color: Color(0xFFC6E9F3),
@@ -165,9 +154,20 @@ class BucketListRegistration extends State<Registration> {
                           autocorrect: false,
                           controller: passwordTextInputController,
                           obscureText: isHiddenPassword,
-                          validator: (value) => value != null && value.length < 6
-                              ? 'Минимум 6 символов'
-                              : null,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Введите пароль';
+                            }
+                            if (value.length < 8) {
+                              return 'Пароль должен быть не менее 8 символов';
+                            }
+                            if (!RegExp(r'^(?=.*[a-z])(?=.*[0-9])').hasMatch(value)) {
+                              return 'Пароль должен содержать:\n'
+                                  '- хотя бы одну букву\n'
+                                  '- хотя бы одну цифру';
+                            }
+                            return null;
+                          },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           style: TextStyle(
                             color: Color(0xFFC6E9F3),
@@ -182,7 +182,7 @@ class BucketListRegistration extends State<Registration> {
                                 isHiddenPassword
                                     ? Icons.visibility_off
                                     : Icons.visibility,
-                                color: Colors.white, // ПОМЕНЯТЬ ЦВЕТ ИКОНКИ ГЛАЗА
+                                color: Colors.white,
                               ),
                             ),
                             filled: true,
@@ -214,6 +214,15 @@ class BucketListRegistration extends State<Registration> {
                           autocorrect: false,
                           controller: passwordTextConfirmInputController,
                           obscureText: isHiddenConfirmPassword,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Подтвердите пароль';
+                            }
+                            if (value != passwordTextInputController.text) {
+                              return 'Пароли не совпадают';
+                            }
+                            return null;
+                          },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           style: TextStyle(
                             color: Color(0xFFC6E9F3),
@@ -247,7 +256,7 @@ class BucketListRegistration extends State<Registration> {
                             ),
                             labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w500),
                             hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
-                            errorStyle: TextStyle(color: Colors.red, fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
+                            errorStyle: TextStyle(color: Colors.red, fontSize: MediaQuery.of(context).size.height * 0.017, fontWeight: FontWeight.w600),
                             counterStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w400),
                           ),
                           cursorColor: Color(0xFFC6E9F3),
