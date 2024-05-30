@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:its_time/services/NotificationServices.dart';
 
 class TaskServices extends ChangeNotifier{
 
@@ -70,7 +71,7 @@ class TaskServices extends ChangeNotifier{
     });
   }
 
-  Future<void> deleteTask(String? taskId, BuildContext context) async {
+  Future<void> deleteTask(String taskId, BuildContext context) async {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -85,6 +86,7 @@ class TaskServices extends ChangeNotifier{
             TextButton(
               onPressed: () {
                 tasks.doc(taskId).delete();
+                NotificationServices().cancelNotification(taskId);
                 Navigator.of(context).pop();
                 Navigator.pop(context);
               },
