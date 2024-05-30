@@ -9,9 +9,10 @@ class Notifications extends StatefulWidget {
 }
 
 class BucketListNotifications extends State<Notifications> {
-
   @override
   Widget build(BuildContext context) {
+    var phoneWidth = MediaQuery.of(context).size.width;
+    var phoneHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color(0xFF0A1128), // Цвет фона страницы
 
@@ -19,7 +20,7 @@ class BucketListNotifications extends State<Notifications> {
         backgroundColor: Color(0xFF0A1128), // Цвет фона шапки
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
-          iconSize: MediaQuery.of(context).size.height * 0.04,
+          iconSize: phoneHeight * 0.04,
           color: Color(0xFFC6E9F3),
           onPressed: () {
             Navigator.pop(context); // Вернуться на главную страницу
@@ -30,30 +31,28 @@ class BucketListNotifications extends State<Notifications> {
           child: Text('Уведомления',
             style: TextStyle(
                 color: Color(0xFFC6E9F3),
-                fontSize: MediaQuery.of(context).size.height * 0.02268,
+                fontSize: phoneHeight * 0.02268,
                 fontWeight: FontWeight.w500
             ),
           ),
         ),
 
         actions: [
-          SizedBox(width: MediaQuery.of(context).size.width * 0.1)
+          SizedBox(width: phoneWidth * 0.1)
         ],
       ),
 
       body: Column(
         children: [
           Container(
-            width:MediaQuery.of(context).size.height * 0.82,
-            height: MediaQuery.of(context).size.height * 0.82, // Уменьшаем высоту контейнера
+            width:phoneHeight * 0.82,
+            height: phoneHeight * 0.82, // Уменьшаем высоту контейнера
             margin: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height * 0.0108,
+                top: phoneHeight * 0.0108,
             ),
             padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height * 0.0216,
-                bottom: MediaQuery.of(context).size.height * 0.0216,
-                right: MediaQuery.of(context).size.width * 0.035,
-                left: MediaQuery.of(context).size.width * 0.035
+                right: phoneWidth * 0.07,
+                left: phoneWidth * 0.07
             ),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
@@ -69,10 +68,12 @@ class BucketListNotifications extends State<Notifications> {
                 Column(
                   children: [
                     Container(
+                      margin: EdgeInsets.only(
+                        top: phoneHeight * 0.04,
+                        bottom: phoneHeight * 0.027,
+                      ),
                       child: Container(
-                        height: MediaQuery.of(context).size.height * 0.087, // Уменьшаем высоту контейнера
-                        margin: const EdgeInsets.all(10.0),
-                        padding: const EdgeInsets.all(10.0),
+                        height: phoneHeight * 0.087, // Уменьшаем высоту контейнера
                         decoration: BoxDecoration(
                           color: Color(0xFF1282A2),
                           borderRadius: BorderRadius.circular(25.0),
@@ -80,77 +81,70 @@ class BucketListNotifications extends State<Notifications> {
                             color: Color(0x80FFFFFF),
                           ),
                         ),
-                        child: Container(
-                          padding: EdgeInsets.only(
-                              left: MediaQuery.of(context).size.width * 0.027,
-                              right: MediaQuery.of(context).size.width * 0.027,
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(
-                                  bottom: MediaQuery.of(context).size.height * 0.0108,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      child: Text(
-                                        'Название задания',
-                                        style: TextStyle(
-                                          fontSize: MediaQuery.of(context).size.height * 0.0173,
-                                          color: Color(0xFFC6E9F3),
-                                          fontWeight: FontWeight.w600
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      child: Text(
-                                        'время',
-                                        style: TextStyle(
-                                            fontSize: MediaQuery.of(context).size.height * 0.0173,
-                                            color: Color(0xFFC6E9F3),
-                                            fontWeight: FontWeight.w600
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                        padding: EdgeInsets.only(
+                          top: phoneHeight * 0.0108,
+                          bottom: phoneHeight * 0.0108,
+                          left: phoneWidth * 0.0584,
+                          right: phoneWidth * 0.0584,
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(
+                                bottom: phoneHeight * 0.0108,
                               ),
-
-                              Row(
+                              child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
                                     child: Text(
-                                      'Описание задания',
-                                      style: TextStyle(
-                                        fontSize: MediaQuery.of(context).size.height * 0.013,
-                                        color: Color(0xFFC6E9F3),
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                                      'Название задания',
+                                      style: TextStyle(fontSize: phoneHeight * 0.0173, color: Color(0xFFC6E9F3), fontWeight: FontWeight.w600),
                                     ),
                                   ),
                                   Container(
                                     child: Text(
-                                      'дата',
+                                      'время',
                                       style: TextStyle(
-                                        fontSize: MediaQuery.of(context).size.height * 0.013,
-                                        color: Color(0xFFC6E9F3),
-                                        fontWeight: FontWeight.w600,
+                                          fontSize: phoneHeight * 0.0173,
+                                          color: Color(0xFFC6E9F3),
+                                          fontWeight: FontWeight.w600
                                       ),
                                     ),
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
+                            ),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  child: Text(
+                                    'Описание задания',
+                                    style: TextStyle(
+                                      fontSize: phoneHeight * 0.013,
+                                      color: Color(0xFFC6E9F3),
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    'дата',
+                                    style: TextStyle(
+                                      fontSize: phoneHeight * 0.013,
+                                      color: Color(0xFFC6E9F3),
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
-
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-
                   ],
                 ),
               ],
