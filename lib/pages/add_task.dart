@@ -300,8 +300,16 @@ class _AddTaskState extends State<AddTask> {
                           // Получение ID задания
                           String taskId = doc.id;
 
-                        NotificationServices().scheduleNotificationOneHourBeforeTask(dateTimePicker.selectedDate, dateTimePicker.selectedTime, titleInput);
-                        NotificationServices().scheduleNotificationAfterDeadline(dateTimePicker.selectedDate, dateTimePicker.selectedTime, titleInput);
+                        NotificationServices().scheduleNotificationOneHourBeforeTask(
+                            dateTimePicker.selectedDate,
+                            dateTimePicker.selectedTime,
+                            titleInput, taskId
+                        );
+                        NotificationServices().scheduleNotificationAfterDeadline(
+                            dateTimePicker.selectedDate,
+                            dateTimePicker.selectedTime,
+                            titleInput, taskId
+                        );
                         Navigator.pop(context); // Возвращение на главную страницу после отправки задания
                       });
                       } else {

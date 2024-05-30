@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:its_time/services/DateTimePickerScreen.dart';
+import 'package:its_time/services/NotificationServices.dart';
 import 'package:its_time/services/TaskServices.dart';
 import 'package:intl/intl.dart';
 
@@ -320,6 +321,18 @@ class EditTaskState extends State<EditTask> {
                         color: Color(0xFFC6E9F3),
                         onPressed: () {
                           TaskServices().updateTask(selectedPriority.value, taskId).then((_) {
+                            NotificationServices().cancelNotification(taskId!);
+                            NotificationServices().scheduleNotificationOneHourBeforeTask(
+                                dateTimePicker.selectedDate,
+                                dateTimePicker.selectedTime,
+                                titleController.text,
+                                taskId!
+                            );
+                            NotificationServices().scheduleNotificationAfterDeadline(
+                                dateTimePicker.selectedDate,
+                                dateTimePicker.selectedTime,
+                                titleController.text,
+                                taskId!);
                             Navigator.pop(context);
                           });
                         },
