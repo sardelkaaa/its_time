@@ -320,8 +320,8 @@ class EditTaskState extends State<EditTask> {
                         iconSize: MediaQuery.of(context).size.width * 0.125,
                         color: Color(0xFFC6E9F3),
                         onPressed: () {
+                          NotificationServices().cancelScheduledNotification(taskId.hashCode);
                           TaskServices().updateTask(selectedPriority.value, taskId).then((_) {
-                            NotificationServices().cancelNotification(taskId!);
                             NotificationServices().scheduleNotificationOneHourBeforeTask(
                                 dateTimePicker.selectedDate,
                                 dateTimePicker.selectedTime,
@@ -339,7 +339,6 @@ class EditTaskState extends State<EditTask> {
                       ),
                     ],
                   )
-
                 ],
               ),
             ),

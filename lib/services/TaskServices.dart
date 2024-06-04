@@ -85,8 +85,8 @@ class TaskServices extends ChangeNotifier{
             ),
             TextButton(
               onPressed: () {
+                NotificationServices().cancelScheduledNotification(taskId.hashCode);
                 tasks.doc(taskId).delete();
-                NotificationServices().cancelNotification(taskId);
                 Navigator.of(context).pop();
                 Navigator.pop(context);
               },

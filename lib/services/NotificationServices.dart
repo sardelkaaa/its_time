@@ -7,8 +7,6 @@ class NotificationServices extends ChangeNotifier {
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
   FlutterLocalNotificationsPlugin();
 
-  Map<String, int> notificationIdMap = {};
-
   Future<void> initializeNotifications() async {
     tz.initializeTimeZones();
     const AndroidInitializationSettings initializationSettingsAndroid =
@@ -25,9 +23,6 @@ class NotificationServices extends ChangeNotifier {
       var scheduledDate = tz.TZDateTime.from(
           taskDateTime.subtract(const Duration(hours: 1)), tz.local);
       if (scheduledDate.isAfter(DateTime.now())) {
-        int notificationId = taskId.hashCode;
-        notificationIdMap[taskId] = notificationId;
-
         const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails('your channel id', 'your channel name',
             channelDescription: 'your channel description',
@@ -36,9 +31,8 @@ class NotificationServices extends ChangeNotifier {
             ticker: 'ticker');
         const NotificationDetails notificationDetails =
         NotificationDetails(android: androidNotificationDetails);
-
         await flutterLocalNotificationsPlugin.zonedSchedule(
-          notificationId,
+          taskId.hashCode,
           'Уведомление за час до задания',
           'Ваша задача "$title" начнется через час',
           scheduledDate,
@@ -56,9 +50,6 @@ class NotificationServices extends ChangeNotifier {
     var taskDateTime = DateTime(taskDate.year, taskDate.month, taskDate.day, taskTime.hour, taskTime.minute);
     if (taskDateTime.isAfter(DateTime.now())) {
       var scheduledDate = tz.TZDateTime.from(taskDateTime, tz.local);
-      int notificationId = taskId.hashCode;
-      notificationIdMap[taskId] = notificationId;
-
       const AndroidNotificationDetails androidNotificationDetails =
       AndroidNotificationDetails(
           'channel id',
@@ -73,7 +64,7 @@ class NotificationServices extends ChangeNotifier {
       NotificationDetails(android: androidNotificationDetails);
 
       await flutterLocalNotificationsPlugin.zonedSchedule(
-        notificationId,
+        taskId.hashCode,
         'Уведомление в установленное время',
         'Срок выполнения Вашего задания "$title" подошёл к концу',
         scheduledDate,
@@ -85,11 +76,7 @@ class NotificationServices extends ChangeNotifier {
     }
   }
 
-  Future<void> cancelNotification(String taskId) async {
-    int? notificationId = notificationIdMap[taskId];
-    if (notificationId != null) {
-      await flutterLocalNotificationsPlugin.cancel(notificationId);
-      notificationIdMap.remove(taskId);
-    }
+  Future<void> cancelScheduledNotification(int notificationId) async {
+    await flutterLocalNotificationsPlugin.cancel(notificationId);
   }
 }
