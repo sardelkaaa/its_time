@@ -326,13 +326,14 @@ class EditTaskState extends State<EditTask> {
                                 dateTimePicker.selectedDate,
                                 dateTimePicker.selectedTime,
                                 titleController.text,
-                                taskId!
+                                taskId!, descriptionController.text
                             );
                             NotificationServices().scheduleNotificationAfterDeadline(
                                 dateTimePicker.selectedDate,
                                 dateTimePicker.selectedTime,
                                 titleController.text,
-                                taskId!);
+                                taskId!, descriptionController.text
+                            );
                             Navigator.pop(context);
                           });
                         },

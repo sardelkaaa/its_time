@@ -303,12 +303,12 @@ class _AddTaskState extends State<AddTask> {
                         NotificationServices().scheduleNotificationOneHourBeforeTask(
                             dateTimePicker.selectedDate,
                             dateTimePicker.selectedTime,
-                            titleInput, taskId
+                            titleInput, taskId, descriptionInput
                         );
                         NotificationServices().scheduleNotificationAfterDeadline(
                             dateTimePicker.selectedDate,
                             dateTimePicker.selectedTime,
-                            titleInput, taskId
+                            titleInput, taskId, descriptionInput
                         );
                         Navigator.pop(context); // Возвращение на главную страницу после отправки задания
                       });
