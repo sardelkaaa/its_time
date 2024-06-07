@@ -28,7 +28,7 @@ class NotificationServices extends ChangeNotifier {
     if (taskDateTime.isAfter(DateTime.now())) {
       var scheduledDate = tz.TZDateTime.from(
           taskDateTime.subtract(const Duration(hours: 1)), tz.local);
-      var notificationDate = DateFormat('yyyy-MM-dd HH:mm:ss').format(scheduledDate);
+      var notificationDate = DateFormat('dd.MM.yyyy HH:mm').format(scheduledDate);
       if (scheduledDate.isAfter(DateTime.now())) {
         const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
@@ -63,7 +63,7 @@ class NotificationServices extends ChangeNotifier {
     DateTime(taskDate.year, taskDate.month, taskDate.day, taskTime.hour, taskTime.minute);
     if (taskDateTime.isAfter(DateTime.now())) {
       var scheduledDate =  tz.TZDateTime.from(taskDateTime, tz.local);
-      var notificationDate = DateFormat('dd.MM.yy HH:mm').format(scheduledDate);
+      var notificationDate = DateFormat('dd.MM.yyyy HH:mm').format(scheduledDate);
       AndroidNotificationDetails androidNotificationDetails =
       AndroidNotificationDetails(
         'channel id',

@@ -98,9 +98,9 @@ class BucketListNotifications extends State<Notifications> {
                       itemBuilder: (context, index) {
                         ActiveNotification notification = notifications[index];
                         var notificationDate = DateFormat('dd.MM.yyyy').format(
-                          DateFormat('yyyy-MM-dd HH:mm:ss').parse(notification.body!));
+                          DateFormat('dd.MM.yyyy HH:mm').parse(notification.body!));
                         var notificationTime = DateFormat('HH:mm').format(
-                            DateFormat('yyyy-MM-dd HH:mm:ss').parse(notification.body!));
+                            DateFormat('dd.MM.yyyy HH:mm').parse(notification.body!));
                         return Container(
                           margin: EdgeInsets.only(
                             top: phoneHeight * 0.04,
