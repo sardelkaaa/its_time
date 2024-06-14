@@ -97,10 +97,6 @@ class BucketListNotifications extends State<Notifications> {
                       itemCount: notifications.length,
                       itemBuilder: (context, index) {
                         ActiveNotification notification = notifications[index];
-                        var notificationDate = DateFormat('dd.MM.yyyy').format(
-                          DateFormat('dd.MM.yyyy HH:mm').parse(notification.body!));
-                        var notificationTime = DateFormat('HH:mm').format(
-                            DateFormat('dd.MM.yyyy HH:mm').parse(notification.body!));
                         return Container(
                           margin: EdgeInsets.only(
                             top: phoneHeight * 0.04,
@@ -140,7 +136,11 @@ class BucketListNotifications extends State<Notifications> {
                                         ),
                                       ),
                                       Text(
-                                        notificationTime,
+                                        notification.body != null
+                                            ? DateFormat('HH:mm').format(
+                                            DateFormat('dd.MM.yyyy HH:mm').parse(notification.body!)
+                                        )
+                                            : 'Нет времени',
                                         style: TextStyle(
                                             fontSize: phoneHeight * 0.0173,
                                             color: const Color(0xFFC6E9F3),
@@ -166,7 +166,11 @@ class BucketListNotifications extends State<Notifications> {
                                       ),
                                     ),
                                     Text(
-                                      notificationDate,
+                                      notification.body != null
+                                          ? DateFormat('dd.MM.yyyy').format(
+                                          DateFormat('dd.MM.yyyy HH:mm').parse(notification.body!)
+                                      )
+                                          : 'Нет даты',
                                       style: TextStyle(
                                         fontSize: phoneHeight * 0.013,
                                         color: const Color(0xFFC6E9F3),

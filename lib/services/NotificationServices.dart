@@ -30,7 +30,7 @@ class NotificationServices extends ChangeNotifier {
           taskDateTime.subtract(const Duration(hours: 1)), tz.local);
       var notificationDate = DateFormat('dd.MM.yyyy HH:mm').format(scheduledDate);
       if (scheduledDate.isAfter(DateTime.now())) {
-        const AndroidNotificationDetails androidNotificationDetails =
+        AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
           'your channel id',
           'your channel name',
@@ -38,12 +38,13 @@ class NotificationServices extends ChangeNotifier {
           importance: Importance.max,
           priority: Priority.high,
           ticker: 'ticker',
-          styleInformation: BigTextStyleInformation('Ваша задача начнется через час'), // Correct usage
+          styleInformation: BigTextStyleInformation('Ваша задача начнется через час\n'
+              '$taskDescription'), // Correct usage
         );
-        const NotificationDetails notificationDetails =
+        NotificationDetails notificationDetails =
         NotificationDetails(android: androidNotificationDetails);
         await flutterLocalNotificationsPlugin.zonedSchedule(
-          taskId.hashCode,
+          taskId.hashCode + 1,
           title,
           notificationDate,
           scheduledDate,
@@ -93,6 +94,7 @@ class NotificationServices extends ChangeNotifier {
 
   Future<void> cancelScheduledNotification(int notificationId) async {
     await flutterLocalNotificationsPlugin.cancel(notificationId);
+    await flutterLocalNotificationsPlugin.cancel(notificationId + 1);
   }
 
   Future<List<ActiveNotification>> getActiveNotifications() async {
