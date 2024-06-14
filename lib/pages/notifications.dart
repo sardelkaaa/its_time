@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 import 'package:its_time/services/NotificationServices.dart';
-import 'package:intl/intl.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});
@@ -97,6 +96,9 @@ class BucketListNotifications extends State<Notifications> {
                       itemCount: notifications.length,
                       itemBuilder: (context, index) {
                         ActiveNotification notification = notifications[index];
+                        if (notification.title == null || notification.bigText == null) {
+                          return Container(); // Пропускаем пустые уведомления
+                        }
                         return Container(
                           margin: EdgeInsets.only(
                             top: phoneHeight * 0.04,
