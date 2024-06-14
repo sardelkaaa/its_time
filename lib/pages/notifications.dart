@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 import 'package:its_time/services/NotificationServices.dart';
@@ -64,8 +65,10 @@ class BucketListNotifications extends State<Notifications> {
               top: phoneHeight * 0.0108,
             ),
             padding: EdgeInsets.only(
-                right: phoneWidth * 0.07,
-                left: phoneWidth * 0.07
+              top: phoneHeight * 0.03,
+              bottom: phoneHeight * 0.027,
+              left: phoneWidth * 0.0584,
+              right: phoneWidth * 0.0584,
             ),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
@@ -101,10 +104,7 @@ class BucketListNotifications extends State<Notifications> {
                         }
                         return Container(
                           margin: EdgeInsets.only(
-                            top: phoneHeight * 0.04,
-                            bottom: phoneHeight * 0.027,
-                            left: phoneWidth * 0.0584,
-                            right: phoneWidth * 0.0584,
+                            bottom: phoneHeight * 0.027
                           ),
                           child: Container(
                             height: phoneHeight * 0.087, // Уменьшаем высоту контейнера
@@ -121,52 +121,60 @@ class BucketListNotifications extends State<Notifications> {
                               left: phoneWidth * 0.0584,
                               right: phoneWidth * 0.0584,
                             ),
-                            child: Column(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    bottom: phoneHeight * 0.0108,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                SizedBox(
+                                  width: phoneWidth * 0.55,
+                                  child: ListView(
                                     children: [
-                                      Expanded(
-                                        child: Text(
-                                          notification.title ?? 'Название задания',
-                                          style: TextStyle(fontSize: phoneHeight * 0.0173, color: const Color(0xFFC6E9F3), fontWeight: FontWeight.w600),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                      Text(
-                                        notification.body != null
-                                            ? DateFormat('HH:mm').format(
-                                            DateFormat('dd.MM.yyyy HH:mm').parse(notification.body!)
-                                        )
-                                            : 'Нет времени',
-                                        style: TextStyle(
-                                            fontSize: phoneHeight * 0.0173,
-                                            color: const Color(0xFFC6E9F3),
-                                            fontWeight: FontWeight.w600
-                                        ),
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            notification.title ?? 'Название задания',
+                                            style: TextStyle(
+                                                fontSize: phoneHeight * 0.0173,
+                                                color: const Color(0xFFC6E9F3),
+                                                fontWeight: FontWeight.w600
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+
+                                          Text(
+                                            notification.bigText ?? 'Описание задания',
+                                            style: TextStyle(
+                                              fontSize: phoneHeight * 0.013,
+                                              color: const Color(0xFFC6E9F3),
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 4,
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
                                 ),
 
-                                Row(
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Expanded(
-                                      child: Text(
-                                        notification.bigText ?? 'Описание задания',
-                                        style: TextStyle(
-                                          fontSize: phoneHeight * 0.013,
+                                    Text(
+                                      notification.body != null
+                                          ? DateFormat('HH:mm').format(
+                                          DateFormat('dd.MM.yyyy HH:mm').parse(notification.body!)
+                                      )
+                                          : 'Нет времени',
+                                      style: TextStyle(
+                                          fontSize: phoneHeight * 0.0173,
                                           color: const Color(0xFFC6E9F3),
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
+                                          fontWeight: FontWeight.w600
                                       ),
                                     ),
+
                                     Text(
                                       notification.body != null
                                           ? DateFormat('dd.MM.yyyy').format(
