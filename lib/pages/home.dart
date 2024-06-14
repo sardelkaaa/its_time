@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:its_time/services/TaskServices.dart';
@@ -14,6 +15,8 @@ class BucketListHomePage extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    var phoneHeight = MediaQuery.of(context).size.height;
+    var phoneWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Color(0xFF0A1128), // Цвет фона страницы
 
@@ -22,7 +25,7 @@ class BucketListHomePage extends State<Home> {
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.notifications),
-            iconSize: MediaQuery.of(context).size.width * 0.1,
+            iconSize: phoneWidth * 0.1,
             color: Color(0xFFC6E9F3),// Устанавляем размер иконки пропорционально ширине экрана
             onPressed: () {
               Navigator.pushNamed(context, '/notifications'); // Действие при нажатии на значок уведомлений
@@ -45,93 +48,14 @@ class BucketListHomePage extends State<Home> {
                   var taskDate = (task['date'] as Timestamp).toDate();
                   var taskTime = task['time']; // Значения даты и времени первого задания
                   var isToday = TaskServices().isToday(taskDate);
-                  return Container(
-                    width: MediaQuery.of(context).size.width * 0.95,
-                    height: MediaQuery.of(context).size.height * 0.25,
-                    margin: const EdgeInsets.all(10.0),
-                    padding: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Color(0xFF1282A2), Color(0xFF034078)],
+                  return Center(
+                    child: Container(
+                      width: phoneWidth * 0.9182,
+                      height: phoneHeight * 0.25,
+                      margin: EdgeInsets.only(
+                        bottom: phoneHeight * 0.027
                       ),
-                      borderRadius: BorderRadius.circular(35.0),
-                      color: Colors.grey[200],
-                    ),
-                    child: Column(
-                      children: [
-                        // Название
-                        Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Text(
-                            task['title'],
-                            style: TextStyle(
-                              fontSize: 21,
-                              fontWeight: FontWeight.bold, //w700
-                              color: Color(0xFFC6E9F3),
-                            ),
-                          ),
-                        ),
-                        // Дата
-                        Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Text(
-                            isToday ? 'Сегодня в $taskTime'
-                                : '${DateFormat('EEEE, MMMM d, yyyy').format(taskDate)}'
-                                ' в $taskTime', // Форматированный вывод даты
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFFC6E9F3),
-                            ),
-                          ),
-                        ),
-                        // Описание
-                        Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Text(
-                            task['description'],
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Color(0xFFC6E9F3),
-                            ),
-                          ),
-                        ),
-                        // Кнопка изменения события
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Container(
-                            margin: EdgeInsets.only(bottom: 0),
-                            // Добавляем отступ снизу
-                            width: MediaQuery.of(context).size.width * 0.1,
-                            // Устанавливаем ширину как 10% от ширины экрана
-                            height: MediaQuery.of(context).size.width * 0.1,
-                            // Устанавливаем высоту как 10% от ширины экрана
-                            decoration: BoxDecoration(
-                              color: Color(0xFF1282A2),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Center(
-                              child: IconButton(
-                                icon: Icon(Icons.edit),
-                                color: Color(0xFFC6E9F3),
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/editTask', arguments: task.id);
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  );
-                } else {
-                  return Container(
-                      width: MediaQuery.of(context).size.width * 0.95,
-                      height: MediaQuery.of(context).size.height * 0.25,
-                      margin: const EdgeInsets.all(10.0),
-                      padding: const EdgeInsets.all(10.0),
+                      padding: EdgeInsets.all(phoneHeight * 0.0173),
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
                           begin: Alignment.topLeft,
@@ -141,12 +65,104 @@ class BucketListHomePage extends State<Home> {
                         borderRadius: BorderRadius.circular(35.0),
                         color: Colors.grey[200],
                       ),
-                    child: Center(
-                      child: Text(
-                        'Нет текущего основного задания',
-                        style: TextStyle(
-                          color: Color(0xFFC6E9F3),
-                          fontSize: 18,
+
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                bottom: phoneHeight * 0.0108,
+                              ),
+                              child: Text(
+                                task['title'],
+                                style: TextStyle(
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.bold, //w700
+                                  color: Color(0xFFC6E9F3),
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                        
+                            // Дата
+                            Padding(
+                              padding: EdgeInsets.only(
+                                bottom: phoneHeight * 0.0108,
+                              ),
+                              child: Text(
+                                isToday ? 'Сегодня в $taskTime'
+                                    : '${DateFormat('EEEE, MMMM d, yyyy').format(taskDate)}'
+                                    ' в $taskTime', // Форматированный вывод даты
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xFFC6E9F3),
+                                ),
+                                  textAlign: TextAlign.center
+                              ),
+                            ),
+                        
+                            // Описание
+                            Padding(
+                              padding: EdgeInsets.only(
+                                bottom: phoneHeight * 0.0108,
+                              ),
+                              child: Text(
+                                task['description'],
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Color(0xFFC6E9F3),
+                                ),
+                                textAlign: TextAlign.center
+                              ),
+                            ),
+                        
+                            // Кнопка изменения события
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Container(
+                                width: phoneWidth * 0.1,
+                                height: phoneWidth * 0.1,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF1282A2),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: IconButton(
+                                  icon: Icon(Icons.edit),
+                                  color: Color(0xFFC6E9F3),
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/editTask', arguments: task.id);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ),
+                  );
+                } else {
+                  return Center(
+                    child: Container(
+                        width: phoneWidth * 0.9182,
+                        height: phoneHeight * 0.25,
+                        padding: EdgeInsets.all(phoneHeight * 0.0173),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [Color(0xFF1282A2), Color(0xFF034078)],
+                          ),
+                          borderRadius: BorderRadius.circular(35.0),
+                          color: Colors.grey[200],
+                        ),
+                      child: Center(
+                        child: Text(
+                          'Нет текущего основного задания',
+                          style: TextStyle(
+                            color: Color(0xFFC6E9F3),
+                            fontSize: 18,
+                          ),
                         ),
                       ),
                     ),
@@ -156,24 +172,21 @@ class BucketListHomePage extends State<Home> {
           ),
 
 
-          InkWell(
-            onTap: () {
-            },
-            child: StreamBuilder<QuerySnapshot>(
-              stream: TaskServices().getTasks(), // Обращение к вспомогательному методу для вывода заданий из БД
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
-                }
-                if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                }
-                if (snapshot.hasData && snapshot.data!.docs.skip(1).isNotEmpty) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width * 0.95,
-                    height: MediaQuery.of(context).size.height * 0.46,
-                    margin: const EdgeInsets.all(10.0),
-                    padding: const EdgeInsets.all(10.0),
+          StreamBuilder<QuerySnapshot>(
+            stream: TaskServices().getTasks(), // Обращение к вспомогательному методу для вывода заданий из БД
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              }
+              if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              }
+              if (snapshot.hasData && snapshot.data!.docs.skip(1).isNotEmpty) {
+                return Center(
+                  child: Container(
+                    width: phoneWidth * 0.9182,
+                    height: phoneHeight * 0.48,
+                    padding: EdgeInsets.all(phoneHeight * 0.0173),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(35.0),
                       gradient: const LinearGradient(
@@ -190,43 +203,54 @@ class BucketListHomePage extends State<Home> {
                         return Column(
                           children: [
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                SizedBox(width: MediaQuery.of(context).size.width * 0.01),
-                                Container(
-                                  width: MediaQuery.of(context).size.width * 0.035,
-                                  height: MediaQuery.of(context).size.width * 0.035,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    gradient: LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        colors: [Color(0xFFFFC700), Color(0xFFFF4F00)]
+                                Padding(
+                                  padding: EdgeInsets.all(phoneWidth * 0.0187),
+                                  child: Container(
+                                    width: phoneWidth * 0.05,
+                                    height: phoneWidth * 0.05,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      gradient: LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          colors: [Color(0xFFFFC700), Color(0xFFFF4F00)]
+                                      ),
+                                    ),
+                                    child: Icon(
+                                      Icons.circle,
+                                      color: Color(0xFFFF8C00),
+                                      size: phoneWidth * 0.035,
                                     ),
                                   ),
-                                  child: Icon(
-                                    Icons.circle,
-                                    color: Color(0xFFFF8C00),
-                                    size: MediaQuery.of(context).size.width * 0.02,
+                                ),
+
+                                Container(
+                                  width: phoneWidth * 0.64,
+                                  child: Text(
+                                    data['title'],
+                                    style: TextStyle(
+                                        color: Color(0xFFC6E9F3),
+                                        fontSize: phoneWidth * 0.042,
+                                        fontWeight: FontWeight.w500
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 4,
                                   ),
                                 ),
-                                SizedBox(width: MediaQuery.of(context).size.width * 0.015),
-                                Text(
-                                  data['title'],
-                                  style: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.width * 0.038, fontWeight: FontWeight.w500),
-                                ),
-                                const Spacer(),
+
+                                Spacer(),
+
                                 Container(
-                                  margin: EdgeInsets.only(bottom: 0),
-                                  width: MediaQuery.of(context).size.width * 0.08,
-                                  height: MediaQuery.of(context).size.width * 0.08,
+                                  width: phoneWidth * 0.08,
+                                  height: phoneWidth * 0.08,
                                   decoration: BoxDecoration(
                                     color: Color(0xFF1282A2),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Center(
                                     child: IconButton(
-                                      icon: Icon(Icons.edit, size: MediaQuery.of(context).size.width * 0.04,),
+                                      icon: Icon(Icons.edit, size: phoneWidth * 0.04,),
                                       color: Color(0xFFC6E9F3),
                                       onPressed: () {
                                         Navigator.pushNamed(context, '/editTask', arguments: documentId);
@@ -234,8 +258,6 @@ class BucketListHomePage extends State<Home> {
                                     ),
                                   ),
                                 ),
-
-                                SizedBox(width: MediaQuery.of(context).size.width * 0.01),
                               ],
                             ),
 
@@ -257,34 +279,33 @@ class BucketListHomePage extends State<Home> {
                         );
                       }).toList(),
                     ),
-                  );
-                } else {
-                  return Container(
-                    width: MediaQuery.of(context).size.width * 0.95,
-                    height: MediaQuery.of(context).size.height * 0.46,
-                    margin: const EdgeInsets.all(10.0),
-                    padding: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(35.0),
-                      gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [Color(0xFF1282A2), Color(0xFF034078)]
+                  ),
+                );
+              } else {
+                return Container(
+                  width: phoneWidth * 0.9182,
+                  height: phoneHeight * 0.46,
+                  padding: EdgeInsets.all(phoneHeight * 0.0173),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(35.0),
+                    gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Color(0xFF1282A2), Color(0xFF034078)]
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Нет текущих заданий',
+                      style: TextStyle(
+                        color: Color(0xFFC6E9F3),
+                        fontSize: 18,
                       ),
                     ),
-                    child: Center(
-                      child: Text(
-                        'Нет текущих заданий',
-                        style: TextStyle(
-                          color: Color(0xFFC6E9F3),
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                  );
-                }
-              },
-            ),
+                  ),
+                );
+              }
+            },
           )
         ],
       ),
@@ -296,7 +317,7 @@ class BucketListHomePage extends State<Home> {
         backgroundColor: Color(0xFF1282A2),
         child: Icon(
           Icons.add,
-          size: MediaQuery.of(context).size.width * 0.12, // Вычисляем размер иконки как 10% ширины экрана
+          size: phoneWidth * 0.12, // Вычисляем размер иконки как 10% ширины экрана
           color: Color(0xFFC6E9F3),
         ),
         shape: CircleBorder(),
@@ -311,7 +332,7 @@ class BucketListHomePage extends State<Home> {
             children: <Widget>[
               IconButton(
                 icon: const Icon(Icons.history),
-                iconSize: MediaQuery.of(context).size.width * 0.1, // Устанавляем размер иконки пропорционально ширине экрана
+                iconSize: phoneWidth * 0.1, // Устанавляем размер иконки пропорционально ширине экрана
                 color: Color(0xFFC6E9F3),
                 onPressed: () {
                   Navigator.pushNamed(context, '/history'); // Действия при нажатии на иконку истории
@@ -319,7 +340,7 @@ class BucketListHomePage extends State<Home> {
               ),
               IconButton(
                 icon: const Icon(Icons.settings),
-                iconSize: MediaQuery.of(context).size.width * 0.1, // Устанавляем размер иконки пропорционально ширине экрана
+                iconSize: phoneWidth * 0.1, // Устанавляем размер иконки пропорционально ширине экрана
                 color: Color(0xFFC6E9F3),
                 onPressed: () {
                   Navigator.pushNamed(context, '/settings'); // Действия при нажатии на иконку настроек

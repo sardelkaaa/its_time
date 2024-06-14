@@ -132,14 +132,20 @@ class BucketListNotifications extends State<Notifications> {
                                       Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            notification.title ?? 'Название задания',
-                                            style: TextStyle(
-                                                fontSize: phoneHeight * 0.0173,
-                                                color: const Color(0xFFC6E9F3),
-                                                fontWeight: FontWeight.w600
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              bottom: phoneHeight * 0.00864
                                             ),
-                                            overflow: TextOverflow.ellipsis,
+                                            child: Text(
+                                              notification.title ?? 'Название задания',
+                                              style: TextStyle(
+                                                  fontSize: phoneHeight * 0.0173,
+                                                  color: const Color(0xFFC6E9F3),
+                                                  fontWeight: FontWeight.w600
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 4,
+                                            ),
                                           ),
 
                                           Text(
@@ -150,7 +156,7 @@ class BucketListNotifications extends State<Notifications> {
                                               fontWeight: FontWeight.w600,
                                             ),
                                             overflow: TextOverflow.ellipsis,
-                                            maxLines: 4,
+                                            maxLines: 10,
                                           ),
                                         ],
                                       ),
