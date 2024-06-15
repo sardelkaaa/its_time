@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
 import 'package:its_time/services/TaskServices.dart';
 import 'package:intl/intl.dart';
 
@@ -55,7 +56,12 @@ class BucketListHomePage extends State<Home> {
                       margin: EdgeInsets.only(
                         bottom: phoneHeight * 0.027
                       ),
-                      padding: EdgeInsets.all(phoneHeight * 0.0173),
+                      padding: EdgeInsets.only(
+                        top: phoneHeight * 0.0173,
+                        bottom: phoneHeight * 0.0173,
+                        right: phoneWidth * 0.0701,
+                        left: phoneWidth * 0.0701,
+                      ),
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
                           begin: Alignment.topLeft,
@@ -76,14 +82,13 @@ class BucketListHomePage extends State<Home> {
                               child: Text(
                                 task['title'],
                                 style: TextStyle(
-                                  fontSize: 21,
-                                  fontWeight: FontWeight.bold, //w700
+                                  fontSize: phoneHeight * 0.02268,
+                                  fontWeight: FontWeight.w700, //w700
                                   color: Color(0xFFC6E9F3),
                                 ),
-                                textAlign: TextAlign.center,
                               ),
                             ),
-                        
+
                             // Дата
                             Padding(
                               padding: EdgeInsets.only(
@@ -94,29 +99,67 @@ class BucketListHomePage extends State<Home> {
                                     : '${DateFormat('EEEE, MMMM d, yyyy').format(taskDate)}'
                                     ' в $taskTime', // Форматированный вывод даты
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: phoneHeight * 0.01944,
                                   fontWeight: FontWeight.w600,
                                   color: Color(0xFFC6E9F3),
                                 ),
-                                  textAlign: TextAlign.center
                               ),
                             ),
-                        
-                            // Описание
+
                             Padding(
                               padding: EdgeInsets.only(
                                 bottom: phoneHeight * 0.0108,
                               ),
-                              child: Text(
-                                task['description'],
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFFC6E9F3),
+                              child: InkWell(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        backgroundColor: Color(0xFF1282A2),
+                                        title: Text(
+                                          'Описание задания',
+                                          style: TextStyle(
+                                              color: Color(0xFFC6E9F3)
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        content: Text(
+                                          task['description'].isEmpty ? 'Описание задания пусто' : task['description'],
+                                          style: TextStyle(
+                                              color: Color(0xFFC6E9F3),
+                                              fontSize: phoneHeight * 0.01512,
+                                              fontWeight: FontWeight.w400
+                                          ),
+                                        ),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text(
+                                              'Закрыть',
+                                              style: TextStyle(
+                                                color: Color(0xFFC6E9F3),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Text(
+                                  'Открыть описание задания',
+                                  style: TextStyle(
+                                      color: Color(0xFFC6E9F3),
+                                      fontSize: phoneHeight * 0.01512,
+                                      fontWeight: FontWeight.w400
+                                  ),
                                 ),
-                                textAlign: TextAlign.center
                               ),
                             ),
-                        
+
                             // Кнопка изменения события
                             Align(
                               alignment: Alignment.centerRight,
@@ -124,12 +167,12 @@ class BucketListHomePage extends State<Home> {
                                 width: phoneWidth * 0.1,
                                 height: phoneWidth * 0.1,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFF1282A2),
+                                  color: Color(0x30000000),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 child: IconButton(
                                   icon: Icon(Icons.edit),
-                                  color: Color(0xFFC6E9F3),
+                                  color: Color(0x90F3F3F3),
                                   onPressed: () {
                                     Navigator.pushNamed(context, '/editTask', arguments: task.id);
                                   },
@@ -161,7 +204,7 @@ class BucketListHomePage extends State<Home> {
                           'Нет текущего основного задания',
                           style: TextStyle(
                             color: Color(0xFFC6E9F3),
-                            fontSize: 18,
+                            fontSize: phoneHeight * 0.01944,
                           ),
                         ),
                       ),
@@ -200,12 +243,14 @@ class BucketListHomePage extends State<Home> {
                         Map data = document.data() as Map;
                         var documentId = document.id;
                         var taskDate = (data['date'] as Timestamp).toDate(); // Значения даты заданий
+                        var taskTime = data['time'];
                         return Column(
                           children: [
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.all(phoneWidth * 0.0187),
+                                  padding: EdgeInsets.only(left: phoneWidth * 0.0187),
                                   child: Container(
                                     width: phoneWidth * 0.05,
                                     height: phoneWidth * 0.05,
@@ -231,44 +276,130 @@ class BucketListHomePage extends State<Home> {
                                     data['title'],
                                     style: TextStyle(
                                         color: Color(0xFFC6E9F3),
-                                        fontSize: phoneWidth * 0.042,
-                                        fontWeight: FontWeight.w500
+                                        fontSize: phoneHeight * 0.01944,
+                                        fontWeight: FontWeight.w600
                                     ),
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 4,
                                   ),
                                 ),
 
-                                Spacer(),
-
-                                Container(
-                                  width: phoneWidth * 0.08,
-                                  height: phoneWidth * 0.08,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF1282A2),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Center(
-                                    child: IconButton(
-                                      icon: Icon(Icons.edit, size: phoneWidth * 0.04,),
-                                      color: Color(0xFFC6E9F3),
-                                      onPressed: () {
-                                        Navigator.pushNamed(context, '/editTask', arguments: documentId);
+                                Padding(
+                                  padding: EdgeInsets.only(right: phoneWidth * 0.0187),
+                                  child: Container(
+                                    width: phoneWidth * 0.08,
+                                    height: phoneWidth * 0.08,
+                                    decoration: BoxDecoration(
+                                      color: Color(0x30000000),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Center(
+                                      child: IconButton(
+                                        icon: Icon(Icons.edit, size: phoneWidth * 0.04,),
+                                        color: Color(0x90F3F3F3),
+                                        onPressed: () {
+                                          Navigator.pushNamed(context, '/editTask', arguments: documentId);
                                         },
+                                      ),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
 
-                            Align(
-                              alignment: Alignment(-0.8, 1.0),
-                              child: Text(
-                                  '${DateFormat('dd.MM.yyyy').format(taskDate)}', // Форматированный вывод даты
-                                  style: TextStyle(
-                                      color: Color(0xFFC6E9F3),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500)),
+                            data['description'].isEmpty ? Padding(
+                              padding: EdgeInsets.only(
+                                top: phoneHeight * 0.00864
+                              ),
+                              child: Container(),
+                            ) :
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: phoneWidth * 0.089,
+                                right: phoneWidth * 0.089,
+                                bottom: phoneHeight * 0.00864,
+                              ),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: InkWell(
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          backgroundColor: Color(0xFF1282A2),
+                                          title: Text(
+                                            'Описание задания',
+                                            style: TextStyle(
+                                              color: Color(0xFFC6E9F3)
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          content: Text(
+                                            data['description'].isEmpty ? 'Описание задания пусто' : data['description'],
+                                            style: TextStyle(
+                                                color: Color(0xFFC6E9F3),
+                                                fontSize: phoneHeight * 0.01512,
+                                                fontWeight: FontWeight.w400
+                                            ),
+                                          ),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text(
+                                                'Закрыть',
+                                                style: TextStyle(
+                                                  color: Color(0xFFC6E9F3),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: Text(
+                                    'Открыть описание задания',
+                                    style: TextStyle(
+                                        color: Color(0xFFC6E9F3),
+                                        fontSize: phoneHeight * 0.01512,
+                                        fontWeight: FontWeight.w400
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+
+
+
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: phoneWidth * 0.0187,
+                                right: phoneWidth * 0.0187,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                      '$taskTime', // Форматированный вывод даты
+                                      style: TextStyle(
+                                          color: Color(0xFFC6E9F3),
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500
+                                      )
+                                  ),
+
+                                  Text(
+                                      '${DateFormat('dd.MM.yyyy').format(taskDate)}', // Форматированный вывод даты
+                                      style: TextStyle(
+                                          color: Color(0xFFC6E9F3),
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500
+                                      )
+                                  ),
+
+                                ],
+                              ),
                             ),
 
                             const Divider(

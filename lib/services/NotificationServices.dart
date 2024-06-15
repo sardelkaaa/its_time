@@ -73,7 +73,7 @@ class NotificationServices extends ChangeNotifier {
         importance: Importance.max,
         priority: Priority.high,
         ticker: 'ticker',
-        styleInformation: BigTextStyleInformation('Срок выполнения задания вышел\n'
+        styleInformation: BigTextStyleInformation('Пришло время выполнить задание!\n'
             '$taskDescription'),
       );
       NotificationDetails notificationDetails =
