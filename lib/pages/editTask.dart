@@ -44,6 +44,8 @@ class EditTaskState extends State<EditTask> {
 
   @override
   Widget build(BuildContext context) {
+    var phoneHeight = MediaQuery.of(context).size.height;
+    var phoneWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Color(0xFF0A1128), // Цвет фона страницы
 
@@ -62,7 +64,7 @@ class EditTaskState extends State<EditTask> {
           child: Text('Редактировать задание', // Добавляем текст "Новое задание" в качестве заголовка
             style: TextStyle(
                 color: Color(0xFFC6E9F3),
-                fontSize: 21,
+                fontSize: phoneHeight * 0.027,
                 fontWeight: FontWeight.w500
             ),
           ),

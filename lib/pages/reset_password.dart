@@ -58,6 +58,8 @@ class BucketListResetPassword extends State<ResetPassword> {
 
   @override
   Widget build(BuildContext context) {
+    var phoneHeight = MediaQuery.of(context).size.height;
+    var phoneWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Color(0xFF0A1128), // Цвет фона страницы
       body:
@@ -85,7 +87,17 @@ class BucketListResetPassword extends State<ResetPassword> {
                   child: Column(
                     children: [
                       SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                      Center(child: Text('Сброс пароля', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.03, fontWeight: FontWeight.w500),)),
+                      Center(
+                          child:
+                          Text(
+                            'Сброс пароля',
+                            style: TextStyle(
+                                color: Color(0xFFC6E9F3),
+                                fontSize: phoneHeight * 0.03,
+                                fontWeight: FontWeight.w500
+                            ),
+                          )
+                      ),
                       SizedBox(height: MediaQuery.of(context).size.height * 0.025),
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,

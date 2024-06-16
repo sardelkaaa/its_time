@@ -45,7 +45,7 @@ class BucketListNotifications extends State<Notifications> {
           child: Text('Уведомления',
             style: TextStyle(
                 color: const Color(0xFFC6E9F3),
-                fontSize: phoneHeight * 0.02268,
+                fontSize: phoneHeight * 0.03,
                 fontWeight: FontWeight.w500
             ),
           ),
@@ -89,9 +89,9 @@ class BucketListNotifications extends State<Notifications> {
                       child: Text(
                         'Нет активных уведомлений',
                         style: TextStyle(
-                            fontSize: phoneHeight * 0.0173,
+                            fontSize: phoneHeight * 0.023,
                             color: const Color(0xFFC6E9F3),
-                            fontWeight: FontWeight.w600),
+                            fontWeight: FontWeight.w500),
                       ),
                     );
                   } else {

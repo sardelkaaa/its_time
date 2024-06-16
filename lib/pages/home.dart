@@ -54,13 +54,13 @@ class BucketListHomePage extends State<Home> {
                       width: phoneWidth * 0.9182,
                       height: phoneHeight * 0.25,
                       margin: EdgeInsets.only(
-                        bottom: phoneHeight * 0.027
+                        bottom: phoneHeight * 0.02
                       ),
                       padding: EdgeInsets.only(
-                        top: phoneHeight * 0.0173,
-                        bottom: phoneHeight * 0.0173,
-                        right: phoneWidth * 0.0701,
-                        left: phoneWidth * 0.0701,
+                        right: phoneWidth * 0.06075,
+                        left: phoneWidth * 0.06075,
+                        top: phoneHeight * 0.01728,
+                        bottom: phoneWidth * 0.06075
                       ),
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
@@ -72,139 +72,166 @@ class BucketListHomePage extends State<Home> {
                         color: Colors.grey[200],
                       ),
 
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                bottom: phoneHeight * 0.0108,
-                              ),
-                              child: Text(
-                                task['title'],
-                                style: TextStyle(
-                                  fontSize: phoneHeight * 0.02268,
-                                  fontWeight: FontWeight.w700, //w700
-                                  color: Color(0xFFC6E9F3),
-                                ),
-                              ),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              bottom: phoneHeight * 0.0108
                             ),
-
-                            // Дата
-                            Padding(
-                              padding: EdgeInsets.only(
-                                bottom: phoneHeight * 0.0108,
-                              ),
-                              child: Text(
-                                isToday ? 'Сегодня в $taskTime'
-                                    : '${DateFormat('EEEE, MMMM d, yyyy').format(taskDate)}'
-                                    ' в $taskTime', // Форматированный вывод даты
-                                style: TextStyle(
-                                  fontSize: phoneHeight * 0.01944,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xFFC6E9F3),
-                                ),
-                              ),
-                            ),
-
-                            Padding(
-                              padding: EdgeInsets.only(
-                                bottom: phoneHeight * 0.0108,
-                              ),
-                              child: InkWell(
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        backgroundColor: Color(0xFF1282A2),
-                                        title: Text(
-                                          'Описание задания',
+                            child: Container(
+                              height: phoneHeight * 0.1432,
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        bottom: phoneHeight * 0.00432,
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          task['title'],
                                           style: TextStyle(
-                                              color: Color(0xFFC6E9F3)
+                                            fontSize: phoneHeight * 0.03,
+                                            fontWeight: FontWeight.w600, //w700
+                                            color: Color(0xFFC6E9F3),
+                                            height: 0,
                                           ),
-                                          textAlign: TextAlign.center,
                                         ),
-                                        content: Text(
-                                          task['description'].isEmpty ? 'Описание задания пусто' : task['description'],
+                                      ),
+                                    ),
+
+                                    // Дата
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        bottom: phoneHeight * 0.00432,
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          isToday ? 'Сегодня в $taskTime'
+                                              : '${DateFormat('EEEE, MMMM d, yyyy').format(taskDate)}'
+                                              ' в $taskTime', // Форматированный вывод даты
+                                          style: TextStyle(
+                                            fontSize: phoneHeight * 0.023,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color(0xFFC6E9F3),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+
+                                    task['description'].isEmpty ? Container() :
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: InkWell(
+                                        onTap: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                backgroundColor: Color(0xFF1282A2),
+                                                title: Text(
+                                                  'Описание задания',
+                                                  style: TextStyle(
+                                                    color: Color(0xFFC6E9F3),
+                                                    fontWeight: FontWeight.w600
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                                content: Text(
+                                                  task['description'],
+                                                  style: TextStyle(
+                                                      color: Color(0xFFC6E9F3),
+                                                      fontSize: phoneHeight * 0.01512,
+                                                      fontWeight: FontWeight.w400
+                                                  ),
+                                                ),
+                                                actions: <Widget>[
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                    child: Text(
+                                                      'Закрыть',
+                                                      style: TextStyle(
+                                                        color: Color(0xFFC6E9F3),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                        child: Text(
+                                          'Открыть описание задания',
                                           style: TextStyle(
                                               color: Color(0xFFC6E9F3),
-                                              fontSize: phoneHeight * 0.01512,
-                                              fontWeight: FontWeight.w400
+                                              fontSize: phoneHeight * 0.02,
                                           ),
                                         ),
-                                        actions: <Widget>[
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: Text(
-                                              'Закрыть',
-                                              style: TextStyle(
-                                                color: Color(0xFFC6E9F3),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                                child: Text(
-                                  'Открыть описание задания',
-                                  style: TextStyle(
-                                      color: Color(0xFFC6E9F3),
-                                      fontSize: phoneHeight * 0.01512,
-                                      fontWeight: FontWeight.w400
-                                  ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
+                          ),
 
-                            // Кнопка изменения события
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Container(
-                                width: phoneWidth * 0.1,
-                                height: phoneWidth * 0.1,
-                                decoration: BoxDecoration(
-                                  color: Color(0x30000000),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: IconButton(
-                                  icon: Icon(Icons.edit),
-                                  color: Color(0x90F3F3F3),
-                                  onPressed: () {
-                                    Navigator.pushNamed(context, '/editTask', arguments: task.id);
-                                  },
-                                ),
+                          // Кнопка изменения события
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              width: phoneWidth * 0.1,
+                              height: phoneWidth * 0.1,
+                              decoration: BoxDecoration(
+                                color: Color(0x30000000),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: IconButton(
+                                icon: Icon(Icons.edit),
+                                color: Color(0x90F3F3F3),
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/editTask', arguments: task.id);
+                                },
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       )
                     ),
                   );
                 } else {
                   return Center(
                     child: Container(
-                        width: phoneWidth * 0.9182,
-                        height: phoneHeight * 0.25,
-                        padding: EdgeInsets.all(phoneHeight * 0.0173),
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [Color(0xFF1282A2), Color(0xFF034078)],
-                          ),
-                          borderRadius: BorderRadius.circular(35.0),
-                          color: Colors.grey[200],
+                      width: phoneWidth * 0.9182,
+                      height: phoneHeight * 0.25,
+                      margin: EdgeInsets.only(
+                        bottom: phoneHeight * 0.02
+                      ),
+                      padding: EdgeInsets.only(
+                        right: phoneWidth * 0.06075,
+                        left: phoneWidth * 0.06075,
+                        top: phoneHeight * 0.01728,
+                        bottom: phoneWidth * 0.06075
+                      ),
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [Color(0xFF1282A2), Color(0xFF034078)],
                         ),
+                        borderRadius: BorderRadius.circular(35.0),
+                        color: Colors.grey[200],
+                      ),
                       child: Center(
                         child: Text(
                           'Нет текущего основного задания',
                           style: TextStyle(
                             color: Color(0xFFC6E9F3),
-                            fontSize: phoneHeight * 0.01944,
+                            fontSize: phoneHeight * 0.023,
+                            fontWeight: FontWeight.w500
                           ),
                         ),
                       ),
@@ -228,7 +255,10 @@ class BucketListHomePage extends State<Home> {
                 return Center(
                   child: Container(
                     width: phoneWidth * 0.9182,
-                    height: phoneHeight * 0.48,
+                    height: phoneHeight * 0.474,
+                    margin: EdgeInsets.only(
+                        bottom: phoneHeight * 0.02
+                    ),
                     padding: EdgeInsets.all(phoneHeight * 0.0173),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(35.0),
@@ -276,8 +306,8 @@ class BucketListHomePage extends State<Home> {
                                     data['title'],
                                     style: TextStyle(
                                         color: Color(0xFFC6E9F3),
-                                        fontSize: phoneHeight * 0.01944,
-                                        fontWeight: FontWeight.w600
+                                        fontSize: phoneHeight * 0.023,
+                                        fontWeight: FontWeight.w500
                                     ),
                                   ),
                                 ),
@@ -305,7 +335,8 @@ class BucketListHomePage extends State<Home> {
                               ],
                             ),
 
-                            data['description'].isEmpty ? Padding(
+                            data['description'].isEmpty ?
+                            Padding(
                               padding: EdgeInsets.only(
                                 top: phoneHeight * 0.00864
                               ),
@@ -334,11 +365,10 @@ class BucketListHomePage extends State<Home> {
                                             textAlign: TextAlign.center,
                                           ),
                                           content: Text(
-                                            data['description'].isEmpty ? 'Описание задания пусто' : data['description'],
+                                            data['description'],
                                             style: TextStyle(
                                                 color: Color(0xFFC6E9F3),
                                                 fontSize: phoneHeight * 0.01512,
-                                                fontWeight: FontWeight.w400
                                             ),
                                           ),
                                           actions: <Widget>[
@@ -362,7 +392,7 @@ class BucketListHomePage extends State<Home> {
                                     'Открыть описание задания',
                                     style: TextStyle(
                                         color: Color(0xFFC6E9F3),
-                                        fontSize: phoneHeight * 0.01512,
+                                        fontSize: phoneHeight * 0.017,
                                         fontWeight: FontWeight.w400
                                     ),
                                   ),
@@ -415,7 +445,10 @@ class BucketListHomePage extends State<Home> {
               } else {
                 return Container(
                   width: phoneWidth * 0.9182,
-                  height: phoneHeight * 0.46,
+                  height: phoneHeight * 0.474,
+                  margin: EdgeInsets.only(
+                      bottom: phoneHeight * 0.02
+                  ),
                   padding: EdgeInsets.all(phoneHeight * 0.0173),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(35.0),
@@ -430,7 +463,8 @@ class BucketListHomePage extends State<Home> {
                       'Нет текущих заданий',
                       style: TextStyle(
                         color: Color(0xFFC6E9F3),
-                        fontSize: 18,
+                        fontSize: phoneHeight * 0.023,
+                        fontWeight: FontWeight.w500
                       ),
                     ),
                   ),
@@ -448,7 +482,7 @@ class BucketListHomePage extends State<Home> {
         backgroundColor: Color(0xFF1282A2),
         child: Icon(
           Icons.add,
-          size: phoneWidth * 0.12, // Вычисляем размер иконки как 10% ширины экрана
+          size: phoneWidth * 0.1, // Вычисляем размер иконки как 10% ширины экрана
           color: Color(0xFFC6E9F3),
         ),
         shape: CircleBorder(),
