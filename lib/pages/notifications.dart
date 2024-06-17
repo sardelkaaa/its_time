@@ -59,7 +59,7 @@ class BucketListNotifications extends State<Notifications> {
       body: Column(
         children: [
           Container(
-            width: phoneHeight * 0.82,
+            width: phoneWidth * 1,
             height: phoneHeight * 0.82, // Уменьшаем высоту контейнера
             margin: EdgeInsets.only(
               top: phoneHeight * 0.0108,
@@ -107,7 +107,7 @@ class BucketListNotifications extends State<Notifications> {
                             bottom: phoneHeight * 0.027
                           ),
                           child: Container(
-                            height: phoneHeight * 0.087, // Уменьшаем высоту контейнера
+                            height: phoneHeight * 0.08, // Уменьшаем высоту контейнера
                             decoration: BoxDecoration(
                               color: const Color(0xFF1282A2),
                               borderRadius: BorderRadius.circular(25.0),
@@ -125,7 +125,7 @@ class BucketListNotifications extends State<Notifications> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SizedBox(
+                                Container(
                                   width: phoneWidth * 0.55,
                                   child: ListView(
                                     children: [
@@ -136,27 +136,80 @@ class BucketListNotifications extends State<Notifications> {
                                             padding: EdgeInsets.only(
                                               bottom: phoneHeight * 0.00864
                                             ),
-                                            child: Text(
-                                              notification.title ?? 'Название задания',
-                                              style: TextStyle(
-                                                  fontSize: phoneHeight * 0.0173,
-                                                  color: const Color(0xFFC6E9F3),
-                                                  fontWeight: FontWeight.w600
+                                            child: InkWell(
+                                              onTap: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext context) {
+                                                    return SingleChildScrollView(
+                                                      child: AlertDialog(
+                                                        backgroundColor: Color(0xFF1282A2),
+                                                        title: Text(
+                                                          'Название задания',
+                                                          style: TextStyle(
+                                                            color: Color(0xFFC6E9F3),
+                                                            fontSize: phoneHeight * 0.023,
+                                                            fontWeight: FontWeight.w500,
+                                                          ),
+                                                          textAlign: TextAlign.center,
+                                                        ),
+                                                        content: Text(
+                                                          notification.title ?? 'Название задания',
+                                                          style: TextStyle(
+                                                            color: Color(0xFFC6E9F3),
+                                                            fontSize: phoneHeight * 0.02,
+                                                          ),
+                                                        ),
+                                                        actions: <Widget>[
+                                                          TextButton(
+                                                            onPressed: () {
+                                                              Navigator.of(context).pop();
+                                                            },
+                                                            child: Text(
+                                                              'Закрыть',
+                                                              style: TextStyle(
+                                                                color: Color(0xFFC6E9F3),
+                                                                fontSize: phoneHeight * 0.023,
+                                                                fontWeight: FontWeight.w500,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                              child: Text(
+                                                notification.title ?? 'Название задания',
+                                                style: TextStyle(
+                                                    color: Color(0xFFC6E9F3),
+                                                    fontSize: phoneHeight * 0.018,
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 0
+                                                ),
+                                                overflow: TextOverflow.ellipsis,
                                               ),
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 4,
                                             ),
+
+
+                                            // Text(
+                                            //   notification.title ?? 'Название задания',
+                                            //   style: TextStyle(
+                                            //       fontSize: phoneHeight * 0.018,
+                                            //       color: const Color(0xFFC6E9F3),
+                                            //       fontWeight: FontWeight.w600
+                                            //   ),
+                                            // ),
                                           ),
 
                                           Text(
                                             notification.bigText ?? 'Описание задания',
                                             style: TextStyle(
-                                              fontSize: phoneHeight * 0.013,
+                                              fontSize: phoneHeight * 0.015,
                                               color: const Color(0xFFC6E9F3),
-                                              fontWeight: FontWeight.w600,
+                                              fontWeight: FontWeight.w500,
                                             ),
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 10,
                                           ),
                                         ],
                                       ),
@@ -175,7 +228,7 @@ class BucketListNotifications extends State<Notifications> {
                                       )
                                           : 'Нет времени',
                                       style: TextStyle(
-                                          fontSize: phoneHeight * 0.0173,
+                                          fontSize: phoneHeight * 0.018,
                                           color: const Color(0xFFC6E9F3),
                                           fontWeight: FontWeight.w600
                                       ),
@@ -188,9 +241,9 @@ class BucketListNotifications extends State<Notifications> {
                                       )
                                           : 'Нет даты',
                                       style: TextStyle(
-                                        fontSize: phoneHeight * 0.013,
+                                        fontSize: phoneHeight * 0.015,
                                         color: const Color(0xFFC6E9F3),
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                   ],
