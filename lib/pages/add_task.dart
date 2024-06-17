@@ -87,7 +87,6 @@ class _AddTaskState extends State<AddTask> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
                   TextFormField(
-                    maxLength: 30,
                     style: TextStyle(
                         color: Color(0xFFC6E9F3),
                         decoration: TextDecoration.none,
