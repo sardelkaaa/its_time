@@ -12,6 +12,13 @@ class Home extends StatefulWidget {
 
 class BucketListHomePage extends State<Home> {
 
+  String capitalize(String text) {
+    if (text.isEmpty) {
+      return text;
+    }
+    return '${text[0].toUpperCase()}${text.substring(1)}';
+  }
+
   @override
   Widget build(BuildContext context) {
     var phoneHeight = MediaQuery.of(context).size.height;
@@ -154,10 +161,10 @@ class BucketListHomePage extends State<Home> {
                                       alignment: Alignment.centerLeft,
                                       child: Text(
                                         isToday ? 'Сегодня в $taskTime'
-                                            : '${DateFormat('EEEE, MMMM d, yyyy').format(taskDate)}'
-                                            ' в $taskTime', // Форматированный вывод даты
+                                            : capitalize('${DateFormat('EEEE, d MMMM yyyy', 'ru_RU').format(taskDate)}'
+                                          ' в $taskTime'), // Форматированный вывод даты
                                         style: TextStyle(
-                                          fontSize: phoneHeight * 0.023,
+                                          fontSize: phoneHeight * 0.02,
                                           fontWeight: FontWeight.w500,
                                           color: const Color(0xFFC6E9F3),
                                           height: 0,

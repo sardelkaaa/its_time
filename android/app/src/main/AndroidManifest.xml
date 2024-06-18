@@ -8,6 +8,7 @@
     <application
         android:label="It's time!"
         android:icon="@mipmap/ic_launcher">
+        android:locale="ru"
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
