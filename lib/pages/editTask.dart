@@ -323,6 +323,7 @@ class EditTaskState extends State<EditTask> {
                         color: Color(0xFFC6E9F3),
                         onPressed: () {
                           NotificationServices().cancelScheduledNotification(taskId.hashCode);
+                          NotificationServices().cancelScheduledNotification(taskId.hashCode + 1);
                           TaskServices().updateTask(selectedPriority.value, taskId).then((_) {
                             NotificationServices().scheduleNotificationOneHourBeforeTask(
                                 dateTimePicker.selectedDate,

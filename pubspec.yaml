@@ -1,4 +1,4 @@
-name: its_time
+name: It's time!
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -32,7 +32,6 @@ dependencies:
   firebase_core:
   firebase_auth:
   email_validator:
-  workmanager:
   intl:
 
   flutter:
