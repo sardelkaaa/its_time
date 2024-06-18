@@ -301,6 +301,7 @@ class BucketListHomePage extends State<Home> {
                             fontSize: phoneHeight * 0.023,
                             fontWeight: FontWeight.w500
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
