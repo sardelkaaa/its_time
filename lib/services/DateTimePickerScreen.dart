@@ -17,6 +17,18 @@ class DateTimePickerScreen {
       initialDate: selectedDate,
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Color(0xFF1282A2),
+              primary: Color(0xFF1282A2), // Новый цвет фона
+              onPrimary: Colors.white,
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
     if (picked != null && picked != selectedDate) {
         selectedDate = picked;
@@ -30,6 +42,18 @@ class DateTimePickerScreen {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
       initialTime: selectedTime,
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Color(0xFF1282A2),
+              primary: Color(0xFF1282A2), // Новый цвет фона
+              onPrimary: Colors.white,
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
     if (picked != null) {
       selectedTime = picked;
@@ -46,6 +70,18 @@ class DateTimePickerScreen {
       initialDate: selectedDate,
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Color(0xFF1282A2),
+              primary: Color(0xFF1282A2), // Новый цвет фона
+              onPrimary: Colors.white,
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
     if (picked != null) {
       selectedDate = picked;
@@ -62,6 +98,18 @@ class DateTimePickerScreen {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
       initialTime: selectedTime,
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Color(0xFF1282A2),
+              primary: Color(0xFF1282A2), // Новый цвет фона
+              onPrimary: Colors.white,
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
     if (picked != null) {
       selectedTime = picked;

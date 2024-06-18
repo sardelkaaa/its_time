@@ -76,21 +76,56 @@ class TaskServices extends ChangeNotifier{
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Удалить задачу?'),
-          content: const Text('Вы уверены, что хотите удалить эту задачу?'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Отмена'),
+          backgroundColor: Color(0xFF1282A2),
+          title: Text(
+              'Удалить задачу?',
+            style: TextStyle(
+              color: Color(0xFFC6E9F3),
+              fontSize: MediaQuery.of(context).size.height * 0.023,
+              fontWeight: FontWeight.w500,
             ),
-            TextButton(
-              onPressed: () {
-                NotificationServices().cancelScheduledNotification(taskId.hashCode);
-                tasks.doc(taskId).delete();
-                Navigator.of(context).pop();
-                Navigator.pop(context);
-              },
-              child: const Text('Удалить'),
+            textAlign: TextAlign.center,
+          ),
+          content: Text(
+              'Вы уверены, что хотите удалить эту задачу?',
+            style: TextStyle(
+              color: Color(0xFFC6E9F3),
+              fontSize: MediaQuery.of(context).size.height * 0.02,
+            ),
+          ),
+          actions: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text(
+                      'Отмена',
+                    style: TextStyle(
+                      color: Color(0x50000000),
+                      fontSize: MediaQuery.of(context).size.height * 0.023,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+
+                TextButton(
+                  onPressed: () {
+                    NotificationServices().cancelScheduledNotification(taskId.hashCode);
+                    tasks.doc(taskId).delete();
+                    Navigator.of(context).pop();
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Удалить',
+                    style: TextStyle(
+                      color: Color(0xFFC6E9F3),
+                      fontSize: MediaQuery.of(context).size.height * 0.023,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         );
