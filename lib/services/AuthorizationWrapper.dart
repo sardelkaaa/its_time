@@ -4,6 +4,8 @@ import 'package:its_time/pages/home.dart';
 import 'package:its_time/pages/authorization.dart';
 
 class AuthenticationWrapper extends StatelessWidget {
+  const AuthenticationWrapper({super.key});
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
@@ -12,14 +14,14 @@ class AuthenticationWrapper extends StatelessWidget {
         if (snapshot.hasData) {
           // Пользователь авторизован, проверяем, подтвержден ли его email
           if (snapshot.data!.emailVerified) {
-            return Home();
+            return const Home();
           } else {
             // Email не подтвержден, показываем страницу авторизации
-            return Authorization();
+            return const Authorization();
           }
         } else {
           // Пользователь не авторизован, показываем страницу авторизации
-          return Authorization();
+          return const Authorization();
         }
       },
     );

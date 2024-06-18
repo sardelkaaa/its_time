@@ -75,9 +75,8 @@ class BucketListAuthorization extends State<Authorization> {
   @override
   Widget build(BuildContext context) {
     var phoneHeight = MediaQuery.of(context).size.height;
-    var phoneWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Color(0xFF0A1128), // Цвет фона страницы
+      backgroundColor: const Color(0xFF0A1128), // Цвет фона страницы
       body: SingleChildScrollView(
         child: Form(
           key: formKey,
@@ -107,7 +106,7 @@ class BucketListAuthorization extends State<Authorization> {
                         child: Text(
                           'Авторизация',
                           style: TextStyle(
-                              color: Color(0xFFC6E9F3),
+                              color: const Color(0xFFC6E9F3),
                               fontSize: phoneHeight * 0.03,
                               fontWeight: FontWeight.w500
                           ),
@@ -122,7 +121,7 @@ class BucketListAuthorization extends State<Authorization> {
                       email != null && !EmailValidator.validate(email)
                           ? 'Введите правильный Email'
                           : null,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFFC6E9F3),
                         decoration: TextDecoration.none,
                         decorationColor: Color(0x01C6E9F3),
@@ -130,25 +129,25 @@ class BucketListAuthorization extends State<Authorization> {
                       decoration: InputDecoration(
                         labelText: 'Электронная почта',
                         filled: true,
-                        fillColor: Color(0xFF1282A2), // Цвет фона
+                        fillColor: const Color(0xFF1282A2), // Цвет фона
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                          borderSide: const BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                          borderSide: const BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                          borderSide: const BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                         ),
-                        labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w500),
-                        hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
-                        errorStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
-                        counterStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w400),
+                        labelStyle: TextStyle(color: const Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w500),
+                        hintStyle: TextStyle(color: const Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
+                        errorStyle: TextStyle(color: const Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
+                        counterStyle: TextStyle(color: const Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w400),
                       ),
-                      cursorColor: Color(0xFFC6E9F3),
+                      cursorColor: const Color(0xFFC6E9F3),
                       cursorWidth: 1,
                     ),
 
@@ -159,7 +158,7 @@ class BucketListAuthorization extends State<Authorization> {
                       controller: passwordTextInputController,
                       obscureText: isHiddenPassword,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFFC6E9F3),
                         decoration: TextDecoration.none,
                         decorationColor: Color(0x01C6E9F3),
@@ -176,25 +175,25 @@ class BucketListAuthorization extends State<Authorization> {
                           ),
                         ),
                         filled: true,
-                        fillColor: Color(0xFF1282A2), // Цвет фона
+                        fillColor: const Color(0xFF1282A2), // Цвет фона
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                          borderSide: const BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                          borderSide: const BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                          borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                          borderSide: const BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                         ),
-                        labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w500),
-                        hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
-                        errorStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
-                        counterStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w400),
+                        labelStyle: TextStyle(color: const Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w500),
+                        hintStyle: TextStyle(color: const Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
+                        errorStyle: TextStyle(color: const Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
+                        counterStyle: TextStyle(color: const Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w400),
                       ),
-                      cursorColor: Color(0xFFC6E9F3),
+                      cursorColor: const Color(0xFFC6E9F3),
                       cursorWidth: 1,
                     ),
 
@@ -204,17 +203,17 @@ class BucketListAuthorization extends State<Authorization> {
                       onTap: () {
                         Navigator.pushNamed(context, '/resetPassword');
                       },
-                      child: Container(
+                      child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.4,
                         height: MediaQuery.of(context).size.height * 0.05,
                         child: Row(
                           children: [
-                            Icon(Icons.person, size: MediaQuery.of(context).size.height * 0.03, color: Color(0xFFC6E9F3)),
+                            Icon(Icons.person, size: MediaQuery.of(context).size.height * 0.03, color: const Color(0xFFC6E9F3)),
                             SizedBox(width: MediaQuery.of(context).size.width * 0.01),
                             Text(
                               'Забыли пароль?',
                               style: TextStyle(
-                                color: Color(0xFFC6E9F3),
+                                color: const Color(0xFFC6E9F3),
                                 fontSize: MediaQuery.of(context).size.height * 0.02,
                                 fontWeight: FontWeight.w400,
                               ),
@@ -228,7 +227,7 @@ class BucketListAuthorization extends State<Authorization> {
 
                     Icon(
                       Icons.verified_user,
-                      size: MediaQuery.of(context).size.height * 0.3, color: Color(0xFF17A3CC),
+                      size: MediaQuery.of(context).size.height * 0.3, color: const Color(0xFF17A3CC),
                     ),
 
                     SizedBox(height: MediaQuery.of(context).size.height * 0.035),
@@ -237,16 +236,16 @@ class BucketListAuthorization extends State<Authorization> {
                       onPressed: () {
                         authorizeUser(context);
                       },
-                      child: Text('Войти в аккаунт', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.025, fontWeight: FontWeight.w500)),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF1282A2),
+                        backgroundColor: const Color(0xFF1282A2),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0),),
                         minimumSize: Size(MediaQuery.of(context).size.width * 0.6, MediaQuery.of(context).size.height * 0.07),
-                        side: BorderSide(
+                        side: const BorderSide(
                           color: Color(0x80FFFFFF),
                           width: 1.0,
                         ),
                       ),
+                      child: Text('Войти в аккаунт', style: TextStyle(color: const Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.025, fontWeight: FontWeight.w500)),
                     ),
 
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
@@ -255,7 +254,7 @@ class BucketListAuthorization extends State<Authorization> {
                       onTap: () {
                         Navigator.pushNamed(context, '/registration');
                       },
-                      child: Container(
+                      child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.415,
                         height: MediaQuery.of(context).size.height * 0.05,
                         child: Row(
@@ -263,7 +262,7 @@ class BucketListAuthorization extends State<Authorization> {
                             Text(
                               'Зарегистрироваться',
                               style: TextStyle(
-                                color: Color(0xFFC6E9F3),
+                                color: const Color(0xFFC6E9F3),
                                 fontSize: MediaQuery.of(context).size.height * 0.02,
                                 fontWeight: FontWeight.w500,
                               ),

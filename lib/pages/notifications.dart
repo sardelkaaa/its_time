@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 import 'package:its_time/services/NotificationServices.dart';
@@ -125,7 +123,7 @@ class BucketListNotifications extends State<Notifications> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
+                                SizedBox(
                                   width: phoneWidth * 0.55,
                                   child: ListView(
                                     children: [
@@ -143,11 +141,11 @@ class BucketListNotifications extends State<Notifications> {
                                                   builder: (BuildContext context) {
                                                     return SingleChildScrollView(
                                                       child: AlertDialog(
-                                                        backgroundColor: Color(0xFF1282A2),
+                                                        backgroundColor: const Color(0xFF1282A2),
                                                         title: Text(
                                                           'Название задания',
                                                           style: TextStyle(
-                                                            color: Color(0xFFC6E9F3),
+                                                            color: const Color(0xFFC6E9F3),
                                                             fontSize: phoneHeight * 0.023,
                                                             fontWeight: FontWeight.w500,
                                                           ),
@@ -156,7 +154,7 @@ class BucketListNotifications extends State<Notifications> {
                                                         content: Text(
                                                           notification.title ?? 'Название задания',
                                                           style: TextStyle(
-                                                            color: Color(0xFFC6E9F3),
+                                                            color: const Color(0xFFC6E9F3),
                                                             fontSize: phoneHeight * 0.02,
                                                           ),
                                                         ),
@@ -168,7 +166,7 @@ class BucketListNotifications extends State<Notifications> {
                                                             child: Text(
                                                               'Закрыть',
                                                               style: TextStyle(
-                                                                color: Color(0xFFC6E9F3),
+                                                                color: const Color(0xFFC6E9F3),
                                                                 fontSize: phoneHeight * 0.023,
                                                                 fontWeight: FontWeight.w500,
                                                               ),
@@ -183,7 +181,7 @@ class BucketListNotifications extends State<Notifications> {
                                               child: Text(
                                                 notification.title ?? 'Название задания',
                                                 style: TextStyle(
-                                                    color: Color(0xFFC6E9F3),
+                                                    color: const Color(0xFFC6E9F3),
                                                     fontSize: phoneHeight * 0.018,
                                                     fontWeight: FontWeight.w600,
                                                     height: 0

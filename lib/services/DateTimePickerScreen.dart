@@ -21,8 +21,8 @@ class DateTimePickerScreen {
         return Theme(
           data: ThemeData.light().copyWith(
             colorScheme: ColorScheme.fromSeed(
-              seedColor: Color(0xFF1282A2),
-              primary: Color(0xFF1282A2), // Новый цвет фона
+              seedColor: const Color(0xFF1282A2),
+              primary: const Color(0xFF1282A2), // Новый цвет фона
               onPrimary: Colors.white,
             ),
           ),
@@ -46,8 +46,8 @@ class DateTimePickerScreen {
         return Theme(
           data: ThemeData.light().copyWith(
             colorScheme: ColorScheme.fromSeed(
-              seedColor: Color(0xFF1282A2),
-              primary: Color(0xFF1282A2), // Новый цвет фона
+              seedColor: const Color(0xFF1282A2),
+              primary: const Color(0xFF1282A2), // Новый цвет фона
               onPrimary: Colors.white,
             ),
           ),
@@ -74,8 +74,8 @@ class DateTimePickerScreen {
         return Theme(
           data: ThemeData.light().copyWith(
             colorScheme: ColorScheme.fromSeed(
-              seedColor: Color(0xFF1282A2),
-              primary: Color(0xFF1282A2), // Новый цвет фона
+              seedColor: const Color(0xFF1282A2),
+              primary: const Color(0xFF1282A2), // Новый цвет фона
               onPrimary: Colors.white,
             ),
           ),
@@ -102,8 +102,8 @@ class DateTimePickerScreen {
         return Theme(
           data: ThemeData.light().copyWith(
             colorScheme: ColorScheme.fromSeed(
-              seedColor: Color(0xFF1282A2),
-              primary: Color(0xFF1282A2), // Новый цвет фона
+              seedColor: const Color(0xFF1282A2),
+              primary: const Color(0xFF1282A2), // Новый цвет фона
               onPrimary: Colors.white,
             ),
           ),

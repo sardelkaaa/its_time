@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/widgets.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -17,14 +15,14 @@ class BucketListSettings extends State<Settings> {
     var phoneHeight = MediaQuery.of(context).size.height;
     var phoneWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Color(0xFF0A1128), // Цвет фона страницы
+      backgroundColor: const Color(0xFF0A1128), // Цвет фона страницы
 
       appBar: AppBar(
-        backgroundColor: Color(0xFF0A1128), // Цвет фона шапки
+        backgroundColor: const Color(0xFF0A1128), // Цвет фона шапки
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           iconSize: MediaQuery.of(context).size.width * 0.1,
-          color: Color(0xFFC6E9F3),
+          color: const Color(0xFFC6E9F3),
           onPressed: () {
             Navigator.pop(context); // Вернуться на главную страницу
           },
@@ -33,7 +31,7 @@ class BucketListSettings extends State<Settings> {
         title: Center(
           child: Text('Настройки',
             style: TextStyle(
-                color: Color(0xFFC6E9F3),
+                color: const Color(0xFFC6E9F3),
                 fontSize: phoneHeight * 0.03,
                 fontWeight: FontWeight.w500
             ),
@@ -44,7 +42,7 @@ class BucketListSettings extends State<Settings> {
           IconButton(
             icon: const Icon(Icons.notifications),
             iconSize: MediaQuery.of(context).size.width * 0.1,
-            color: Color(0xFFC6E9F3),
+            color: const Color(0xFFC6E9F3),
             onPressed: () {
               Navigator.pushNamed(context, '/notifications'); // Действие при нажатии на значок уведомлений
             },
@@ -84,7 +82,7 @@ class BucketListSettings extends State<Settings> {
                             builder: (BuildContext context) {
                               return SingleChildScrollView(
                                 child: AlertDialog(
-                                  backgroundColor: Color(0xFF1282A2),
+                                  backgroundColor: const Color(0xFF1282A2),
                                   content: Column(
                                     children: [
                                       Padding(
@@ -94,7 +92,7 @@ class BucketListSettings extends State<Settings> {
                                         child: Text(
                                           'Ответы на возможные вопросы:',
                                           style: TextStyle(
-                                              color: Color(0xFFC6E9F3),
+                                              color: const Color(0xFFC6E9F3),
                                               fontSize: phoneHeight * 0.02,
                                               fontWeight: FontWeight.w600
                                           ),
@@ -110,7 +108,7 @@ class BucketListSettings extends State<Settings> {
                                           child: Text(
                                             '1) Как связаться с поддержкой?',
                                             style: TextStyle(
-                                                color: Color(0xFFC6E9F3),
+                                                color: const Color(0xFFC6E9F3),
                                                 fontSize: phoneHeight * 0.017,
                                                 fontWeight: FontWeight.w400
                                             ),
@@ -127,7 +125,7 @@ class BucketListSettings extends State<Settings> {
                                           child: Text(
                                             '- Написать на эл.почту its.time@outlook.com',
                                             style: TextStyle(
-                                                color: Color(0xFFC6E9F3),
+                                                color: const Color(0xFFC6E9F3),
                                                 fontSize: phoneHeight * 0.017,
                                                 fontWeight: FontWeight.w600
                                             ),
@@ -144,7 +142,7 @@ class BucketListSettings extends State<Settings> {
                                           child: Text(
                                             '2) Как открыть название задания полностью, если оно показывается не полностью?',
                                             style: TextStyle(
-                                                color: Color(0xFFC6E9F3),
+                                                color: const Color(0xFFC6E9F3),
                                                 fontSize: phoneHeight * 0.017,
                                                 fontWeight: FontWeight.w400
                                             ),
@@ -161,7 +159,7 @@ class BucketListSettings extends State<Settings> {
                                           child: Text(
                                             '- Нажать на название задания и оно полностью покажется во всплывающем окне',
                                             style: TextStyle(
-                                                color: Color(0xFFC6E9F3),
+                                                color: const Color(0xFFC6E9F3),
                                                 fontSize: phoneHeight * 0.017,
                                                 fontWeight: FontWeight.w600
                                             ),
@@ -178,7 +176,7 @@ class BucketListSettings extends State<Settings> {
                                           child: Text(
                                             '3) Как работает приоритетность заданий?',
                                             style: TextStyle(
-                                                color: Color(0xFFC6E9F3),
+                                                color: const Color(0xFFC6E9F3),
                                                 fontSize: phoneHeight * 0.017,
                                                 fontWeight: FontWeight.w400
                                             ),
@@ -195,7 +193,7 @@ class BucketListSettings extends State<Settings> {
                                           child: Text(
                                             '- В зависимости от выбранного уровня приоритетности, задание выставляется по важности в списке текущих заданий',
                                             style: TextStyle(
-                                                color: Color(0xFFC6E9F3),
+                                                color: const Color(0xFFC6E9F3),
                                                 fontSize: phoneHeight * 0.017,
                                                 fontWeight: FontWeight.w600
                                             ),
@@ -213,7 +211,7 @@ class BucketListSettings extends State<Settings> {
                                       child: Text(
                                         'Закрыть',
                                         style: TextStyle(
-                                          color: Color(0xFFC6E9F3),
+                                          color: const Color(0xFFC6E9F3),
                                           fontSize: phoneHeight * 0.02,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -225,16 +223,16 @@ class BucketListSettings extends State<Settings> {
                             },
                           );
                         },
-                        child: Container(
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.3,
                           child: Row(
                             children: [
-                              Icon(Icons.question_answer, size: phoneHeight * 0.06, color: Color(0xFFC6E9F3)),
+                              Icon(Icons.question_answer, size: phoneHeight * 0.06, color: const Color(0xFFC6E9F3)),
                               SizedBox(width: phoneWidth * 0.02),
                               Text(
                                 'FAQ',
                                 style: TextStyle(
-                                  color: Color(0xFFC6E9F3),
+                                  color: const Color(0xFFC6E9F3),
                                   fontSize: phoneHeight * 0.025,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -259,7 +257,7 @@ class BucketListSettings extends State<Settings> {
                             builder: (BuildContext context) {
                               return SingleChildScrollView(
                                 child: AlertDialog(
-                                  backgroundColor: Color(0xFF1282A2),
+                                  backgroundColor: const Color(0xFF1282A2),
                                   content: Column(
                                     children: [
                                         Padding(
@@ -269,7 +267,7 @@ class BucketListSettings extends State<Settings> {
                                           child: Text(
                                           'Электронная почта для связи:',
                                           style: TextStyle(
-                                            color: Color(0xFFC6E9F3),
+                                            color: const Color(0xFFC6E9F3),
                                             fontSize: phoneHeight * 0.02,
                                             fontWeight: FontWeight.w600
                                           ),
@@ -281,7 +279,7 @@ class BucketListSettings extends State<Settings> {
                                           child: Text(
                                           'its.time@outlook.com',
                                           style: TextStyle(
-                                            color: Color(0xFFC6E9F3),
+                                            color: const Color(0xFFC6E9F3),
                                             fontSize: phoneHeight * 0.017,
                                             fontWeight: FontWeight.w400
                                           ),
@@ -297,7 +295,7 @@ class BucketListSettings extends State<Settings> {
                                       child: Text(
                                         'Закрыть',
                                         style: TextStyle(
-                                          color: Color(0xFFC6E9F3),
+                                          color: const Color(0xFFC6E9F3),
                                           fontSize: phoneHeight * 0.02,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -309,16 +307,16 @@ class BucketListSettings extends State<Settings> {
                             },
                           );
                         },
-                        child: Container(
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.745,
                           child: Row(
                             children: [
-                              Icon(Icons.support_agent, size: MediaQuery.of(context).size.height * 0.06, color: Color(0xFFC6E9F3)),
+                              Icon(Icons.support_agent, size: MediaQuery.of(context).size.height * 0.06, color: const Color(0xFFC6E9F3)),
                               SizedBox(width: phoneWidth * 0.02),
                               Text(
                                 'Связь с поддержкой',
                                 style: TextStyle(
-                                  color: Color(0xFFC6E9F3),
+                                  color: const Color(0xFFC6E9F3),
                                   fontSize: phoneHeight * 0.025,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -337,16 +335,16 @@ class BucketListSettings extends State<Settings> {
                         await FirebaseAuth.instance.signOut();
                         Navigator.of(context).pushNamedAndRemoveUntil('/authorization', (Route<dynamic> route) => false);
                       },
-                      child: Container(
+                      child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: Row(
                           children: [
-                            Icon(Icons.exit_to_app, size: MediaQuery.of(context).size.height * 0.06, color: Color(0xFFFF8C00)),
+                            Icon(Icons.exit_to_app, size: MediaQuery.of(context).size.height * 0.06, color: const Color(0xFFFF8C00)),
                             SizedBox(width: phoneWidth * 0.02),
                             Text(
                               'Выйти из аккаунта',
                               style: TextStyle(
-                                color: Color(0xFFFF8C00),
+                                color: const Color(0xFFFF8C00),
                                 fontSize: phoneHeight * 0.025,
                                 fontWeight: FontWeight.w500,
                               ),

@@ -1,7 +1,5 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:its_time/services/SnackBarServices.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -59,9 +57,8 @@ class BucketListResetPassword extends State<ResetPassword> {
   @override
   Widget build(BuildContext context) {
     var phoneHeight = MediaQuery.of(context).size.height;
-    var phoneWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Color(0xFF0A1128), // Цвет фона страницы
+      backgroundColor: const Color(0xFF0A1128), // Цвет фона страницы
       body:
       SingleChildScrollView(
         child: Form(
@@ -92,7 +89,7 @@ class BucketListResetPassword extends State<ResetPassword> {
                           Text(
                             'Сброс пароля',
                             style: TextStyle(
-                                color: Color(0xFFC6E9F3),
+                                color: const Color(0xFFC6E9F3),
                                 fontSize: phoneHeight * 0.03,
                                 fontWeight: FontWeight.w500
                             ),
@@ -107,7 +104,7 @@ class BucketListResetPassword extends State<ResetPassword> {
                         email != null && !EmailValidator.validate(email)
                             ? 'Введите правильный Email'
                             : null,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xFFC6E9F3),
                           decoration: TextDecoration.none,
                           decorationColor: Color(0x01C6E9F3),
@@ -115,25 +112,25 @@ class BucketListResetPassword extends State<ResetPassword> {
                         decoration: InputDecoration(
                           labelText: 'Электронная почта',
                           filled: true,
-                          fillColor: Color(0xFF1282A2), // Цвет фона
+                          fillColor: const Color(0xFF1282A2), // Цвет фона
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                            borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                            borderSide: const BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                            borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                            borderSide: const BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25.0), // Закругление углов
-                            borderSide: BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
+                            borderSide: const BorderSide(color: Color(0x80FFFFFF)), // Цвет границы
                           ),
-                          labelStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w500),
-                          hintStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
+                          labelStyle: TextStyle(color: const Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w500),
+                          hintStyle: TextStyle(color: const Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w600),
                           errorStyle: TextStyle(color: Colors.red, fontSize: MediaQuery.of(context).size.height * 0.017, fontWeight: FontWeight.w500),
-                          counterStyle: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w400),
+                          counterStyle: TextStyle(color: const Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.023, fontWeight: FontWeight.w400),
                         ),
-                        cursorColor: Color(0xFFC6E9F3),
+                        cursorColor: const Color(0xFFC6E9F3),
                         cursorWidth: 1,
                       ),
 
@@ -141,7 +138,7 @@ class BucketListResetPassword extends State<ResetPassword> {
 
                       Icon(
                         Icons.lock_reset,
-                        size: MediaQuery.of(context).size.height * 0.35, color: Color(0xFF17A3CC),
+                        size: MediaQuery.of(context).size.height * 0.35, color: const Color(0xFF17A3CC),
                       ),
 
                       SizedBox(height: MediaQuery.of(context).size.height * 0.04),
@@ -150,16 +147,16 @@ class BucketListResetPassword extends State<ResetPassword> {
                         onPressed: () {
                           resetPassword();
                         },
-                        child: Text('Сбросить пароль', style: TextStyle(color: Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.025, fontWeight: FontWeight.w500)),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF1282A2),
+                          backgroundColor: const Color(0xFF1282A2),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0),),
                           minimumSize: Size(MediaQuery.of(context).size.width * 0.6, MediaQuery.of(context).size.height * 0.07),
-                          side: BorderSide(
+                          side: const BorderSide(
                             color: Color(0x80FFFFFF),
                             width: 1.0,
                           ),
                         ),
+                        child: Text('Сбросить пароль', style: TextStyle(color: const Color(0xFFC6E9F3), fontSize: MediaQuery.of(context).size.height * 0.025, fontWeight: FontWeight.w500)),
                       ),
                     ],
                   ),

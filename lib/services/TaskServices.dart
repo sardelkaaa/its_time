@@ -35,9 +35,7 @@ class TaskServices extends ChangeNotifier{
     tasks.doc(taskId).update({
       'title': newTitle,
     }).then((_) {
-      print('Успешно обновлено в Firestore');
     }).catchError((error) {
-      print('Ошибка при обновлении в Firestore: $error');
     });
   }
 
@@ -45,9 +43,7 @@ class TaskServices extends ChangeNotifier{
     tasks.doc(taskId).update({
       'description': newDescription,
     }).then((_) {
-      print('Успешно обновлено в Firestore');
     }).catchError((error) {
-      print('Ошибка при обновлении в Firestore: $error');
     });
   }
 
@@ -55,9 +51,7 @@ class TaskServices extends ChangeNotifier{
     await tasks.doc(taskId).update({
       'date': newDate,
     }).then((_) {
-      print('Успешно обновлено в Firestore');
     }).catchError((error) {
-      print('Ошибка при обновлении в Firestore: $error');
     });
   }
 
@@ -65,9 +59,7 @@ class TaskServices extends ChangeNotifier{
     await tasks.doc(taskId).update({
       'time': newTime,
     }).then((_) {
-      print('Успешно обновлено в Firestore');
     }).catchError((error) {
-      print('Ошибка при обновлении в Firestore: $error');
     });
   }
 
@@ -76,11 +68,11 @@ class TaskServices extends ChangeNotifier{
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Color(0xFF1282A2),
+          backgroundColor: const Color(0xFF1282A2),
           title: Text(
               'Удалить задачу?',
             style: TextStyle(
-              color: Color(0xFFC6E9F3),
+              color: const Color(0xFFC6E9F3),
               fontSize: MediaQuery.of(context).size.height * 0.023,
               fontWeight: FontWeight.w500,
             ),
@@ -89,7 +81,7 @@ class TaskServices extends ChangeNotifier{
           content: Text(
               'Вы уверены, что хотите удалить эту задачу?',
             style: TextStyle(
-              color: Color(0xFFC6E9F3),
+              color: const Color(0xFFC6E9F3),
               fontSize: MediaQuery.of(context).size.height * 0.02,
             ),
           ),
@@ -102,7 +94,7 @@ class TaskServices extends ChangeNotifier{
                   child: Text(
                       'Отмена',
                     style: TextStyle(
-                      color: Color(0x50000000),
+                      color: const Color(0x50000000),
                       fontSize: MediaQuery.of(context).size.height * 0.023,
                       fontWeight: FontWeight.w500,
                     ),
@@ -119,7 +111,7 @@ class TaskServices extends ChangeNotifier{
                   child: Text(
                     'Удалить',
                     style: TextStyle(
-                      color: Color(0xFFC6E9F3),
+                      color: const Color(0xFFC6E9F3),
                       fontSize: MediaQuery.of(context).size.height * 0.023,
                       fontWeight: FontWeight.w500,
                     ),
@@ -137,9 +129,7 @@ class TaskServices extends ChangeNotifier{
     tasks.doc(taskId).update({
       'priority': newPriority,
     }).then((_) {
-      print('Успешно обновлено в Firestore');
     }).catchError((error) {
-      print('Ошибка при обновлении в Firestore: $error');
     });
   }
 }

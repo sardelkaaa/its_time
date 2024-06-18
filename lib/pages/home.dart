@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/widgets.dart';
 import 'package:its_time/services/TaskServices.dart';
 import 'package:intl/intl.dart';
 
@@ -19,15 +17,15 @@ class BucketListHomePage extends State<Home> {
     var phoneHeight = MediaQuery.of(context).size.height;
     var phoneWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Color(0xFF0A1128), // Цвет фона страницы
+      backgroundColor: const Color(0xFF0A1128), // Цвет фона страницы
 
       appBar: AppBar(
-        backgroundColor: Color(0xFF0A1128), // Цвет фона шапки
+        backgroundColor: const Color(0xFF0A1128), // Цвет фона шапки
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.notifications),
             iconSize: phoneWidth * 0.1,
-            color: Color(0xFFC6E9F3),// Устанавляем размер иконки пропорционально ширине экрана
+            color: const Color(0xFFC6E9F3),// Устанавляем размер иконки пропорционально ширине экрана
             onPressed: () {
               Navigator.pushNamed(context, '/notifications'); // Действие при нажатии на значок уведомлений
             },
@@ -42,7 +40,7 @@ class BucketListHomePage extends State<Home> {
               stream: TaskServices().getTasks(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 }
                 if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
                   var task = snapshot.data!.docs.first; // Получаем первое задание из списка
@@ -78,7 +76,7 @@ class BucketListHomePage extends State<Home> {
                             padding: EdgeInsets.only(
                               bottom: phoneHeight * 0.0108
                             ),
-                            child: Container(
+                            child: SizedBox(
                               height: phoneHeight * 0.1432,
                               child: Column(
                                 children: [
@@ -95,11 +93,11 @@ class BucketListHomePage extends State<Home> {
                                             builder: (BuildContext context) {
                                               return SingleChildScrollView(
                                                 child: AlertDialog(
-                                                  backgroundColor: Color(0xFF1282A2),
+                                                  backgroundColor: const Color(0xFF1282A2),
                                                   title: Text(
                                                     'Название задания',
                                                     style: TextStyle(
-                                                      color: Color(0xFFC6E9F3),
+                                                      color: const Color(0xFFC6E9F3),
                                                       fontSize: phoneHeight * 0.023,
                                                       fontWeight: FontWeight.w500,
                                                     ),
@@ -108,7 +106,7 @@ class BucketListHomePage extends State<Home> {
                                                   content: Text(
                                                     task['title'],
                                                     style: TextStyle(
-                                                      color: Color(0xFFC6E9F3),
+                                                      color: const Color(0xFFC6E9F3),
                                                       fontSize: phoneHeight * 0.02,
                                                     ),
                                                   ),
@@ -120,7 +118,7 @@ class BucketListHomePage extends State<Home> {
                                                       child: Text(
                                                         'Закрыть',
                                                         style: TextStyle(
-                                                          color: Color(0xFFC6E9F3),
+                                                          color: const Color(0xFFC6E9F3),
                                                           fontSize: phoneHeight * 0.023,
                                                           fontWeight: FontWeight.w500,
                                                         ),
@@ -135,7 +133,7 @@ class BucketListHomePage extends State<Home> {
                                         child: Text(
                                           task['title'],
                                           style: TextStyle(
-                                              color: Color(0xFFC6E9F3),
+                                              color: const Color(0xFFC6E9F3),
                                               fontSize: phoneHeight * 0.027,
                                               fontWeight: FontWeight.w600,
                                               height: 0
@@ -161,7 +159,7 @@ class BucketListHomePage extends State<Home> {
                                         style: TextStyle(
                                           fontSize: phoneHeight * 0.023,
                                           fontWeight: FontWeight.w500,
-                                          color: Color(0xFFC6E9F3),
+                                          color: const Color(0xFFC6E9F3),
                                           height: 0,
                                         ),
                                       ),
@@ -178,11 +176,11 @@ class BucketListHomePage extends State<Home> {
                                           builder: (BuildContext context) {
                                             return SingleChildScrollView(
                                               child: AlertDialog(
-                                                backgroundColor: Color(0xFF1282A2),
+                                                backgroundColor: const Color(0xFF1282A2),
                                                 title: Text(
                                                   'Описание задания',
                                                   style: TextStyle(
-                                                    color: Color(0xFFC6E9F3),
+                                                    color: const Color(0xFFC6E9F3),
                                                     fontSize: phoneHeight * 0.023,
                                                     fontWeight: FontWeight.w500,
                                                   ),
@@ -191,7 +189,7 @@ class BucketListHomePage extends State<Home> {
                                                 content: Text(
                                                   task['description'],
                                                   style: TextStyle(
-                                                    color: Color(0xFFC6E9F3),
+                                                    color: const Color(0xFFC6E9F3),
                                                     fontSize: phoneHeight * 0.02,
                                                   ),
                                                 ),
@@ -203,7 +201,7 @@ class BucketListHomePage extends State<Home> {
                                                     child: Text(
                                                       'Закрыть',
                                                       style: TextStyle(
-                                                        color: Color(0xFFC6E9F3),
+                                                        color: const Color(0xFFC6E9F3),
                                                         fontSize: phoneHeight * 0.023,
                                                         fontWeight: FontWeight.w500
                                                       ),
@@ -217,7 +215,7 @@ class BucketListHomePage extends State<Home> {
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: Color(0x30000000),
+                                          color: const Color(0x30000000),
                                           borderRadius: BorderRadius.circular(phoneWidth * 0.01402)
                                         ),
                                         child: Padding(
@@ -228,7 +226,7 @@ class BucketListHomePage extends State<Home> {
                                           child: Text(
                                             'Открыть описание',
                                             style: TextStyle(
-                                              color: Color(0x90F3F3F3),
+                                              color: const Color(0x90F3F3F3),
                                               fontSize: phoneHeight * 0.017,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -249,12 +247,12 @@ class BucketListHomePage extends State<Home> {
                               width: phoneWidth * 0.1,
                               height: phoneWidth * 0.1,
                               decoration: BoxDecoration(
-                                color: Color(0x30000000),
+                                color: const Color(0x30000000),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: IconButton(
-                                icon: Icon(Icons.edit),
-                                color: Color(0x90F3F3F3),
+                                icon: const Icon(Icons.edit),
+                                color: const Color(0x90F3F3F3),
                                 onPressed: () {
                                   Navigator.pushNamed(context, '/editTask', arguments: task.id);
                                 },
@@ -292,7 +290,7 @@ class BucketListHomePage extends State<Home> {
                         child: Text(
                           'Нет текущего основного задания',
                           style: TextStyle(
-                            color: Color(0xFFC6E9F3),
+                            color: const Color(0xFFC6E9F3),
                             fontSize: phoneHeight * 0.023,
                             fontWeight: FontWeight.w500
                           ),
@@ -309,7 +307,7 @@ class BucketListHomePage extends State<Home> {
             stream: TaskServices().getTasks(), // Обращение к вспомогательному методу для вывода заданий из БД
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               }
               if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
@@ -361,13 +359,13 @@ class BucketListHomePage extends State<Home> {
                                     ),
                                     child: Icon(
                                       Icons.circle,
-                                      color: Color(0xFFFF8C00),
+                                      color: const Color(0xFFFF8C00),
                                       size: phoneWidth * 0.035,
                                     ),
                                   ),
                                 ),
 
-                                Container(
+                                SizedBox(
                                   width: phoneWidth * 0.64,
                                   child:
                                   InkWell(
@@ -377,11 +375,11 @@ class BucketListHomePage extends State<Home> {
                                         builder: (BuildContext context) {
                                           return SingleChildScrollView(
                                             child: AlertDialog(
-                                              backgroundColor: Color(0xFF1282A2),
+                                              backgroundColor: const Color(0xFF1282A2),
                                               title: Text(
                                                 'Название задания',
                                                 style: TextStyle(
-                                                  color: Color(0xFFC6E9F3),
+                                                  color: const Color(0xFFC6E9F3),
                                                   fontSize: phoneHeight * 0.023,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -390,7 +388,7 @@ class BucketListHomePage extends State<Home> {
                                               content: Text(
                                                 data['title'],
                                                 style: TextStyle(
-                                                  color: Color(0xFFC6E9F3),
+                                                  color: const Color(0xFFC6E9F3),
                                                   fontSize: phoneHeight * 0.02,
                                                 ),
                                               ),
@@ -402,7 +400,7 @@ class BucketListHomePage extends State<Home> {
                                                   child: Text(
                                                     'Закрыть',
                                                     style: TextStyle(
-                                                        color: Color(0xFFC6E9F3),
+                                                        color: const Color(0xFFC6E9F3),
                                                         fontSize: phoneHeight * 0.023,
                                                         fontWeight: FontWeight.w500,
                                                     ),
@@ -417,7 +415,7 @@ class BucketListHomePage extends State<Home> {
                                     child: Text(
                                       data['title'],
                                       style: TextStyle(
-                                          color: Color(0xFFC6E9F3),
+                                          color: const Color(0xFFC6E9F3),
                                           fontSize: phoneHeight * 0.023,
                                           fontWeight: FontWeight.w500,
                                         height: 0
@@ -436,13 +434,13 @@ class BucketListHomePage extends State<Home> {
                                     width: phoneWidth * 0.08,
                                     height: phoneWidth * 0.08,
                                     decoration: BoxDecoration(
-                                      color: Color(0x30000000),
+                                      color: const Color(0x30000000),
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Center(
                                       child: IconButton(
                                         icon: Icon(Icons.edit, size: phoneWidth * 0.04,),
-                                        color: Color(0x90F3F3F3),
+                                        color: const Color(0x90F3F3F3),
                                         onPressed: () {
                                           Navigator.pushNamed(context, '/editTask', arguments: documentId);
                                         },
@@ -475,11 +473,11 @@ class BucketListHomePage extends State<Home> {
                                       builder: (BuildContext context) {
                                         return SingleChildScrollView(
                                           child: AlertDialog(
-                                            backgroundColor: Color(0xFF1282A2),
+                                            backgroundColor: const Color(0xFF1282A2),
                                             title: Text(
                                               'Описание задания',
                                               style: TextStyle(
-                                                color: Color(0xFFC6E9F3),
+                                                color: const Color(0xFFC6E9F3),
                                                 fontSize: phoneHeight * 0.023,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -488,7 +486,7 @@ class BucketListHomePage extends State<Home> {
                                             content: Text(
                                               data['description'],
                                               style: TextStyle(
-                                                color: Color(0xFFC6E9F3),
+                                                color: const Color(0xFFC6E9F3),
                                                 fontSize: phoneHeight * 0.02,
                                               ),
                                             ),
@@ -500,7 +498,7 @@ class BucketListHomePage extends State<Home> {
                                                 child: Text(
                                                   'Закрыть',
                                                   style: TextStyle(
-                                                    color: Color(0xFFC6E9F3),
+                                                    color: const Color(0xFFC6E9F3),
                                                     fontSize: phoneHeight * 0.023,
                                                     fontWeight: FontWeight.w500
                                                   ),
@@ -514,7 +512,7 @@ class BucketListHomePage extends State<Home> {
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
-                                        color: Color(0x30000000),
+                                        color: const Color(0x30000000),
                                         borderRadius: BorderRadius.circular(phoneWidth * 0.01402)
                                     ),
                                     child: Padding(
@@ -525,7 +523,7 @@ class BucketListHomePage extends State<Home> {
                                       child: Text(
                                         'Открыть описание',
                                         style: TextStyle(
-                                          color: Color(0x90F3F3F3),
+                                          color: const Color(0x90F3F3F3),
                                           fontSize: phoneHeight * 0.017,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -547,16 +545,16 @@ class BucketListHomePage extends State<Home> {
                                   Text(
                                       '$taskTime', // Форматированный вывод даты
                                       style: TextStyle(
-                                          color: Color(0xFFC6E9F3),
+                                          color: const Color(0xFFC6E9F3),
                                           fontSize: phoneHeight * 0.017,
                                           fontWeight: FontWeight.w500
                                       )
                                   ),
 
                                   Text(
-                                      '${DateFormat('dd.MM.yyyy').format(taskDate)}', // Форматированный вывод даты
+                                      DateFormat('dd.MM.yyyy').format(taskDate), // Форматированный вывод даты
                                       style: TextStyle(
-                                          color: Color(0xFFC6E9F3),
+                                          color: const Color(0xFFC6E9F3),
                                           fontSize: phoneHeight * 0.017,
                                           fontWeight: FontWeight.w500
                                       )
@@ -596,7 +594,7 @@ class BucketListHomePage extends State<Home> {
                     child: Text(
                       'Нет текущих заданий',
                       style: TextStyle(
-                        color: Color(0xFFC6E9F3),
+                        color: const Color(0xFFC6E9F3),
                         fontSize: phoneHeight * 0.023,
                         fontWeight: FontWeight.w500
                       ),
@@ -613,26 +611,26 @@ class BucketListHomePage extends State<Home> {
         onPressed: () {
           Navigator.pushNamed(context, '/addTask');
         },
-        backgroundColor: Color(0xFF1282A2),
+        backgroundColor: const Color(0xFF1282A2),
+        shape: const CircleBorder(),
         child: Icon(
           Icons.add,
           size: phoneWidth * 0.1, // Вычисляем размер иконки как 10% ширины экрана
-          color: Color(0xFFC6E9F3),
+          color: const Color(0xFFC6E9F3),
         ),
-        shape: CircleBorder(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
         bottomNavigationBar: BottomAppBar(
           shape: const CircularNotchedRectangle(),
-          color: Color(0xFF1282A2),
+          color: const Color(0xFF1282A2),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               IconButton(
                 icon: const Icon(Icons.history),
                 iconSize: phoneWidth * 0.1, // Устанавляем размер иконки пропорционально ширине экрана
-                color: Color(0xFFC6E9F3),
+                color: const Color(0xFFC6E9F3),
                 onPressed: () {
                   Navigator.pushNamed(context, '/history'); // Действия при нажатии на иконку истории
                 },
@@ -640,7 +638,7 @@ class BucketListHomePage extends State<Home> {
               IconButton(
                 icon: const Icon(Icons.settings),
                 iconSize: phoneWidth * 0.1, // Устанавляем размер иконки пропорционально ширине экрана
-                color: Color(0xFFC6E9F3),
+                color: const Color(0xFFC6E9F3),
                 onPressed: () {
                   Navigator.pushNamed(context, '/settings'); // Действия при нажатии на иконку настроек
                 },
